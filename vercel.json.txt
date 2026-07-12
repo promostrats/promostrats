@@ -1,0 +1,21 @@
+{
+  "redirects": [
+    { "source": "/pages/contact", "destination": "/contact", "permanent": true },
+    { "source": "/pages/portfolio", "destination": "/portfolio", "permanent": true },
+    { "source": "/pages/:slug", "destination": "/", "permanent": false },
+
+    { "source": "/collections", "destination": "/", "permanent": true },
+    { "source": "/collections/:slug*", "destination": "/", "permanent": true },
+    { "source": "/products/:slug*", "destination": "/", "permanent": true },
+    { "source": "/cart", "destination": "/", "permanent": true },
+    { "source": "/account", "destination": "/", "permanent": true },
+    { "source": "/account/:slug*", "destination": "/", "permanent": true },
+    { "source": "/search", "destination": "/", "permanent": true },
+
+    { "source": "/blogs/tips-and-tricks", "destination": "/", "permanent": false },
+    { "source": "/blogs/:blog/:slug*", "destination": "/", "permanent": false },
+
+    { "source": "/policies/privacy-policy", "destination": "/privacy", "permanent": true },
+    { "source": "/policies/terms-of-service", "destination": "/terms", "permanent": true }
+  ]
+}
