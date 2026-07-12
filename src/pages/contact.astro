@@ -1,0 +1,442 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// 1. Sign up free at https://formspree.io
+// 2. Create a form, copy the endpoint it gives you
+// 3. Paste it here, replacing the placeholder below
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
+---
+
+<Layout
+  title="Contact — PromoStrats"
+  description="Book a free, no-pressure Shopify strategy call. I'll walk through your site and show you exactly what's holding it back."
+>
+  <div class="ps2c-page">
+    <div class="ps2-wrap">
+      <div class="ps2c-wrap">
+        <!-- left: dark info panel -->
+        <div class="ps2c-left">
+          <div>
+            <span class="ps2c-eyebrow">// get in touch</span>
+            <h1>Let's improve your Shopify store.</h1>
+            <p class="ps2c-intro">
+              Book a free, no-pressure strategy call. I'll walk through your site and show you exactly what's holding it
+              back.
+            </p>
+
+            <div class="ps2c-spec">
+              <div>
+                <span class="ps2c-k">email:</span>
+                <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a>
+              </div>
+              <div><span class="ps2c-k">phone:</span> <a href="tel:07514043068">07514 043068</a></div>
+              <div><span class="ps2c-k">base:</span> London, East Dulwich</div>
+              <div><span class="ps2c-k">response:</span> within 3 working days</div>
+            </div>
+          </div>
+
+          <div class="ps2c-note">
+            <span class="ps2c-note-dot"></span>
+            accepting new projects &mdash; free strategy calls won't stay free indefinitely
+          </div>
+        </div>
+
+        <!-- right: form -->
+        <div class="ps2c-right">
+          <div>
+            <h2>Book a free strategy call</h2>
+            <p class="ps2c-sub">no commitment required</p>
+          </div>
+
+          <p class="ps2c-msg ps2c-msg--error" id="ps2c-error" hidden></p>
+          <p class="ps2c-msg ps2c-msg--success" id="ps2c-success" hidden>
+            &#10003; Thanks! I'll be in touch within 3 working days.
+          </p>
+
+          <form id="ps2c-form" action={FORMSPREE_ENDPOINT} method="POST">
+            <div class="ps2c-row">
+              <div class="ps2c-field">
+                <label for="ContactForm-name">Name</label>
+                <input type="text" id="ContactForm-name" name="name" autocomplete="name" placeholder="Your name" />
+              </div>
+              <div class="ps2c-field">
+                <label for="ContactForm-phone">Phone</label>
+                <input type="tel" id="ContactForm-phone" name="phone" autocomplete="tel" placeholder="07700 000000" />
+              </div>
+            </div>
+
+            <div class="ps2c-field">
+              <label for="ContactForm-email">Email <span class="ps2c-req">*</span></label>
+              <input
+                type="email"
+                id="ContactForm-email"
+                name="email"
+                required
+                autocomplete="email"
+                placeholder="you@yourstore.com"
+              />
+            </div>
+
+            <div class="ps2c-field">
+              <label for="ContactForm-service">What do you need help with?</label>
+              <select id="ContactForm-service" name="service">
+                <option value="" disabled selected>Select a service</option>
+                <option value="Design / UX">Design / UX</option>
+                <option value="SEO">SEO</option>
+                <option value="Both design and SEO">Both design and SEO</option>
+                <option value="General enquiry">General enquiry</option>
+              </select>
+            </div>
+
+            <div class="ps2c-field">
+              <label for="ContactForm-body">Your website + anything else</label>
+              <textarea
+                id="ContactForm-body"
+                name="message"
+                placeholder="Paste your Shopify store URL here, and mention anything specific you'd like me to look at..."
+              ></textarea>
+            </div>
+
+            <!-- honeypot: bots fill this, humans never see it -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="ps2c-gotcha" />
+
+            <button type="submit" id="ps2c-submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .ps2c-page {
+    padding: 72px 0 96px;
+  }
+
+  .ps2c-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 12px;
+    border: 1px solid var(--ps2-line);
+    overflow: hidden;
+    width: 100%;
+    font-family: var(--ps2-sans);
+    box-shadow: 0 24px 60px -32px rgba(21, 23, 27, 0.25);
+    text-align: left;
+  }
+
+  .ps2c-eyebrow {
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: var(--ps2-cobalt-light);
+    letter-spacing: 0.03em;
+    display: block;
+    margin: 0 0 18px;
+  }
+
+  /* ---------- left panel ---------- */
+  .ps2c-left {
+    background: var(--ps2-panel);
+    padding: 4rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .ps2c-left h1 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 14px;
+  }
+
+  .ps2c-intro {
+    color: #9aa1ad;
+    font-size: 15.5px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .ps2c-spec {
+    margin-top: 2.25rem;
+    border: 1px solid var(--ps2-panel-line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    line-height: 2.1;
+    color: var(--ps2-panel-text);
+  }
+
+  .ps2c-spec .ps2c-k {
+    color: #7a8291;
+  }
+
+  .ps2c-spec a {
+    color: var(--ps2-cobalt-light);
+    text-decoration: none;
+  }
+
+  .ps2c-spec a:hover {
+    text-decoration: underline;
+  }
+
+  .ps2c-note {
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: #7a8291;
+    line-height: 1.7;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ps2-panel-line);
+  }
+
+  .ps2c-note-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ps2-green);
+    margin-right: 8px;
+    vertical-align: 1px;
+    animation: ps2c-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes ps2c-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  /* ---------- right panel / form ---------- */
+  .ps2c-right {
+    padding: 4rem 3.5rem;
+    background: var(--ps2-paper);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .ps2c-right h2 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 23px;
+    letter-spacing: -0.015em;
+    color: var(--ps2-ink);
+    margin: 0 0 4px;
+  }
+
+  .ps2c-sub {
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: var(--ps2-ink-soft);
+    margin: 0;
+  }
+
+  .ps2c-right form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .ps2c-msg {
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+
+  .ps2c-msg--error {
+    color: var(--ps2-broken);
+    background: #faece8;
+    border: 1px solid #eac9c0;
+  }
+
+  .ps2c-msg--success {
+    color: #1b7a45;
+    background: #e9f7ef;
+    border: 1px solid #bfe5ce;
+  }
+
+  .ps2c-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .ps2c-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .ps2c-field label {
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ps2-ink-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .ps2c-req {
+    color: var(--ps2-cobalt);
+  }
+
+  .ps2c-field input,
+  .ps2c-field select,
+  .ps2c-field textarea {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 15px;
+    font-family: var(--ps2-sans);
+    border: 1px solid var(--ps2-line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ps2-ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .ps2c-field input::placeholder,
+  .ps2c-field textarea::placeholder {
+    color: #a6abb4;
+  }
+
+  .ps2c-field input:focus,
+  .ps2c-field select:focus,
+  .ps2c-field textarea:focus {
+    border-color: var(--ps2-cobalt);
+    box-shadow: 0 0 0 3px rgba(29, 59, 224, 0.12);
+  }
+
+  .ps2c-field textarea {
+    resize: none;
+    height: 110px;
+  }
+
+  .ps2c-field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4F58' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-color: #fff;
+  }
+
+  /* honeypot — hidden from humans, catches bots */
+  .ps2c-gotcha {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  /* submit */
+  .ps2c-right button[type='submit'] {
+    align-self: flex-start;
+    background: var(--ps2-cobalt);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--ps2-sans);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .ps2c-right button[type='submit']:hover:not(:disabled) {
+    background: var(--ps2-cobalt-deep);
+    transform: translateY(-1px);
+  }
+
+  .ps2c-right button[type='submit']:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .ps2c-right button[type='submit']:focus-visible {
+    outline: 2px solid var(--ps2-cobalt);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ps2c-note-dot {
+      animation: none;
+    }
+
+    .ps2c-right button[type='submit'] {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .ps2c-page {
+      padding: 40px 0 64px;
+    }
+
+    .ps2c-wrap {
+      grid-template-columns: 1fr;
+    }
+
+    .ps2c-left,
+    .ps2c-right {
+      padding: 2.5rem 1.75rem;
+    }
+
+    .ps2c-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('ps2c-form') as HTMLFormElement | null;
+  const submit = document.getElementById('ps2c-submit') as HTMLButtonElement | null;
+  const success = document.getElementById('ps2c-success');
+  const error = document.getElementById('ps2c-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submit) return;
+
+    error?.setAttribute('hidden', '');
+    submit.disabled = true;
+    submit.textContent = 'Sending...';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.setAttribute('hidden', '');
+        success?.removeAttribute('hidden');
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch {
+      if (error) {
+        error.textContent = "\u2717 Something went wrong. Email me directly at promostrats@gmail.com and I'll pick it up.";
+        error.removeAttribute('hidden');
+      }
+      submit.disabled = false;
+      submit.textContent = 'Send message';
+    }
+  });
+</script>

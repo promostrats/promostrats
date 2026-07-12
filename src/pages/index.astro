@@ -1,11 +1,907 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const ticker = [
+  'custom delivery date picker',
+  'collection filter rewrite',
+  'homepage restructure',
+  'meta titles + descriptions',
+  'product copy rewrites',
+  'custom theme sections',
+  'navigation cleanup',
+  'image optimisation',
+];
+
+const fixes = [
+  {
+    before: "visitors can't find what they need, so they leave",
+    after: 'clear navigation and page structure',
+    title: 'Disorganised site structure',
+    body: 'Menus, collections and pages reorganised around how your customers actually shop.',
+  },
+  {
+    before: 'missing titles, descriptions and structure',
+    after: 'SEO basics set up correctly, page by page',
+    title: 'SEO that was never set up',
+    body: 'Meta data, URL handles, headings and product copy done properly — so search engines can find you.',
+  },
+  {
+    before: 'confusing layouts creating friction',
+    after: 'pages redesigned around one clear job',
+    title: 'Pages that are hard to use',
+    body: 'Custom-built theme sections that match your brand, instead of stock blocks bent out of shape.',
+  },
+  {
+    before: 'small blockers stopping interested buyers',
+    after: 'friction removed from browse to checkout',
+    title: 'Conversion friction points',
+    body: 'The small, unglamorous details — broken filters, slow images, unclear buttons — found and fixed.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Free strategy call',
+    body: "I review your site live and tell you exactly what's working and what isn't. No obligation.",
+  },
+  {
+    title: 'Clear recommendations',
+    body: "A written breakdown of what I'd fix, why it matters, and what it costs.",
+  },
+  {
+    title: 'Implementation',
+    body: 'The work is done carefully inside your existing setup, with regular updates throughout.',
+  },
+  {
+    title: 'Summary + next steps',
+    body: "A before/after summary, plus what I'd improve next — whether or not you hire me again.",
+  },
+];
 ---
 
 <Layout>
-	<Welcome />
+  <div class="ps2-home">
+    <!-- status strip -->
+    <div class="ps2-status">
+      <div class="ps2-wrap">
+        <div><b>promostrats</b> <span class="ps2-path">~/shopify-optimisation/london</span></div>
+        <a class="ps2-avail" href="/contact">accepting new projects — book a free site review</a>
+      </div>
+    </div>
+
+    <!-- hero -->
+    <div class="ps2-hero">
+      <div class="ps2-wrap">
+        <div>
+          <span class="ps2-eyebrow">// shopify design + seo — london</span>
+          <h1>Your Shopify store, <span class="ps2-fixword">working properly</span>.</h1>
+          <p class="ps2-lede">
+            I find the structure, usability and SEO issues quietly costing you sales — then fix them properly, inside
+            your existing theme. No rebuilds you don't need.
+          </p>
+          <div class="ps2-hero-ctas">
+            <a class="ps2-btn" href="/contact">Book your free strategy call</a>
+            <a class="ps2-btn ps2-btn--ghost" href="/portfolio">View portfolio &rarr;</a>
+          </div>
+          <div class="ps2-hero-note">free 20-min call &middot; clear pricing before any work starts</div>
+        </div>
+
+        <div class="ps2-panel">
+          <div class="ps2-panel-head">
+            <span>store-audit.log</span>
+            <span class="ps2-run" id="ps2-runstate">running&hellip;</span>
+          </div>
+          <div class="ps2-panel-body" id="ps2-audit"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ticker -->
+    <div class="ps2-ticker" aria-hidden="true">
+      <div class="ps2-ticker-track">
+        {ticker.map((t) => <span>{t}</span>)}
+        {ticker.map((t) => <span>{t}</span>)}
+      </div>
+    </div>
+
+    <!-- what I fix -->
+    <div class="ps2-section">
+      <div class="ps2-wrap">
+        <div class="ps2-sec-head">
+          <span class="ps2-eyebrow">// what I fix</span>
+          <h2 class="ps2-h2">Common problems, properly solved.</h2>
+          <p>
+            Small issues compound. I find what's actually holding your store back and fix it at the source — not with
+            plugins stacked on plugins.
+          </p>
+        </div>
+        <div class="ps2-diffgrid">
+          {
+            fixes.map((f) => (
+              <div class="ps2-diff">
+                <div class="ps2-diff-before">
+                  <span>-</span>
+                  <s>{f.before}</s>
+                </div>
+                <div class="ps2-diff-after">
+                  <span>+</span>
+                  {f.after}
+                </div>
+                <h3>{f.title}</h3>
+                <p>{f.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- process -->
+    <div class="ps2-section ps2-process">
+      <div class="ps2-wrap">
+        <div class="ps2-sec-head">
+          <span class="ps2-eyebrow">// how it works</span>
+          <h2 class="ps2-h2">Simple, transparent process.</h2>
+          <p>Four steps from first conversation to finished work. You'll know the price before anything starts.</p>
+        </div>
+        <div class="ps2-steps">
+          {
+            steps.map((s) => (
+              <div class="ps2-step">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- testimonial -->
+    <div class="ps2-section">
+      <div class="ps2-wrap">
+        <span class="ps2-eyebrow">// what clients say</span>
+        <div class="ps2-stars" aria-label="5 out of 5 stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <blockquote class="ps2-quote">
+          "Connor took the time to understand our business and implemented improvements across our whole site — from
+          homepage layout and navigation through to <em>detailed SEO work</em> on product copy, metadata and images. Clear
+          plan, measurable progress, smooth and collaborative."
+        </blockquote>
+        <div class="ps2-attrib">
+          <div class="ps2-avatar">BM</div>
+          <div><b>Ben Meekings</b><span>The Artisan Merchants</span></div>
+          <a
+            class="ps2-verified"
+            href="https://www.google.com/maps/place/PromoStrats"
+            target="_blank"
+            rel="noopener">verified google review &nearr;</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- about -->
+    <div class="ps2-section ps2-about">
+      <div class="ps2-wrap">
+        <div>
+          <span class="ps2-eyebrow">// about</span>
+          <h2 class="ps2-h2">Hello, I'm Connor.</h2>
+          <p>
+            I work with Shopify store owners on everything from full redesigns to targeted fixes — custom theme sections,
+            structured SEO plans, and the small technical details most agencies skip.
+          </p>
+          <p>You deal with me directly the whole way through: the person on the call is the person doing the work.</p>
+        </div>
+        <div class="ps2-about-card">
+          <div><span class="ps2-k">base:</span> London, East Dulwich</div>
+          <div><span class="ps2-k">focus:</span> shopify design &middot; seo &middot; custom sections</div>
+          <div><span class="ps2-k">clients:</span> UK independent brands</div>
+          <div><span class="ps2-k">pricing:</span> quoted clearly, before work starts</div>
+          <div><span class="ps2-k">contact:</span> <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a></div>
+          <div><span class="ps2-k">phone:</span> <a href="tel:07514043068">07514 043068</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cta -->
+    <div class="ps2-cta">
+      <div class="ps2-wrap">
+        <span class="ps2-eyebrow">// next step</span>
+        <h2 class="ps2-h2">Ready to find out what's holding your store back?</h2>
+        <p>A free, no-pressure strategy call. I'll tell you exactly what I'd fix — you decide what happens next.</p>
+        <a class="ps2-btn" href="/contact">Book your free strategy call</a>
+        <div class="ps2-cta-note">usually replies same day</div>
+      </div>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  /* ---------- status strip ---------- */
+  .ps2-status {
+    background: var(--ps2-ink);
+    color: #9aa1ad;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    padding: 9px 0;
+  }
+
+  .ps2-status .ps2-wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .ps2-status b {
+    color: #e8eaef;
+    font-weight: 500;
+  }
+
+  .ps2-avail {
+    color: var(--ps2-green);
+    text-decoration: none;
+  }
+
+  .ps2-avail:hover {
+    color: #a9f0c6;
+  }
+
+  .ps2-avail::before {
+    content: '\25CF';
+    font-size: 8px;
+    vertical-align: 2px;
+    margin-right: 7px;
+    animation: ps2-pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes ps2-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ps2-status .ps2-path {
+      display: none;
+    }
+  }
+
+  /* ---------- hero ---------- */
+  .ps2-hero {
+    padding: 84px 0 72px;
+  }
+
+  .ps2-hero .ps2-wrap {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .ps2-eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .ps2-hero h1 {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: clamp(38px, 5.2vw, 62px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-fixword {
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .ps2-fixword::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 6px;
+    height: 10px;
+    background: var(--ps2-cobalt);
+    opacity: 0.18;
+    border-radius: 2px;
+  }
+
+  .ps2-lede {
+    margin: 26px 0 34px;
+    font-size: 19px;
+    color: var(--ps2-ink-soft);
+    max-width: 46ch;
+  }
+
+  .ps2-hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .ps2-hero-note {
+    margin-top: 22px;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: var(--ps2-ink-soft);
+  }
+
+  /* audit panel */
+  .ps2-panel {
+    background: var(--ps2-panel);
+    border: 1px solid var(--ps2-panel-line);
+    border-radius: 12px;
+    box-shadow: 0 24px 60px -24px rgba(21, 23, 27, 0.45);
+    overflow: hidden;
+  }
+
+  .ps2-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--ps2-panel-line);
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: #7a8291;
+  }
+
+  .ps2-run {
+    color: var(--ps2-green);
+  }
+
+  .ps2-panel-body {
+    padding: 20px 18px 22px;
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    line-height: 2.05;
+    color: var(--ps2-panel-text);
+    min-height: 288px;
+  }
+
+  @media (max-width: 900px) {
+    .ps2-hero .ps2-wrap {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+
+    .ps2-panel-body {
+      min-height: 0;
+    }
+  }
+
+  /* ---------- ticker ---------- */
+  .ps2-ticker {
+    border-top: 1px solid var(--ps2-line);
+    border-bottom: 1px solid var(--ps2-line);
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .ps2-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ps2-scroll 38s linear infinite;
+    padding: 13px 0;
+  }
+
+  .ps2-ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes ps2-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ps2-ticker span {
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: var(--ps2-ink-soft);
+    padding: 0 26px;
+    white-space: nowrap;
+  }
+
+  .ps2-ticker span::after {
+    content: '\00B7';
+    margin-left: 52px;
+    color: var(--ps2-cobalt);
+  }
+
+  /* ---------- sections ---------- */
+  .ps2-section {
+    padding: 96px 0;
+  }
+
+  .ps2-sec-head {
+    margin-bottom: 56px;
+    max-width: 640px;
+  }
+
+  .ps2-h2 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: clamp(30px, 3.6vw, 42px);
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    margin-top: 14px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-sec-head p {
+    margin-top: 16px;
+    color: var(--ps2-ink-soft);
+    font-size: 18px;
+  }
+
+  /* diff grid */
+  .ps2-diffgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ps2-line);
+    border: 1px solid var(--ps2-line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .ps2-diff {
+    background: #fff;
+    padding: 34px 32px;
+  }
+
+  .ps2-diff-before {
+    font-family: var(--ps2-mono);
+    font-size: 14px;
+    color: var(--ps2-broken);
+    display: flex;
+    gap: 10px;
+    line-height: 1.7;
+  }
+
+  .ps2-diff-before s {
+    color: var(--ps2-ink-soft);
+    text-decoration-color: var(--ps2-broken);
+    text-decoration-thickness: 1.5px;
+  }
+
+  .ps2-diff-after {
+    font-family: var(--ps2-mono);
+    font-size: 14px;
+    color: var(--ps2-cobalt);
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  .ps2-diff h3 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    margin-top: 20px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-diff p {
+    margin-top: 8px;
+    color: var(--ps2-ink-soft);
+    font-size: 15.5px;
+  }
+
+  @media (max-width: 800px) {
+    .ps2-diffgrid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* process */
+  .ps2-process {
+    background: var(--ps2-ink);
+  }
+
+  .ps2-process .ps2-eyebrow {
+    color: var(--ps2-cobalt-light);
+  }
+
+  .ps2-process .ps2-h2 {
+    color: #fff;
+  }
+
+  .ps2-process .ps2-sec-head p {
+    color: #9aa1ad;
+  }
+
+  .ps2-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ps2-panel-line);
+    border: 1px solid var(--ps2-panel-line);
+    border-radius: 12px;
+    overflow: hidden;
+    counter-reset: ps2step;
+  }
+
+  .ps2-step {
+    background: var(--ps2-panel);
+    padding: 32px 26px 36px;
+  }
+
+  .ps2-step::before {
+    counter-increment: ps2step;
+    content: '0' counter(ps2step);
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: var(--ps2-cobalt-light);
+  }
+
+  .ps2-step h3 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 19px;
+    margin: 16px 0 10px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .ps2-step p {
+    font-size: 15px;
+    color: #9aa1ad;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .ps2-steps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ps2-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* testimonial */
+  .ps2-stars {
+    color: var(--ps2-cobalt);
+    font-size: 15px;
+    letter-spacing: 4px;
+  }
+
+  .ps2-quote {
+    font-family: var(--ps2-disp);
+    font-weight: 600;
+    font-size: clamp(22px, 2.6vw, 30px);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    max-width: 22em;
+    margin-top: 22px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-quote em {
+    color: var(--ps2-cobalt);
+    font-style: normal;
+  }
+
+  .ps2-attrib {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ps2-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--ps2-ink);
+    color: #fff;
+    font-family: var(--ps2-mono);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ps2-attrib b {
+    display: block;
+    font-size: 15.5px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-attrib span {
+    font-size: 14px;
+    color: var(--ps2-ink-soft);
+  }
+
+  .ps2-verified {
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    color: var(--ps2-ink-soft);
+    margin-left: auto;
+    text-decoration: none;
+    border-bottom: 1px solid var(--ps2-line);
+  }
+
+  .ps2-verified:hover {
+    color: var(--ps2-cobalt);
+    border-color: var(--ps2-cobalt);
+  }
+
+  @media (max-width: 560px) {
+    .ps2-verified {
+      display: none;
+    }
+  }
+
+  /* about */
+  .ps2-about {
+    border-top: 1px solid var(--ps2-line);
+  }
+
+  .ps2-about .ps2-wrap {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .ps2-about p {
+    margin-top: 18px;
+    color: var(--ps2-ink-soft);
+  }
+
+  .ps2-about-card {
+    border: 1px solid var(--ps2-line);
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    line-height: 2;
+    color: var(--ps2-ink-soft);
+  }
+
+  .ps2-about-card .ps2-k {
+    color: var(--ps2-ink);
+    font-weight: 500;
+  }
+
+  .ps2-about-card a {
+    color: var(--ps2-cobalt);
+    text-decoration: none;
+  }
+
+  .ps2-about-card a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 800px) {
+    .ps2-about .ps2-wrap {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* cta */
+  .ps2-cta {
+    background: var(--ps2-cobalt);
+    text-align: center;
+    padding: 110px 0;
+  }
+
+  .ps2-cta .ps2-eyebrow {
+    color: #bcc8ff;
+  }
+
+  .ps2-cta .ps2-h2 {
+    color: #fff;
+    max-width: 16em;
+    margin: 14px auto 0;
+  }
+
+  .ps2-cta p {
+    margin: 20px auto 36px;
+    color: #d6ddff;
+    max-width: 42ch;
+  }
+
+  .ps2-cta .ps2-btn {
+    background: #fff;
+    color: var(--ps2-cobalt);
+    font-size: 16px;
+    padding: 14px 30px;
+  }
+
+  .ps2-cta .ps2-btn:hover {
+    background: var(--ps2-paper);
+  }
+
+  .ps2-cta-note {
+    margin-top: 20px;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: #aabaff;
+  }
+
+  /* audit panel lines — injected by the script below, so these are global */
+  @media (max-width: 640px) {
+    .ps2-hero {
+      padding: 56px 0 48px;
+    }
+
+    .ps2-section {
+      padding: 64px 0;
+    }
+
+    .ps2-lede {
+      font-size: 17px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ps2-ticker-track {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+    }
+
+    .ps2-avail::before {
+      animation: none;
+    }
+  }
+</style>
+
+<!-- These rules style elements the script creates at runtime, so they can't be scoped. -->
+<style is:global>
+  .ps2-aline {
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .ps2-aline.ps2-show {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ps2-aline .ps2-mark {
+    width: 14px;
+    flex: none;
+  }
+
+  .ps2-aline--bad .ps2-mark {
+    color: var(--ps2-broken);
+  }
+
+  .ps2-aline--good .ps2-mark {
+    color: var(--ps2-green);
+  }
+
+  .ps2-aline s {
+    color: #6b7280;
+    text-decoration-color: #4b5563;
+  }
+
+  .ps2-fixnote {
+    color: var(--ps2-green);
+  }
+
+  .ps2-asummary {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--ps2-panel-line);
+    color: #e8eaef;
+  }
+
+  .ps2-asummary .ps2-n {
+    color: var(--ps2-green);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ps2-aline {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const lines = [
+    { issue: '14 products missing meta descriptions', fix: 'written + published' },
+    { issue: 'collection filters returning 0 results', fix: 'filter logic rewritten' },
+    { issue: 'homepage hero unclear on mobile', fix: 'section rebuilt' },
+    { issue: '3.8s largest image load time', fix: 'images optimised \u2192 1.1s' },
+    { issue: 'menu buries best-selling collection', fix: 'navigation restructured' },
+  ];
+
+  const el = document.getElementById('ps2-audit');
+  const run = document.getElementById('ps2-runstate');
+
+  if (el && run) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const lineHTML = (l, fixed) =>
+      fixed
+        ? `<span class="ps2-mark">\u2713</span><span><s>${l.issue}</s> <span class="ps2-fixnote">${l.fix}</span></span>`
+        : `<span class="ps2-mark">\u2717</span><span>${l.issue}</span>`;
+
+    const summary = () => {
+      const d = document.createElement('div');
+      d.className = 'ps2-aline ps2-asummary ps2-show';
+      d.innerHTML = `<span class="ps2-mark">\u2192</span><span><span class="ps2-n">${lines.length} issues found \u00B7 ${lines.length} resolved.</span> your store, working properly.</span>`;
+      el.appendChild(d);
+      run.textContent = 'done \u2713';
+    };
+
+    const renderInstant = () => {
+      lines.forEach((l) => {
+        const d = document.createElement('div');
+        d.className = 'ps2-aline ps2-aline--good ps2-show';
+        d.innerHTML = lineHTML(l, true);
+        el.appendChild(d);
+      });
+      summary();
+    };
+
+    const animate = () => {
+      let i = 0;
+      const addLine = () => {
+        if (i >= lines.length) {
+          setTimeout(summary, 500);
+          return;
+        }
+        const l = lines[i];
+        const d = document.createElement('div');
+        d.className = 'ps2-aline ps2-aline--bad';
+        d.innerHTML = lineHTML(l, false);
+        el.appendChild(d);
+        requestAnimationFrame(() => d.classList.add('ps2-show'));
+        setTimeout(
+          () => {
+            d.className = 'ps2-aline ps2-aline--good ps2-show';
+            d.innerHTML = lineHTML(l, true);
+          },
+          900 + Math.random() * 500
+        );
+        i++;
+        setTimeout(addLine, 650);
+      };
+      setTimeout(addLine, 400);
+    };
+
+    if (reduced) {
+      renderInstant();
+    } else {
+      let started = false;
+      const obs = new IntersectionObserver(
+        (entries) => {
+          if (started) return;
+          if (entries.some((e) => e.isIntersecting)) {
+            started = true;
+            obs.disconnect();
+            animate();
+          }
+        },
+        { threshold: 0.35 }
+      );
+      obs.observe(el);
+    }
+  }
+</script>

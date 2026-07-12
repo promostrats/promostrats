@@ -1,0 +1,232 @@
+---
+const year = new Date().getFullYear();
+---
+
+<div class="ps2-fu">
+  <div class="ps2-fu-inner">
+    <div class="ps2-fu-cols">
+      <!-- brand -->
+      <div>
+        <a class="ps2-fu-brand" href="/">PromoStrats<span>.</span></a>
+        <p class="ps2-fu-tagline">
+          Shopify design and SEO for people who want their website to work properly. Based in London.
+        </p>
+        <div class="ps2-fu-social">
+          <a
+            href="https://www.facebook.com/profile.php?id=61576358156844"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24"
+              ><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg
+            >
+          </a>
+          <a
+            href="https://www.linkedin.com/in/connor-bawcutt-865972269/"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24"
+              ><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect
+                x="2"
+                y="9"
+                width="4"
+                height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg
+            >
+          </a>
+        </div>
+      </div>
+
+      <!-- navigation -->
+      <div>
+        <p class="ps2-fu-label">Navigation</p>
+        <ul class="ps2-fu-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- contact -->
+      <div>
+        <p class="ps2-fu-label">Contact</p>
+        <ul class="ps2-fu-list">
+          <li><span class="ps2-fu-plain">London, East Dulwich</span></li>
+          <li><a href="tel:07514043068">07514 043068</a></li>
+          <li><a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- legal bar -->
+    <div class="ps2-fu-legal">
+      <span>&copy; {year} promostrats &mdash; london</span>
+      <span>
+        <a href="/privacy">privacy</a>
+        <span class="ps2-fu-sep">&middot;</span>
+        <a href="/terms">terms</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ps2-fu {
+    background: var(--ps2-ink);
+    color: #9aa1ad;
+    font-family: var(--ps2-sans);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .ps2-fu :focus-visible {
+    outline: 2px solid var(--ps2-cobalt-light);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .ps2-fu-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px 28px 40px;
+  }
+
+  .ps2-fu-cols {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  /* brand */
+  .ps2-fu-brand {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .ps2-fu-brand span {
+    color: var(--ps2-cobalt-light);
+  }
+
+  .ps2-fu-tagline {
+    margin-top: 14px;
+    max-width: 34ch;
+    line-height: 1.7;
+  }
+
+  .ps2-fu-social {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .ps2-fu-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 7px;
+    border: 1px solid var(--ps2-panel-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .ps2-fu-social a:hover {
+    border-color: var(--ps2-ink-soft);
+    background: #1b1e24;
+  }
+
+  .ps2-fu-social svg {
+    width: 15px;
+    height: 15px;
+    fill: #7a8291;
+    transition: fill 0.15s;
+  }
+
+  .ps2-fu-social a:hover svg {
+    fill: #e8eaef;
+  }
+
+  /* column labels */
+  .ps2-fu-label {
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  /* links */
+  .ps2-fu-list {
+    list-style: none;
+  }
+
+  .ps2-fu-list li {
+    margin-bottom: 10px;
+  }
+
+  .ps2-fu-list a,
+  .ps2-fu-list span {
+    color: #c9cfda;
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: color 0.15s;
+  }
+
+  .ps2-fu-list a:hover {
+    color: #fff;
+  }
+
+  .ps2-fu-list .ps2-fu-plain {
+    color: #7a8291;
+  }
+
+  /* legal bar */
+  .ps2-fu-legal {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ps2-panel-line);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .ps2-fu-legal a {
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .ps2-fu-legal a:hover {
+    color: #c9cfda;
+  }
+
+  .ps2-fu-legal .ps2-fu-sep {
+    color: #3a3f48;
+    padding: 0 8px;
+  }
+
+  @media (max-width: 700px) {
+    .ps2-fu-inner {
+      padding: 48px 20px 32px;
+    }
+
+    .ps2-fu-cols {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

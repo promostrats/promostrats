@@ -1,0 +1,129 @@
+/* ============================================================
+   PromoStrats — ps2 design system
+   Every colour, font and token the site uses lives here.
+   ============================================================ */
+
+:root {
+  /* palette */
+  --ps2-paper: #FAFAF6;
+  --ps2-ink: #15171B;
+  --ps2-ink-soft: #4A4F58;
+  --ps2-line: #E3E2DA;
+  --ps2-cobalt: #1D3BE0;
+  --ps2-cobalt-deep: #152CB0;
+  --ps2-cobalt-light: #8FA0FF;
+  --ps2-broken: #C0442B;
+  --ps2-green: #7DE7A8;
+
+  /* dark panel */
+  --ps2-panel: #101216;
+  --ps2-panel-line: #262A32;
+  --ps2-panel-text: #C9CFDA;
+
+  /* type */
+  --ps2-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --ps2-sans: 'Instrument Sans', system-ui, sans-serif;
+  --ps2-disp: 'Bricolage Grotesque', var(--ps2-sans);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ps2-paper);
+  color: var(--ps2-ink);
+  font-family: var(--ps2-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--ps2-cobalt);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ps2-cobalt);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* shared page container */
+.ps2-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+@media (max-width: 640px) {
+  .ps2-wrap {
+    padding: 0 20px;
+  }
+}
+
+/* shared eyebrow label */
+.ps2-eyebrow {
+  font-family: var(--ps2-mono);
+  font-size: 13px;
+  color: var(--ps2-cobalt);
+  letter-spacing: 0.03em;
+  display: block;
+}
+
+/* shared buttons */
+.ps2-btn {
+  display: inline-block;
+  background: var(--ps2-cobalt);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-family: var(--ps2-sans);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.ps2-btn:hover {
+  background: var(--ps2-cobalt-deep);
+  transform: translateY(-1px);
+}
+
+.ps2-btn--ghost {
+  background: transparent;
+  color: var(--ps2-ink);
+  border: 1px solid var(--ps2-line);
+}
+
+.ps2-btn--ghost:hover {
+  background: #fff;
+  border-color: var(--ps2-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ps2-btn {
+    transition: none;
+  }
+}
