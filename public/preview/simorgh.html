@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simorgh — Persian kitchen, 481 Lordship Lane, East Dulwich</title>
+<meta name="description" content="Persian charcoal kebabs, saffron and slow casseroles in a former East Dulwich chemist. From the family behind Persepolis, Peckham. Bring your own wine, no corkage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* persian illumination: lapis and gold leaf on parchment,
+     with pomegranate for the sour note. */
+  --ink:#0E2E33;          /* deep teal — isfahan tile */
+  --ink-2:#143B41;
+  --ink-3:#1B4A50;
+  --gold:#D69C24;
+  --gold-lt:#E8BC5C;
+  --nar:#8E2B34;          /* pomegranate */
+  --nar-lt:#B84A4A;
+  --parch:#F6EEDD;
+  --parch-2:#EBE0C9;
+  --line:#DBCEB0;
+  --muted:#6E6753;
+  --muted-lt:rgba(246,238,221,.66);
+
+  --disp:'Amiri', Georgia, serif;
+  --body:'Jost', system-ui, sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--parch);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+
+.eyebrow{
+  font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);display:block;
+}
+
+.btn{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--ink);
+  font-family:var(--body);
+  font-weight:600;font-size:14.5px;
+  letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;
+  padding:15px 28px;border:none;cursor:pointer;
+  transition:background .15s ease, transform .15s ease;
+}
+.btn:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.btn--ghost{
+  background:transparent;color:var(--parch);
+  box-shadow:inset 0 0 0 1px rgba(246,238,221,.35);
+}
+.btn--ghost:hover{background:rgba(246,238,221,.08);box-shadow:inset 0 0 0 1px var(--parch)}
+
+/* the illumination border — persian manuscript margins */
+.illum{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23D69C24' stroke-width='1' opacity='.16'%3E%3Cpath d='M70 22c14 14 14 34 0 48-14-14-14-34 0-48Z'/%3E%3Cpath d='M70 70c14 14 14 34 0 48-14-14-14-34 0-48Z'/%3E%3Cpath d='M22 70c14-14 34-14 48 0-14 14-34 14-48 0Z'/%3E%3Cpath d='M70 70c14-14 34-14 48 0-14 14-34 14-48 0Z'/%3E%3Ccircle cx='70' cy='70' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:140px 140px;
+}
+
+/* ---------- header ---------- */
+.hdr{
+  position:sticky;top:0;z-index:60;
+  background:rgba(14,46,51,.95);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(214,156,36,.28);
+}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:78px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px}
+.logo svg{width:30px;height:30px;flex:none}
+.logo-t{display:flex;flex-direction:column;line-height:1}
+.logo-t b{
+  font-family:var(--disp);font-weight:700;font-size:26px;
+  letter-spacing:.04em;color:var(--parch);
+}
+.logo-t small{
+  margin-top:5px;font-size:9px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);
+}
+.nav{display:flex;gap:30px}
+.nav a{
+  font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted-lt);text-decoration:none;transition:color .15s;
+}
+.nav a:hover{color:var(--parch)}
+.hdr .btn{padding:12px 22px;font-size:13px}
+@media(max-width:920px){.nav{display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  background:var(--ink);
+  color:var(--parch);
+  padding:104px 0 0;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  left:50%;top:-20%;
+  width:min(900px,110vw);aspect-ratio:1;
+  transform:translateX(-50%);
+  background:radial-gradient(circle,
+    rgba(214,156,36,.16) 0%,
+    rgba(214,156,36,.06) 40%,
+    transparent 66%);
+  pointer-events:none;
+}
+.hero .illum{opacity:.9}
+.hero .wrap{position:relative;z-index:2}
+.hero-in{max-width:760px}
+.hero h1{
+  font-family:var(--disp);
+  font-weight:400;
+  font-size:clamp(46px,7vw,90px);
+  line-height:1.05;
+  letter-spacing:-.005em;
+  margin-top:24px;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-lede{
+  margin-top:26px;font-size:20px;line-height:1.6;
+  color:var(--muted-lt);max-width:46ch;
+}
+.hero-cta{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+/* byob — a genuine reason to choose them tonight, and nowhere online says it */
+.byob{
+  margin-top:30px;display:inline-flex;align-items:center;gap:12px;
+  border:1px solid rgba(214,156,36,.4);
+  padding:11px 18px;
+}
+.byob-d{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+.byob span{font-size:14px;color:var(--parch)}
+.byob b{color:var(--gold);font-weight:600}
+
+/* facts */
+.facts{
+  margin-top:76px;
+  border-top:1px solid rgba(246,238,221,.16);
+  display:grid;grid-template-columns:repeat(3,1fr);
+  position:relative;z-index:2;
+}
+.fact{padding:26px 0 36px;border-right:1px solid rgba(246,238,221,.16)}
+.fact:last-child{border-right:none}
+.fact:not(:first-child){padding-left:34px}
+.fact-k{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.fact-v{margin-top:9px;font-size:17px;line-height:1.5;color:var(--parch)}
+.fact-v a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(246,238,221,.3)}
+.fact-v a:hover{border-color:var(--gold);color:var(--gold)}
+.fact-v small{display:block;margin-top:4px;font-size:13.5px;color:var(--muted-lt)}
+@media(max-width:780px){
+  .facts{grid-template-columns:1fr}
+  .fact{border-right:none;border-bottom:1px solid rgba(246,238,221,.16);padding:20px 0}
+  .fact:not(:first-child){padding-left:0}
+  .fact:last-child{border-bottom:none}
+}
+
+/* ---------- the name: thirty birds ---------- */
+.name{
+  background:var(--parch-2);
+  padding:110px 0;
+  position:relative;overflow:hidden;
+}
+.name .illum{opacity:.55}
+.name .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
+@media(max-width:900px){.name .wrap{grid-template-columns:1fr}}
+.name h2{
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(34px,4.4vw,50px);line-height:1.15;margin-top:16px;
+}
+.name h2 em{font-style:italic;color:var(--nar)}
+.name p{margin-top:20px;color:var(--muted);font-size:17.5px}
+.name p + p{margin-top:14px}
+.name-q{
+  margin-top:30px;padding-left:22px;
+  border-left:2px solid var(--gold);
+  font-family:var(--disp);font-style:italic;
+  font-size:22px;line-height:1.45;color:var(--ink);
+}
+
+/* the bird, drawn rather than photographed */
+.bird{
+  display:grid;place-content:center;
+  aspect-ratio:1;
+  background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.bird .illum{opacity:.5}
+.bird svg{width:62%;height:auto;position:relative;z-index:2}
+
+/* ---------- menu ---------- */
+.menu{padding:104px 0}
+.sec-h{max-width:640px;margin-bottom:52px}
+.sec-h h2{
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(34px,4.4vw,50px);line-height:1.12;margin-top:16px;
+}
+.sec-h h2 em{font-style:italic;color:var(--nar)}
+.sec-h p{margin-top:18px;color:var(--muted);font-size:18px}
+
+.card{
+  background:#FDF8EC;
+  border:1px solid var(--line);
+  padding:clamp(30px,4.5vw,58px);
+  position:relative;
+}
+.card::after{
+  content:'';position:absolute;inset:11px;
+  border:1px solid var(--line);pointer-events:none;
+}
+.card-cols{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(30px,5vw,68px);
+  position:relative;z-index:1;
+}
+@media(max-width:820px){.card-cols{grid-template-columns:1fr}}
+
+.course{
+  font-family:var(--disp);font-style:italic;font-size:26px;
+  color:var(--nar);
+  padding-bottom:12px;margin-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+.dish{margin-bottom:21px}
+.dish-top{display:flex;align-items:baseline;gap:8px}
+.dish-n{font-weight:600;font-size:16.5px;flex:none}
+.dots{flex:1;border-bottom:1.5px dotted var(--line);transform:translateY(-4px);min-width:18px}
+.dish-p{font-weight:600;font-size:16.5px;flex:none}
+.dish-d{margin-top:3px;font-size:14.5px;line-height:1.55;color:var(--muted);max-width:40ch}
+.dish-fa{
+  font-family:var(--disp);font-style:italic;
+  color:var(--gold);font-size:14px;margin-left:6px;
+}
+
+.bread{
+  margin-top:42px;position:relative;z-index:1;
+  background:var(--ink);color:var(--parch);
+  padding:26px 30px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+}
+.bread-t{font-family:var(--disp);font-size:27px;line-height:1.25}
+.bread-t em{font-style:italic;color:var(--gold)}
+.bread-d{margin-top:6px;font-size:14.5px;color:var(--muted-lt)}
+
+/* ---------- the building: the apothecary drawers ---------- */
+.room{
+  background:var(--ink);color:var(--parch);
+  padding:110px 0;
+  position:relative;overflow:hidden;
+}
+.room .illum{opacity:.6}
+.room .wrap{position:relative;z-index:2}
+.room .sec-h h2{color:var(--parch)}
+.room .sec-h h2 em{color:var(--gold)}
+.room .sec-h p{color:var(--muted-lt)}
+
+/* drawn to look like the medicine drawers still on their wall */
+.drawers{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+.dw{
+  background:var(--ink-2);
+  border:1px solid rgba(214,156,36,.3);
+  padding:26px 20px 30px;
+  position:relative;
+  min-height:200px;
+  display:flex;flex-direction:column;
+}
+/* the little brass handle */
+.dw::before{
+  content:'';position:absolute;
+  top:16px;left:50%;transform:translateX(-50%);
+  width:32px;height:5px;border-radius:3px;
+  background:var(--gold);opacity:.5;
+}
+.dw--now{background:var(--ink-3);border-color:var(--gold)}
+.dw--now::before{opacity:1}
+.dw-y{
+  margin-top:20px;
+  font-family:var(--disp);font-size:21px;color:var(--gold);
+}
+.dw--past .dw-y{color:var(--muted-lt)}
+.dw h3{
+  margin-top:10px;font-size:15px;font-weight:600;line-height:1.3;
+  color:var(--parch);
+}
+.dw p{margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--muted-lt)}
+@media(max-width:1000px){.drawers{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:680px){.drawers{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.drawers{grid-template-columns:1fr}.dw{min-height:0}}
+
+.room-note{
+  margin-top:40px;max-width:46ch;
+  font-family:var(--disp);font-style:italic;font-size:20px;line-height:1.5;
+  color:var(--parch);
+  padding-left:22px;border-left:2px solid var(--nar-lt);
+}
+
+/* ---------- photos ---------- */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line)}
+.shot{
+  aspect-ratio:4/5;background:var(--ink-2);
+  display:grid;place-content:center;position:relative;overflow:hidden;
+}
+.shot .illum{opacity:.45}
+.shot span{
+  position:relative;z-index:2;text-align:center;padding:0 14px;
+  font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(246,238,221,.5);
+}
+@media(max-width:700px){.shots{grid-template-columns:1fr 1fr}}
+
+/* ---------- cta ---------- */
+.cta{
+  background:var(--nar);color:var(--parch);text-align:center;padding:112px 0;
+  position:relative;overflow:hidden;
+}
+.cta .wrap{position:relative;z-index:2}
+.cta .eyebrow{color:#EBC0B6}
+.cta h2{
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(36px,4.8vw,58px);line-height:1.1;
+  max-width:15em;margin:16px auto 0;
+}
+.cta h2 em{font-style:italic}
+.cta p{margin:20px auto 34px;max-width:44ch;color:rgba(246,238,221,.85)}
+.cta .btn{background:var(--parch);color:var(--nar);font-size:15px;padding:17px 36px}
+.cta .btn:hover{background:#fff}
+
+/* ---------- footer ---------- */
+.ftr{background:var(--ink);color:var(--muted-lt);padding:46px 0;font-size:13.5px}
+.ftr .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.ftr a{color:var(--parch);text-decoration:none}
+.ftr a:hover{color:var(--gold)}
+.ftr-fa{font-family:var(--disp);font-style:italic;color:var(--muted-lt);font-size:15px}
+
+@media(max-width:640px){
+  .hero{padding:56px 0 0}
+  .name,.menu,.room{padding:64px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4c5 5 7 11 5 17 4-2 7-6 8-11 2 8-1 16-8 21 3 1 6 0 9-2-3 6-9 9-15 8 2 2 5 3 8 3-6 3-13 1-17-4 4 0 7-2 9-5-6 1-11-2-14-7 4 2 8 2 12 0-5-3-8-8-8-14 3 4 7 7 12 8-3-5-3-10-1-14Z" fill="#D69C24"/>
+      </svg>
+      <span class="logo-t">
+        <b>Simorgh</b>
+        <small>East Dulwich</small>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="#name">The name</a>
+      <a href="#menu">Menu</a>
+      <a href="#room">The room</a>
+      <a href="#">Find us</a>
+    </nav>
+    <a class="btn" href="#book">Book a table</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="book">
+  <div class="illum"></div>
+  <div class="wrap">
+    <div class="hero-in">
+      <span class="eyebrow">Persian kitchen &middot; Lordship Lane</span>
+      <h1>Think Persepolis. <em>But make it meat.</em></h1>
+      <p class="hero-lede">Charcoal kebabs, saffron rice and slow Persian casseroles, from the family who have been feeding Peckham for twenty-five years. Now at the top of Lordship Lane, in the old chemist.</p>
+
+      <div class="hero-cta">
+        <a class="btn" href="#">Book a table</a>
+        <a class="btn btn--ghost" href="#menu">See the menu</a>
+      </div>
+
+      <div class="byob">
+        <span class="byob-d"></span>
+        <span>Bring your own wine — <b>no corkage</b>, while our licence comes through</span>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact">
+        <div class="fact-k">Find us</div>
+        <div class="fact-v">481 Lordship Lane<br>East Dulwich, SE22 8JY<small>Under the Horniman, five minutes from Dulwich Park</small></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">Open</div>
+        <div class="fact-v">Tuesday — Sunday, midday – 11pm<small>Closed Mondays &middot; terrace now open</small></div>
+      </div>
+      <div class="fact">
+        <div class="fact-k">Book a table</div>
+        <div class="fact-v"><a href="tel:02046427177">020 4642 7177</a><small>Or just give us a bell and pop in</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE NAME -->
+<section class="name" id="name">
+  <div class="illum"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Why Simorgh</span>
+      <h2>Thirty birds went looking for a god. <em>They found each other.</em></h2>
+      <p>In the old Persian poem, thirty birds cross the world in search of the Simorgh — a great bird said to have the power to heal. When they finally arrive, they find no god waiting. They find only themselves. <em>Si morgh</em>, in Farsi, means thirty birds.</p>
+      <p>She has been our family's emblem for as long as we've been cooking. And a bird known for healing seemed like the right thing to hang above an old pharmacy.</p>
+      <blockquote class="name-q">All of us as one, and one of us as all.</blockquote>
+    </div>
+
+    <div class="bird">
+      <div class="illum"></div>
+      <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <g stroke="#D69C24" stroke-width="1.6" fill="none">
+          <path d="M100 26c14 16 20 34 16 52 12-6 20-18 24-33 6 24-4 47-24 61 9 3 19 1 28-6-9 19-27 28-46 25 6 6 15 10 24 10-19 9-40 3-52-13 12-1 21-7 27-16-19 4-35-6-43-22 12 6 25 6 37 0-15-9-24-25-24-43 9 13 22 21 37 24-9-15-9-29-4-39Z"/>
+          <path d="M100 26c2 30 2 60 0 100"/>
+          <path d="M100 60c-8 8-14 18-16 30M100 60c8 8 14 18 16 30"/>
+          <path d="M100 100c-10 10-16 22-18 36M100 100c10 10 16 22 18 36"/>
+        </g>
+        <circle cx="100" cy="126" r="3.5" fill="#8E2B34"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow">The kitchen</span>
+      <h2>Charcoal, saffron, <em>and a lot of bread</em>.</h2>
+      <p>Kebabs over live coals, casseroles that take all morning, and nan baked to order — because Persian food without hot bread isn't really Persian food.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-cols">
+        <div>
+          <div class="course">From the coals</div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Kebab-e barg <span class="dish-fa">کباب برگ</span></span>
+              <span class="dots"></span>
+              <span class="dish-p">£23.00</span>
+            </div>
+            <div class="dish-d">Thinly cut lamb, saffron butter, charcoal, saffron rice</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Momtaz</span>
+              <span class="dots"></span>
+              <span class="dish-p">£21.00</span>
+            </div>
+            <div class="dish-d">One skewer of koobideh, one of chargrilled chicken. The order to make if you can't decide</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Koobideh</span>
+              <span class="dots"></span>
+              <span class="dish-p">£17.00</span>
+            </div>
+            <div class="dish-d">Minced lamb, onion, pressed onto the skewer by hand</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Joojeh</span>
+              <span class="dots"></span>
+              <span class="dish-p">£18.00</span>
+            </div>
+            <div class="dish-d">Chicken in saffron and lime, marinated overnight</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">King prawns</span>
+              <span class="dots"></span>
+              <span class="dish-p">£19.00</span>
+            </div>
+            <div class="dish-d">Over the coals, garlic, herbs, lemon</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="course">Khoresh &amp; starters</div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Ghormeh sabzi</span>
+              <span class="dots"></span>
+              <span class="dish-p">£17.00</span>
+            </div>
+            <div class="dish-d">Herb and lamb casserole, dried lime, kidney beans. Slow, sour, deep</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Fesenjan</span>
+              <span class="dots"></span>
+              <span class="dish-p">£18.00</span>
+            </div>
+            <div class="dish-d">Walnut and pomegranate, chicken. Sweet, sour and dark as treacle</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Houmous of the day</span>
+              <span class="dots"></span>
+              <span class="dish-p">£7.00</span>
+            </div>
+            <div class="dish-d">Changes daily. The red pepper one has a following</div>
+          </div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Five starters, one platter</span>
+              <span class="dots"></span>
+              <span class="dish-p">£22.00</span>
+            </div>
+            <div class="dish-d">Let the kitchen choose. Vegetarians very well looked after — it runs in the family</div>
+          </div>
+
+          <div class="course" style="margin-top:34px">Sweet</div>
+
+          <div class="dish">
+            <div class="dish-top">
+              <span class="dish-n">Amir's cheesecake</span>
+              <span class="dots"></span>
+              <span class="dish-p">£8.00</span>
+            </div>
+            <div class="dish-d">Biscoff and peanut butter. Not remotely traditional. Order it anyway</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bread">
+        <div>
+          <div class="bread-t">Nan, <em>baked when you order it</em></div>
+          <div class="bread-d">Not before. Not in a warmer. When you order it.</div>
+        </div>
+        <a class="btn" href="#">Book a table</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ROOM -->
+<section class="room" id="room">
+  <div class="illum"></div>
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow">481 Lordship Lane</span>
+      <h2>A chemist, <em>a tapas bar, and two empty years</em>.</h2>
+      <p>This corner has been many things. The medicine drawers are still on the wall by the bar — we couldn't bring ourselves to take them down.</p>
+    </div>
+
+    <div class="drawers">
+      <div class="dw dw--past">
+        <div class="dw-y">Then</div>
+        <h3>Le Pharmacie</h3>
+        <p>A chemist, and later a French restaurant that kept the name.</p>
+      </div>
+      <div class="dw dw--past">
+        <div class="dw-y">After</div>
+        <h3>Barcelona Tapas</h3>
+        <p>Spain, on the South Circular, for the best part of a decade.</p>
+      </div>
+      <div class="dw dw--past">
+        <div class="dw-y">2022</div>
+        <h3>Beer Dispensary</h3>
+        <p>Closed its doors and handed the keys back.</p>
+      </div>
+      <div class="dw dw--past">
+        <div class="dw-y">2022–25</div>
+        <h3>Empty</h3>
+        <p>Two years dark. No power, no water, a lot of dust.</p>
+      </div>
+      <div class="dw dw--now">
+        <div class="dw-y">2026</div>
+        <h3>Simorgh</h3>
+        <p>A healing bird, in an old apothecary. It seemed to fit.</p>
+      </div>
+    </div>
+
+    <blockquote class="room-note">She is a creature of magical powers, of healing — and that tied in very nicely with the pharmaceutical heritage of the building.</blockquote>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<div class="shots">
+  <div class="shot"><div class="illum"></div><span>The medicine drawers</span></div>
+  <div class="shot"><div class="illum"></div><span>Nan, to order</span></div>
+  <div class="shot"><div class="illum"></div><span>Over the coals</span></div>
+  <div class="shot"><div class="illum"></div><span>The terrace</span></div>
+</div>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <span class="eyebrow">Nooshe jan</span>
+    <h2>Bring wine. Bring people. <em>Bring an appetite.</em></h2>
+    <p>Tuesday to Sunday, midday until eleven. No corkage, and the bread comes out hot.</p>
+    <a class="btn" href="#">Book a table</a>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <span>&copy; 2026 Simorgh &middot; 481 Lordship Lane, East Dulwich SE22 8JY</span>
+    <span class="ftr-fa">si morgh &middot; thirty birds</span>
+    <span><a href="https://www.instagram.com/simorgh_se22">Instagram</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
