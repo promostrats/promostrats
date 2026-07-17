@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const updated = 'July 2026';
+---
+
+<Layout
+  title="Terms of Service — PromoStrats"
+  description="The terms that apply when you engage PromoStrats for Shopify design and SEO work."
+>
+  <div class="ps2-legal">
+    <div class="ps2-wrap">
+      <span class="ps2-eyebrow">// legal</span>
+      <h1>Terms of Service</h1>
+      <p class="ps2-legal-updated">Last updated: {updated}</p>
+
+      <div class="ps2-legal-body">
+        <p>
+          These terms apply to Shopify design, SEO and related services provided by PromoStrats ("I", "me") to you (the
+          "client"). By engaging me for work, you agree to them. Specific projects may also have their own written
+          quote or proposal, which takes precedence where it differs from these general terms.
+        </p>
+
+        <h2>Scope of work</h2>
+        <p>
+          Before any paid work begins, I'll set out what's included, the price, and rough timescales in writing. Work
+          outside that agreed scope may be quoted separately. I don't start chargeable work until the scope and price
+          are confirmed by you.
+        </p>
+
+        <h2>Quotes &amp; pricing</h2>
+        <p>
+          Prices are quoted clearly before work starts and are valid for the period stated in the quote. Unless stated
+          otherwise, quotes exclude third-party costs such as apps, themes, fonts, or hosting, which are your
+          responsibility.
+        </p>
+
+        <h2>Payment</h2>
+        <p>
+          Payment terms are set out in your quote or invoice. Larger projects may require a deposit before work begins,
+          with the balance due on completion. Invoices are payable by the date shown on the invoice.
+        </p>
+
+        <h2>Client responsibilities</h2>
+        <p>
+          To deliver the work, I'll need timely access to your Shopify store and any relevant accounts, plus content,
+          images, and feedback when requested. Delays in providing these may affect timelines. You confirm you have the
+          right to use any materials you supply to me.
+        </p>
+
+        <h2>Revisions &amp; approval</h2>
+        <p>
+          Each project includes a reasonable number of revisions as described in your quote. Once work is approved or
+          published, further changes may be treated as new work and quoted accordingly.
+        </p>
+
+        <h2>Intellectual property</h2>
+        <p>
+          On full payment, ownership of the final deliverables created specifically for you transfers to you.
+          Third-party components (themes, apps, fonts, plugins) remain subject to their own licences. I may reference the
+          finished work in my portfolio unless you ask me in writing not to.
+        </p>
+
+        <h2>Liability</h2>
+        <p>
+          I take care to do good work, but I can't guarantee specific commercial outcomes such as particular search
+          rankings, traffic levels, or sales, as these depend on factors outside my control. To the extent permitted by
+          law, my liability for any project is limited to the fees you paid for that project.
+        </p>
+
+        <h2>Cancellation</h2>
+        <p>
+          Either of us may end an engagement in writing. If you cancel part-way through, you're responsible for payment
+          for work completed up to that point.
+        </p>
+
+        <h2>Governing law</h2>
+        <p>These terms are governed by the laws of England and Wales.</p>
+
+        <p class="ps2-legal-note">
+          Note: this is a starting template, not legal advice. Adjust it to match how you actually work — and have it
+          reviewed by someone qualified — before relying on it.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .ps2-legal {
+    padding: 72px 0 96px;
+  }
+
+  .ps2-legal h1 {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: clamp(34px, 4.4vw, 52px);
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    margin-top: 18px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-legal-updated {
+    margin-top: 14px;
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: var(--ps2-ink-soft);
+  }
+
+  .ps2-legal-body {
+    max-width: 68ch;
+    margin-top: 40px;
+  }
+
+  .ps2-legal-body h2 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ps2-ink);
+    margin-top: 40px;
+  }
+
+  .ps2-legal-body p {
+    margin-top: 14px;
+    color: var(--ps2-ink-soft);
+    font-size: 16.5px;
+    line-height: 1.75;
+  }
+
+  .ps2-legal-body a {
+    color: var(--ps2-cobalt);
+    text-decoration: none;
+  }
+
+  .ps2-legal-body a:hover {
+    text-decoration: underline;
+  }
+
+  .ps2-legal-note {
+    margin-top: 40px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--ps2-line);
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    color: var(--ps2-ink-soft);
+    background: #fff;
+  }
+</style>

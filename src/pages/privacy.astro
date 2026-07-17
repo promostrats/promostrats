@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const updated = 'July 2026';
+---
+
+<Layout
+  title="Privacy Policy — PromoStrats"
+  description="How PromoStrats collects, uses and protects the personal information you share when you get in touch or work with me."
+>
+  <div class="ps2-legal">
+    <div class="ps2-wrap">
+      <span class="ps2-eyebrow">// legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="ps2-legal-updated">Last updated: {updated}</p>
+
+      <div class="ps2-legal-body">
+        <p>
+          This policy explains what personal information PromoStrats ("I", "me") collects, why, and what your rights are.
+          PromoStrats is a freelance Shopify design and SEO service based in London, run by Connor Bawcutt.
+        </p>
+
+        <h2>Who I am</h2>
+        <p>
+          PromoStrats, London, United Kingdom. You can reach me at
+          <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a>. For the purposes of UK GDPR, I am the data
+          controller for the information described here.
+        </p>
+
+        <h2>What I collect</h2>
+        <p>
+          When you submit the contact form, I collect the details you choose to give me — typically your name, email
+          address, phone number, your website URL, and the message you send. I do not collect special-category personal
+          data, and I don't ask for it.
+        </p>
+
+        <h2>Why I collect it</h2>
+        <p>
+          I use this information solely to respond to your enquiry, arrange a strategy call, and, if we work together, to
+          deliver and manage that work. My lawful basis is your consent when you contact me, and legitimate interest in
+          responding to and administering the services you've asked about.
+        </p>
+
+        <h2>How it's handled</h2>
+        <p>
+          Contact form submissions are processed and delivered to my email inbox through Formspree, a third-party form
+          provider. Your message is stored in my email account so I can reply and keep a record of our conversation. I
+          don't sell your data, and I don't share it with anyone except where necessary to provide the service or where
+          required by law.
+        </p>
+
+        <h2>How long I keep it</h2>
+        <p>
+          I keep enquiry and client correspondence for as long as needed to provide the service and for a reasonable
+          period afterward for my own records. If you'd like your information removed, email me and I'll delete it.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          Under UK data protection law you have the right to access, correct, or delete the personal information I hold
+          about you, and to withdraw consent at any time. To exercise any of these, email
+          <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a>. You also have the right to complain to the
+          Information Commissioner's Office (ICO) at ico.org.uk.
+        </p>
+
+        <h2>Cookies &amp; analytics</h2>
+        <p>
+          This site aims to keep tracking to a minimum. If analytics are in use, they are used only to understand
+          aggregate traffic and improve the site, never to identify you personally.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          I may update this policy from time to time. Any changes will be posted on this page with a revised "last
+          updated" date.
+        </p>
+
+        <p class="ps2-legal-note">
+          Note: this is a starting template. Review it against how you actually operate — and, if in doubt, have it
+          checked by someone qualified — before relying on it.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .ps2-legal {
+    padding: 72px 0 96px;
+  }
+
+  .ps2-legal h1 {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: clamp(34px, 4.4vw, 52px);
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    margin-top: 18px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2-legal-updated {
+    margin-top: 14px;
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: var(--ps2-ink-soft);
+  }
+
+  .ps2-legal-body {
+    max-width: 68ch;
+    margin-top: 40px;
+  }
+
+  .ps2-legal-body h2 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ps2-ink);
+    margin-top: 40px;
+  }
+
+  .ps2-legal-body p {
+    margin-top: 14px;
+    color: var(--ps2-ink-soft);
+    font-size: 16.5px;
+    line-height: 1.75;
+  }
+
+  .ps2-legal-body a {
+    color: var(--ps2-cobalt);
+    text-decoration: none;
+  }
+
+  .ps2-legal-body a:hover {
+    text-decoration: underline;
+  }
+
+  .ps2-legal-note {
+    margin-top: 40px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--ps2-line);
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    color: var(--ps2-ink-soft);
+    background: #fff;
+  }
+</style>
