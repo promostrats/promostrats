@@ -33,6 +33,19 @@ const schema = {
     addressCountry: 'GB',
   },
   areaServed: { '@type': 'Country', name: 'United Kingdom' },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '1',
+    bestRating: '5',
+  },
+  review: {
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+    author: { '@type': 'Person', name: 'Ben Meekings' },
+    reviewBody:
+      'Connor took the time to understand our business and implemented improvements across our whole site — from homepage layout and navigation through to detailed SEO work on product copy, metadata and images. Clear plan, measurable progress, smooth and collaborative.',
+  },
   knowsAbout: ['Shopify', 'Shopify theme development', 'Ecommerce SEO', 'Liquid', 'Web design'],
   sameAs: [
     'https://www.linkedin.com/in/connor-bawcutt-865972269/',
@@ -77,6 +90,17 @@ const schema = {
 
     <!-- structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <!-- google analytics (ga4) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-3KFMKHRPGW"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-3KFMKHRPGW');
+    </script>
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
