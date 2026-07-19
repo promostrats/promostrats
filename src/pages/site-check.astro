@@ -307,12 +307,59 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.5;
   }
 
+  /* cta */
+  .ps2sc-cta {
+    margin-top: 26px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--ps2-panel-line);
+    text-align: center;
+  }
+
+  .ps2sc-cta p {
+    color: #e8eaef;
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .ps2sc-again {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: #7a8291;
+    text-decoration: none;
+  }
+
+  .ps2sc-again:hover {
+    color: var(--ps2-cobalt-light);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .ps2sc-top {
+      padding: 48px 0 32px;
+    }
+
+    #ps2sc-run {
+      flex: 1;
+      padding: 14px 26px;
+    }
+  }
+
+</style>
+
+<!-- Findings rows are injected by the script at runtime, so Astro can't scope
+     their styles — they live here as global rules instead. -->
+<style is:global>
   .ps2sc-line {
     display: grid;
     grid-template-columns: 18px 1fr;
     gap: 12px;
     padding: 11px 4px;
     border-bottom: 1px solid rgba(38, 42, 50, 0.6);
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    line-height: 1.5;
     opacity: 0;
     transform: translateY(4px);
     transition: opacity 0.25s, transform 0.25s;
@@ -357,45 +404,6 @@ import Layout from '../layouts/Layout.astro';
 
   .ps2sc-line-advice::before {
     content: '\2192 ';
-  }
-
-  /* cta */
-  .ps2sc-cta {
-    margin-top: 26px;
-    padding-top: 24px;
-    border-top: 1px dashed var(--ps2-panel-line);
-    text-align: center;
-  }
-
-  .ps2sc-cta p {
-    color: #e8eaef;
-    font-size: 16px;
-    margin-bottom: 18px;
-  }
-
-  .ps2sc-again {
-    display: block;
-    margin-top: 16px;
-    font-family: var(--ps2-mono);
-    font-size: 12.5px;
-    color: #7a8291;
-    text-decoration: none;
-  }
-
-  .ps2sc-again:hover {
-    color: var(--ps2-cobalt-light);
-    text-decoration: underline;
-  }
-
-  @media (max-width: 640px) {
-    .ps2sc-top {
-      padding: 48px 0 32px;
-    }
-
-    #ps2sc-run {
-      flex: 1;
-      padding: 14px 26px;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
