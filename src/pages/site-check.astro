@@ -13,8 +13,8 @@ import Layout from '../layouts/Layout.astro';
         <span class="ps2-eyebrow">// free site check</span>
         <h1>Is your website <span class="ps2sc-hl">working properly</span>?</h1>
         <p class="ps2sc-lede">
-          Enter your URL and I'll run a live check of the SEO, structure and usability basics search engines and
-          customers care about — scored out of 100, with plain-English fixes. Free, no email needed.
+          Enter your URL and this tool will run a live check of the SEO, structure and usability basics search engines and
+          customers care about - with separate SEO and design scores and plain-English fixes. Free, no email needed.
         </p>
 
         <form class="ps2sc-form" id="ps2sc-form" novalidate>
@@ -32,7 +32,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <button type="submit" class="ps2-btn" id="ps2sc-run">Run the check</button>
         </form>
-        <p class="ps2sc-note" id="ps2sc-note">takes ~10 seconds · checks 11 things · nothing is stored</p>
+        <p class="ps2sc-note" id="ps2sc-note">takes ~10 seconds · SEO + design · nothing is stored</p>
       </div>
     </section>
 
@@ -48,24 +48,38 @@ import Layout from '../layouts/Layout.astro';
           <!-- error -->
           <div class="ps2sc-error" id="ps2sc-error" hidden></div>
 
-          <!-- score summary -->
-          <div class="ps2sc-summary" id="ps2sc-summary" hidden>
-            <div class="ps2sc-score">
-              <div class="ps2sc-score-ring" id="ps2sc-ring">
-                <span class="ps2sc-score-num" id="ps2sc-score">0</span>
+          <!-- two score cards -->
+          <div class="ps2sc-scores" id="ps2sc-scores" hidden>
+            <div class="ps2sc-scorecard">
+              <div class="ps2sc-score-ring" id="ps2sc-ring-seo">
+                <span class="ps2sc-score-num" id="ps2sc-score-seo">0</span>
                 <span class="ps2sc-score-max">/100</span>
               </div>
-              <span class="ps2sc-grade" id="ps2sc-grade">—</span>
+              <div class="ps2sc-scorecard-meta">
+                <div class="ps2sc-scorecard-top">
+                  <span class="ps2sc-scorecard-title">SEO</span>
+                  <span class="ps2sc-grade" id="ps2sc-grade-seo">—</span>
+                </div>
+                <span class="ps2sc-scorecard-sub" id="ps2sc-sub-seo"></span>
+              </div>
             </div>
-            <div class="ps2sc-tallies">
-              <div class="ps2sc-tally ps2sc-tally--pass"><b id="ps2sc-n-pass">0</b> passed</div>
-              <div class="ps2sc-tally ps2sc-tally--warn"><b id="ps2sc-n-warn">0</b> to improve</div>
-              <div class="ps2sc-tally ps2sc-tally--fail"><b id="ps2sc-n-fail">0</b> issues</div>
+            <div class="ps2sc-scorecard">
+              <div class="ps2sc-score-ring" id="ps2sc-ring-design">
+                <span class="ps2sc-score-num" id="ps2sc-score-design">0</span>
+                <span class="ps2sc-score-max">/100</span>
+              </div>
+              <div class="ps2sc-scorecard-meta">
+                <div class="ps2sc-scorecard-top">
+                  <span class="ps2sc-scorecard-title">Design &amp; UX</span>
+                  <span class="ps2sc-grade" id="ps2sc-grade-design">—</span>
+                </div>
+                <span class="ps2sc-scorecard-sub" id="ps2sc-sub-design"></span>
+              </div>
             </div>
           </div>
 
-          <!-- findings stream -->
-          <div class="ps2sc-lines" id="ps2sc-lines"></div>
+          <!-- findings groups -->
+          <div class="ps2sc-groups" id="ps2sc-groups"></div>
 
           <!-- cta -->
           <div class="ps2sc-cta" id="ps2sc-cta" hidden>
@@ -213,23 +227,7 @@ import Layout from '../layouts/Layout.astro';
     padding: 16px 18px;
   }
 
-  /* score summary */
-  .ps2sc-summary {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    flex-wrap: wrap;
-    padding-bottom: 24px;
-    margin-bottom: 20px;
-    border-bottom: 1px dashed var(--ps2-panel-line);
-  }
-
-  .ps2sc-score {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
+  /* score ring (shared by both cards) */
   .ps2sc-score-ring {
     width: 108px;
     height: 108px;
@@ -265,46 +263,71 @@ import Layout from '../layouts/Layout.astro';
     color: var(--ps2-green);
   }
 
-  .ps2sc-tallies {
+  /* score cards */
+  .ps2sc-scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding-bottom: 24px;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed var(--ps2-panel-line);
+  }
+
+  .ps2sc-scorecard {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .ps2sc-tally {
-    font-family: var(--ps2-mono);
-    font-size: 13px;
-    color: #9aa1ad;
+    align-items: center;
+    gap: 18px;
     border: 1px solid var(--ps2-panel-line);
-    border-radius: 7px;
-    padding: 9px 14px;
+    border-radius: 10px;
+    padding: 18px 20px;
   }
 
-  .ps2sc-tally b {
-    color: #fff;
-    font-weight: 600;
+  .ps2sc-scorecard .ps2sc-score-ring {
+    width: 90px;
+    height: 90px;
+    flex: none;
   }
 
-  .ps2sc-tally--pass b {
-    color: var(--ps2-green);
+  .ps2sc-scorecard .ps2sc-score-num {
+    font-size: 34px;
   }
 
-  .ps2sc-tally--warn b {
-    color: #f4c86a;
-  }
-
-  .ps2sc-tally--fail b {
-    color: #ff9c86;
-  }
-
-  /* findings */
-  .ps2sc-lines {
+  .ps2sc-scorecard-meta {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .ps2sc-scorecard-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .ps2sc-scorecard-title {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  .ps2sc-scorecard-top .ps2sc-grade {
+    font-size: 28px;
+  }
+
+  .ps2sc-scorecard-sub {
     font-family: var(--ps2-mono);
-    font-size: 13.5px;
+    font-size: 12px;
+    color: #9aa1ad;
     line-height: 1.5;
+  }
+
+  @media (max-width: 560px) {
+    .ps2sc-scores {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* cta */
@@ -351,6 +374,30 @@ import Layout from '../layouts/Layout.astro';
 <!-- Findings rows are injected by the script at runtime, so Astro can't scope
      their styles — they live here as global rules instead. -->
 <style is:global>
+  .ps2sc-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin-top: 22px;
+  }
+
+  .ps2sc-group-head {
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ps2-cobalt-light);
+    margin-bottom: 6px;
+  }
+
+  .ps2sc-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
   .ps2sc-line {
     display: grid;
     grid-template-columns: 18px 1fr;
@@ -421,15 +468,11 @@ import Layout from '../layouts/Layout.astro';
   const state = document.getElementById('ps2sc-state');
   const target = document.getElementById('ps2sc-target');
   const errorBox = document.getElementById('ps2sc-error');
-  const summary = document.getElementById('ps2sc-summary');
-  const linesBox = document.getElementById('ps2sc-lines');
+  const scores = document.getElementById('ps2sc-scores');
+  const groupsBox = document.getElementById('ps2sc-groups');
   const ctaBox = document.getElementById('ps2sc-cta');
-  const ring = document.getElementById('ps2sc-ring');
-  const scoreEl = document.getElementById('ps2sc-score');
-  const gradeEl = document.getElementById('ps2sc-grade');
   const again = document.getElementById('ps2sc-again');
 
-  const COLOUR = { pass: 'var(--ps2-green)', warn: '#f4c86a', fail: '#ff9c86' };
   const MARK = { pass: '✓', warn: '!', fail: '✗' };
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -439,9 +482,9 @@ import Layout from '../layouts/Layout.astro';
   function reset() {
     errorBox.hidden = true;
     errorBox.textContent = '';
-    summary.hidden = true;
+    scores.hidden = true;
     ctaBox.hidden = true;
-    linesBox.innerHTML = '';
+    groupsBox.innerHTML = '';
   }
 
   function showError(msg) {
@@ -459,7 +502,34 @@ import Layout from '../layouts/Layout.astro';
     return '#ff9c86';
   }
 
-  function renderLine(f, i) {
+  function animateScore(el, targetScore) {
+    if (reduced) {
+      el.textContent = targetScore;
+      return;
+    }
+    let cur = 0;
+    const step = Math.max(1, Math.ceil(targetScore / 24));
+    const tick = () => {
+      cur += step;
+      if (cur >= targetScore) cur = targetScore;
+      el.textContent = cur;
+      if (cur < targetScore) requestAnimationFrame(tick);
+    };
+    tick();
+  }
+
+  function setScorecard(group, rep) {
+    const col = gradeColour(rep.score);
+    document.getElementById('ps2sc-ring-' + group).style.borderColor = col;
+    const g = document.getElementById('ps2sc-grade-' + group);
+    g.textContent = rep.grade;
+    g.style.color = col;
+    document.getElementById('ps2sc-sub-' + group).textContent =
+      `${rep.counts.pass} good · ${rep.counts.warn} to improve · ${rep.counts.fail} issue${rep.counts.fail === 1 ? '' : 's'}`;
+    animateScore(document.getElementById('ps2sc-score-' + group), rep.score);
+  }
+
+  function renderLineInto(container, f, i) {
     const el = document.createElement('div');
     el.className = 'ps2sc-line ps2sc-line--' + f.status;
     el.innerHTML =
@@ -468,10 +538,25 @@ import Layout from '../layouts/Layout.astro';
       `<div class="ps2sc-line-detail">${esc(f.detail)}</div>` +
       (f.advice ? `<div class="ps2sc-line-advice">${esc(f.advice)}</div>` : '') +
       `</span>`;
-    linesBox.appendChild(el);
-    const delay = reduced ? 0 : 90 * i;
+    container.appendChild(el);
+    const delay = reduced ? 0 : 80 * i;
     setTimeout(() => el.classList.add('ps2sc-show'), delay + 20);
-    return delay;
+  }
+
+  function renderGroup(title, rep, startIndex) {
+    const sec = document.createElement('div');
+    sec.className = 'ps2sc-group';
+    const head = document.createElement('div');
+    head.className = 'ps2sc-group-head';
+    head.textContent = `// ${title} — ${rep.findings.length} checks`;
+    sec.appendChild(head);
+    const lines = document.createElement('div');
+    lines.className = 'ps2sc-lines';
+    sec.appendChild(lines);
+    groupsBox.appendChild(sec);
+    let i = startIndex;
+    rep.findings.forEach((f) => renderLineInto(lines, f, i++));
+    return i;
   }
 
   function renderReport(data) {
@@ -481,33 +566,20 @@ import Layout from '../layouts/Layout.astro';
     try { host = new URL(host).host; } catch {}
     target.textContent = host + ' — site-check.log';
 
-    // score
-    const col = gradeColour(data.score);
-    ring.style.borderColor = col;
-    gradeEl.style.color = col;
-    gradeEl.textContent = data.grade;
-    document.getElementById('ps2sc-n-pass').textContent = data.counts.pass;
-    document.getElementById('ps2sc-n-warn').textContent = data.counts.warn;
-    document.getElementById('ps2sc-n-fail').textContent = data.counts.fail;
-    summary.hidden = false;
+    setScorecard('seo', data.seo);
+    setScorecard('design', data.design);
+    scores.hidden = false;
 
-    // animate the number
-    const targetScore = data.score;
-    let cur = 0;
-    const tick = () => {
-      cur += Math.max(1, Math.ceil(targetScore / 24));
-      if (cur >= targetScore) cur = targetScore;
-      scoreEl.textContent = cur;
-      if (cur < targetScore) requestAnimationFrame(tick);
-    };
-    reduced ? (scoreEl.textContent = targetScore) : tick();
+    let idx = 0;
+    idx = renderGroup('SEO', data.seo, idx);
+    idx = renderGroup('Design & UX', data.design, idx);
 
-    // stream findings
-    let lastDelay = 0;
-    data.findings.forEach((f, i) => (lastDelay = renderLine(f, i)));
     state.textContent = 'done ✓';
     state.style.color = 'var(--ps2-green)';
-    setTimeout(() => { ctaBox.hidden = false; }, lastDelay + 300);
+    const lastDelay = reduced ? 0 : 80 * idx;
+    setTimeout(() => {
+      ctaBox.hidden = false;
+    }, lastDelay + 300);
   }
 
   async function run(url) {
