@@ -2,13 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 
 const ticker = [
-  'custom delivery date picker',
-  'collection filter rewrite',
+  'custom website builds',
   'homepage restructure',
+  'bespoke web design',
+  'collection filter rewrite',
   'meta titles + descriptions',
-  'product copy rewrites',
+  'landing pages that convert',
   'custom theme sections',
   'navigation cleanup',
+  'product copy rewrites',
   'image optimisation',
 ];
 
@@ -64,8 +66,8 @@ const steps = [
     <!-- status strip -->
     <div class="ps2-status">
       <div class="ps2-wrap">
-        <div><b>promostrats</b> <span class="ps2-path">~/shopify-optimisation/london</span></div>
-        <a class="ps2-avail" href="/contact">accepting new projects — book a free site review</a>
+        <div><b>promostrats</b> <span class="ps2-path">~/web-design-dev-seo/london</span></div>
+        <a class="ps2-avail" href="/contact">accepting new projects — book a free intro call</a>
       </div>
     </div>
 
@@ -73,11 +75,11 @@ const steps = [
     <div class="ps2-hero">
       <div class="ps2-wrap">
         <div>
-          <span class="ps2-eyebrow">// shopify design + seo — london</span>
-          <h1>Your Shopify store, <span class="ps2-fixword">working properly</span>.</h1>
+          <span class="ps2-eyebrow">// web design + development + seo — london</span>
+          <h1>Your website, <span class="ps2-fixword">working properly</span>.</h1>
           <p class="ps2-lede">
-            I find the structure, usability and SEO issues quietly costing you sales — then fix them properly, inside
-            your existing theme. No rebuilds you don't need.
+            I design and build custom websites from scratch — and fix the structure, usability and SEO issues quietly
+            costing sales on the ones already live. Shopify's my specialism; it's not the only thing I build.
           </p>
           <div class="ps2-hero-ctas">
             <a class="ps2-btn" href="/contact">Book your free strategy call</a>
@@ -88,7 +90,7 @@ const steps = [
 
         <div class="ps2-panel">
           <div class="ps2-panel-head">
-            <span>store-audit.log</span>
+            <span>site-audit.log</span>
             <span class="ps2-run" id="ps2-runstate">running&hellip;</span>
           </div>
           <div class="ps2-panel-body" id="ps2-audit"></div>
@@ -108,11 +110,11 @@ const steps = [
     <div class="ps2-section">
       <div class="ps2-wrap">
         <div class="ps2-sec-head">
-          <span class="ps2-eyebrow">// what I fix</span>
+          <span class="ps2-eyebrow">// what I do</span>
           <h2 class="ps2-h2">Common problems, properly solved.</h2>
           <p>
-            Small issues compound. I find what's actually holding your store back and fix it at the source — not with
-            plugins stacked on plugins.
+            Whether I'm building your site from scratch or improving the one you've got, I get these right at the
+            source — not with plugins stacked on plugins.
           </p>
         </div>
         <div class="ps2-diffgrid">
@@ -187,14 +189,16 @@ const steps = [
           <span class="ps2-eyebrow">// about</span>
           <h2 class="ps2-h2">Hello, I'm Connor.</h2>
           <p>
-            I work with Shopify store owners on everything from full redesigns to targeted fixes — custom theme sections,
-            structured SEO plans, and the small technical details most agencies skip.
+            I work with independent brands and small businesses on everything from full custom website builds to
+            targeted fixes — bespoke design and sections, structured SEO plans, and the small technical details most
+            agencies skip. Shopify is my specialism, but I build from scratch and on other platforms too.
           </p>
           <p>You deal with me directly the whole way through: the person on the call is the person doing the work.</p>
         </div>
         <div class="ps2-about-card">
           <div><span class="ps2-k">base:</span> London, East Dulwich</div>
-          <div><span class="ps2-k">focus:</span> shopify design &middot; seo &middot; custom sections</div>
+          <div><span class="ps2-k">focus:</span> web design &middot; development &middot; seo</div>
+          <div><span class="ps2-k">specialism:</span> shopify &middot; custom builds</div>
           <div><span class="ps2-k">clients:</span> UK independent brands</div>
           <div><span class="ps2-k">pricing:</span> quoted clearly, before work starts</div>
           <div><span class="ps2-k">contact:</span> <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a></div>
@@ -207,8 +211,11 @@ const steps = [
     <div class="ps2-cta">
       <div class="ps2-wrap">
         <span class="ps2-eyebrow">// next step</span>
-        <h2 class="ps2-h2">Ready to find out what's holding your store back?</h2>
-        <p>A free, no-pressure strategy call. I'll tell you exactly what I'd fix — you decide what happens next.</p>
+        <h2 class="ps2-h2">Ready to build something better?</h2>
+        <p>
+          A free, no-pressure call. Whether you need a new site built or want to get more from the one you've got, I'll
+          tell you exactly what I'd do — you decide what happens next.
+        </p>
         <a class="ps2-btn" href="/contact">Book your free strategy call</a>
         <div class="ps2-cta-note">usually replies same day</div>
       </div>
@@ -845,7 +852,7 @@ const steps = [
     const summary = () => {
       const d = document.createElement('div');
       d.className = 'ps2-aline ps2-asummary ps2-show';
-      d.innerHTML = `<span class="ps2-mark">\u2192</span><span><span class="ps2-n">${lines.length} issues found \u00B7 ${lines.length} resolved.</span> your store, working properly.</span>`;
+      d.innerHTML = `<span class="ps2-mark">\u2192</span><span><span class="ps2-n">${lines.length} issues found \u00B7 ${lines.length} resolved.</span> your site, working properly.</span>`;
       el.appendChild(d);
       run.textContent = 'done \u2713';
     };
