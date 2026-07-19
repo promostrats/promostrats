@@ -88,13 +88,15 @@ const steps = [
           <div class="ps2-hero-note">free 20-min call &middot; clear pricing before any work starts</div>
         </div>
 
-        <div class="ps2-panel">
-          <div class="ps2-panel-head">
-            <span>site-audit.log</span>
-            <span class="ps2-run" id="ps2-runstate">running&hellip;</span>
+        <div class="ps2-panel-col">
+          <div class="ps2-panel">
+            <div class="ps2-panel-head">
+              <span>site-audit.log</span>
+              <span class="ps2-run" id="ps2-runstate">running&hellip;</span>
+            </div>
+            <div class="ps2-panel-body" id="ps2-audit"></div>
           </div>
-          <div class="ps2-panel-body" id="ps2-audit"></div>
-          <a class="ps2-panel-foot" href="/site-check">&#9656; run this live on your own site &rarr;</a>
+          <a class="ps2-panel-cta" href="/site-check">Check my own website &rarr;</a>
         </div>
       </div>
     </div>
@@ -375,20 +377,39 @@ const steps = [
     min-height: 288px;
   }
 
-  .ps2-panel-foot {
-    display: block;
-    padding: 13px 18px;
-    border-top: 1px solid var(--ps2-panel-line);
-    font-family: var(--ps2-mono);
-    font-size: 12.5px;
-    color: var(--ps2-cobalt-light);
-    text-decoration: none;
-    transition: background 0.15s, color 0.15s;
+  .ps2-panel-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
-  .ps2-panel-foot:hover {
-    background: #16181d;
-    color: #b7c2ff;
+  .ps2-panel-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border: 1px solid var(--ps2-cobalt);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--ps2-cobalt);
+    font-family: var(--ps2-sans);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, transform 0.15s;
+  }
+
+  .ps2-panel-cta:hover {
+    background: var(--ps2-cobalt);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ps2-panel-cta {
+      transition: none;
+    }
   }
 
   @media (max-width: 900px) {

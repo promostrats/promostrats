@@ -13,20 +13,23 @@ import Layout from '../layouts/Layout.astro';
         <span class="ps2-eyebrow">// free site check</span>
         <h1>Is your website <span class="ps2sc-hl">working properly</span>?</h1>
         <p class="ps2sc-lede">
-          Enter your URL and this tool will run a live check of the SEO, structure and usability basics search engines and
-          customers care about - with separate SEO and design scores and plain-English fixes. Free, no email needed.
+          Enter your website URL and this tool will run a live check of the SEO, structure and usability basics search
+          engines and customers care about - with separate SEO and design scores. Free, no email needed!
+        </p>
+        <p class="ps2sc-lede ps2sc-lede-note">
+          Note: this tool checks the technical basics - it can't judge how your site actually looks or
+          feels. I can do that if you book a call with me!
         </p>
 
         <form class="ps2sc-form" id="ps2sc-form" novalidate>
           <div class="ps2sc-input">
-            <span class="ps2sc-input-prefix">https://</span>
             <input
               id="ps2sc-url"
               name="url"
               type="text"
               inputmode="url"
               autocomplete="url"
-              placeholder="yourbusiness.com"
+              placeholder="https://yourbusiness.com"
               aria-label="Your website address"
             />
           </div>
@@ -119,6 +122,15 @@ import Layout from '../layouts/Layout.astro';
     max-width: 56ch;
   }
 
+  .ps2sc-lede-note {
+    margin-top: -16px;
+    font-size: 15px;
+    color: var(--ps2-ink-soft);
+    opacity: 0.85;
+    border-left: 2px solid var(--ps2-line);
+    padding-left: 14px;
+  }
+
   /* input row */
   .ps2sc-form {
     display: flex;
@@ -135,20 +147,13 @@ import Layout from '../layouts/Layout.astro';
     background: #fff;
     border: 1px solid var(--ps2-line);
     border-radius: 8px;
-    padding: 0 4px 0 14px;
+    padding: 0 4px;
     transition: border-color 0.15s, box-shadow 0.15s;
   }
 
   .ps2sc-input:focus-within {
     border-color: var(--ps2-cobalt);
     box-shadow: 0 0 0 3px rgba(29, 59, 224, 0.12);
-  }
-
-  .ps2sc-input-prefix {
-    font-family: var(--ps2-mono);
-    font-size: 14px;
-    color: #a6abb4;
-    user-select: none;
   }
 
   .ps2sc-input input {
@@ -159,7 +164,7 @@ import Layout from '../layouts/Layout.astro';
     font-family: var(--ps2-mono);
     font-size: 15px;
     color: var(--ps2-ink);
-    padding: 14px 10px;
+    padding: 14px 12px;
     min-width: 0;
   }
 
