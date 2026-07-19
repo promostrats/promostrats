@@ -94,6 +94,7 @@ const steps = [
             <span class="ps2-run" id="ps2-runstate">running&hellip;</span>
           </div>
           <div class="ps2-panel-body" id="ps2-audit"></div>
+          <a class="ps2-panel-foot" href="/site-check">&#9656; run this live on your own site &rarr;</a>
         </div>
       </div>
     </div>
@@ -372,6 +373,22 @@ const steps = [
     line-height: 2.05;
     color: var(--ps2-panel-text);
     min-height: 288px;
+  }
+
+  .ps2-panel-foot {
+    display: block;
+    padding: 13px 18px;
+    border-top: 1px solid var(--ps2-panel-line);
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: var(--ps2-cobalt-light);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .ps2-panel-foot:hover {
+    background: #16181d;
+    color: #b7c2ff;
   }
 
   @media (max-width: 900px) {

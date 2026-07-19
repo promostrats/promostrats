@@ -1,0 +1,565 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Free Site Check — PromoStrats"
+  description="Enter your website URL and get an instant, free audit of its SEO, structure and usability basics — scored, with clear fixes. No email required."
+>
+  <div class="ps2sc">
+    <!-- header + input -->
+    <section class="ps2sc-top">
+      <div class="ps2-wrap">
+        <span class="ps2-eyebrow">// free site check</span>
+        <h1>Is your website <span class="ps2sc-hl">working properly</span>?</h1>
+        <p class="ps2sc-lede">
+          Enter your URL and I'll run a live check of the SEO, structure and usability basics search engines and
+          customers care about — scored out of 100, with plain-English fixes. Free, no email needed.
+        </p>
+
+        <form class="ps2sc-form" id="ps2sc-form" novalidate>
+          <div class="ps2sc-input">
+            <span class="ps2sc-input-prefix">https://</span>
+            <input
+              id="ps2sc-url"
+              name="url"
+              type="text"
+              inputmode="url"
+              autocomplete="url"
+              placeholder="yourbusiness.com"
+              aria-label="Your website address"
+            />
+          </div>
+          <button type="submit" class="ps2-btn" id="ps2sc-run">Run the check</button>
+        </form>
+        <p class="ps2sc-note" id="ps2sc-note">takes ~10 seconds · checks 11 things · nothing is stored</p>
+      </div>
+    </section>
+
+    <!-- results panel -->
+    <section class="ps2-wrap">
+      <div class="ps2sc-panel" id="ps2sc-panel" hidden>
+        <div class="ps2sc-panel-head">
+          <span id="ps2sc-target">site-check.log</span>
+          <span class="ps2sc-run-state" id="ps2sc-state">running&hellip;</span>
+        </div>
+
+        <div class="ps2sc-panel-body">
+          <!-- error -->
+          <div class="ps2sc-error" id="ps2sc-error" hidden></div>
+
+          <!-- score summary -->
+          <div class="ps2sc-summary" id="ps2sc-summary" hidden>
+            <div class="ps2sc-score">
+              <div class="ps2sc-score-ring" id="ps2sc-ring">
+                <span class="ps2sc-score-num" id="ps2sc-score">0</span>
+                <span class="ps2sc-score-max">/100</span>
+              </div>
+              <span class="ps2sc-grade" id="ps2sc-grade">—</span>
+            </div>
+            <div class="ps2sc-tallies">
+              <div class="ps2sc-tally ps2sc-tally--pass"><b id="ps2sc-n-pass">0</b> passed</div>
+              <div class="ps2sc-tally ps2sc-tally--warn"><b id="ps2sc-n-warn">0</b> to improve</div>
+              <div class="ps2sc-tally ps2sc-tally--fail"><b id="ps2sc-n-fail">0</b> issues</div>
+            </div>
+          </div>
+
+          <!-- findings stream -->
+          <div class="ps2sc-lines" id="ps2sc-lines"></div>
+
+          <!-- cta -->
+          <div class="ps2sc-cta" id="ps2sc-cta" hidden>
+            <p>Want these fixed properly — or a site built right from the start?</p>
+            <a class="ps2-btn" href="/contact">Book a free strategy call &rarr;</a>
+            <a class="ps2sc-again" href="#" id="ps2sc-again">check another site</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .ps2sc-top {
+    padding: 72px 0 40px;
+  }
+
+  .ps2sc-top h1 {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: clamp(34px, 4.8vw, 56px);
+    line-height: 1.03;
+    letter-spacing: -0.03em;
+    margin-top: 20px;
+    color: var(--ps2-ink);
+  }
+
+  .ps2sc-hl {
+    color: var(--ps2-cobalt);
+  }
+
+  .ps2sc-lede {
+    margin: 22px 0 32px;
+    font-size: 18px;
+    color: var(--ps2-ink-soft);
+    max-width: 56ch;
+  }
+
+  /* input row */
+  .ps2sc-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 620px;
+  }
+
+  .ps2sc-input {
+    display: flex;
+    align-items: center;
+    flex: 1 1 320px;
+    background: #fff;
+    border: 1px solid var(--ps2-line);
+    border-radius: 8px;
+    padding: 0 4px 0 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .ps2sc-input:focus-within {
+    border-color: var(--ps2-cobalt);
+    box-shadow: 0 0 0 3px rgba(29, 59, 224, 0.12);
+  }
+
+  .ps2sc-input-prefix {
+    font-family: var(--ps2-mono);
+    font-size: 14px;
+    color: #a6abb4;
+    user-select: none;
+  }
+
+  .ps2sc-input input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: var(--ps2-mono);
+    font-size: 15px;
+    color: var(--ps2-ink);
+    padding: 14px 10px;
+    min-width: 0;
+  }
+
+  .ps2sc-input input::placeholder {
+    color: #a6abb4;
+  }
+
+  #ps2sc-run {
+    border: 0;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0 26px;
+    white-space: nowrap;
+  }
+
+  #ps2sc-run:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .ps2sc-note {
+    margin-top: 16px;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: var(--ps2-ink-soft);
+  }
+
+  /* results panel */
+  .ps2sc-panel {
+    margin: 8px 0 96px;
+    background: var(--ps2-panel);
+    border: 1px solid var(--ps2-panel-line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -24px rgba(21, 23, 27, 0.45);
+  }
+
+  .ps2sc-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--ps2-panel-line);
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: #7a8291;
+  }
+
+  .ps2sc-run-state {
+    color: var(--ps2-green);
+  }
+
+  .ps2sc-panel-body {
+    padding: 26px 22px 28px;
+  }
+
+  .ps2sc-error {
+    font-family: var(--ps2-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ffb4a2;
+    background: rgba(192, 68, 43, 0.12);
+    border: 1px solid rgba(192, 68, 43, 0.35);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+
+  /* score summary */
+  .ps2sc-summary {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding-bottom: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed var(--ps2-panel-line);
+  }
+
+  .ps2sc-score {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .ps2sc-score-ring {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1px;
+    background: var(--ps2-panel);
+    border: 3px solid var(--ps2-green);
+    transition: border-color 0.4s;
+  }
+
+  .ps2sc-score-num {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: 40px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .ps2sc-score-max {
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: #7a8291;
+  }
+
+  .ps2sc-grade {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: 44px;
+    letter-spacing: -0.02em;
+    color: var(--ps2-green);
+  }
+
+  .ps2sc-tallies {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ps2sc-tally {
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    color: #9aa1ad;
+    border: 1px solid var(--ps2-panel-line);
+    border-radius: 7px;
+    padding: 9px 14px;
+  }
+
+  .ps2sc-tally b {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .ps2sc-tally--pass b {
+    color: var(--ps2-green);
+  }
+
+  .ps2sc-tally--warn b {
+    color: #f4c86a;
+  }
+
+  .ps2sc-tally--fail b {
+    color: #ff9c86;
+  }
+
+  /* findings */
+  .ps2sc-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--ps2-mono);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .ps2sc-line {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 12px;
+    padding: 11px 4px;
+    border-bottom: 1px solid rgba(38, 42, 50, 0.6);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+
+  .ps2sc-line.ps2sc-show {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ps2sc-mark {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .ps2sc-line--pass .ps2sc-mark {
+    color: var(--ps2-green);
+  }
+
+  .ps2sc-line--warn .ps2sc-mark {
+    color: #f4c86a;
+  }
+
+  .ps2sc-line--fail .ps2sc-mark {
+    color: #ff9c86;
+  }
+
+  .ps2sc-line-label {
+    color: #e8eaef;
+    font-weight: 500;
+  }
+
+  .ps2sc-line-detail {
+    color: #9aa1ad;
+    margin-top: 2px;
+  }
+
+  .ps2sc-line-advice {
+    color: var(--ps2-cobalt-light);
+    margin-top: 4px;
+  }
+
+  .ps2sc-line-advice::before {
+    content: '\2192 ';
+  }
+
+  /* cta */
+  .ps2sc-cta {
+    margin-top: 26px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--ps2-panel-line);
+    text-align: center;
+  }
+
+  .ps2sc-cta p {
+    color: #e8eaef;
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .ps2sc-again {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: #7a8291;
+    text-decoration: none;
+  }
+
+  .ps2sc-again:hover {
+    color: var(--ps2-cobalt-light);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .ps2sc-top {
+      padding: 48px 0 32px;
+    }
+
+    #ps2sc-run {
+      flex: 1;
+      padding: 14px 26px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ps2sc-line {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('ps2sc-form');
+  const input = document.getElementById('ps2sc-url');
+  const runBtn = document.getElementById('ps2sc-run');
+  const panel = document.getElementById('ps2sc-panel');
+  const state = document.getElementById('ps2sc-state');
+  const target = document.getElementById('ps2sc-target');
+  const errorBox = document.getElementById('ps2sc-error');
+  const summary = document.getElementById('ps2sc-summary');
+  const linesBox = document.getElementById('ps2sc-lines');
+  const ctaBox = document.getElementById('ps2sc-cta');
+  const ring = document.getElementById('ps2sc-ring');
+  const scoreEl = document.getElementById('ps2sc-score');
+  const gradeEl = document.getElementById('ps2sc-grade');
+  const again = document.getElementById('ps2sc-again');
+
+  const COLOUR = { pass: 'var(--ps2-green)', warn: '#f4c86a', fail: '#ff9c86' };
+  const MARK = { pass: '✓', warn: '!', fail: '✗' };
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const esc = (s) =>
+    String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function reset() {
+    errorBox.hidden = true;
+    errorBox.textContent = '';
+    summary.hidden = true;
+    ctaBox.hidden = true;
+    linesBox.innerHTML = '';
+  }
+
+  function showError(msg) {
+    reset();
+    panel.hidden = false;
+    state.textContent = 'error';
+    state.style.color = '#ff9c86';
+    errorBox.hidden = false;
+    errorBox.textContent = msg;
+  }
+
+  function gradeColour(score) {
+    if (score >= 75) return 'var(--ps2-green)';
+    if (score >= 50) return '#f4c86a';
+    return '#ff9c86';
+  }
+
+  function renderLine(f, i) {
+    const el = document.createElement('div');
+    el.className = 'ps2sc-line ps2sc-line--' + f.status;
+    el.innerHTML =
+      `<span class="ps2sc-mark">${MARK[f.status]}</span>` +
+      `<span><span class="ps2sc-line-label">${esc(f.label)}</span>` +
+      `<div class="ps2sc-line-detail">${esc(f.detail)}</div>` +
+      (f.advice ? `<div class="ps2sc-line-advice">${esc(f.advice)}</div>` : '') +
+      `</span>`;
+    linesBox.appendChild(el);
+    const delay = reduced ? 0 : 90 * i;
+    setTimeout(() => el.classList.add('ps2sc-show'), delay + 20);
+    return delay;
+  }
+
+  function renderReport(data) {
+    reset();
+    panel.hidden = false;
+    let host = data.finalUrl || data.url || '';
+    try { host = new URL(host).host; } catch {}
+    target.textContent = host + ' — site-check.log';
+
+    // score
+    const col = gradeColour(data.score);
+    ring.style.borderColor = col;
+    gradeEl.style.color = col;
+    gradeEl.textContent = data.grade;
+    document.getElementById('ps2sc-n-pass').textContent = data.counts.pass;
+    document.getElementById('ps2sc-n-warn').textContent = data.counts.warn;
+    document.getElementById('ps2sc-n-fail').textContent = data.counts.fail;
+    summary.hidden = false;
+
+    // animate the number
+    const targetScore = data.score;
+    let cur = 0;
+    const tick = () => {
+      cur += Math.max(1, Math.ceil(targetScore / 24));
+      if (cur >= targetScore) cur = targetScore;
+      scoreEl.textContent = cur;
+      if (cur < targetScore) requestAnimationFrame(tick);
+    };
+    reduced ? (scoreEl.textContent = targetScore) : tick();
+
+    // stream findings
+    let lastDelay = 0;
+    data.findings.forEach((f, i) => (lastDelay = renderLine(f, i)));
+    state.textContent = 'done ✓';
+    state.style.color = 'var(--ps2-green)';
+    setTimeout(() => { ctaBox.hidden = false; }, lastDelay + 300);
+  }
+
+  async function run(url) {
+    reset();
+    panel.hidden = false;
+    target.textContent = 'site-check.log';
+    state.textContent = 'running…';
+    state.style.color = 'var(--ps2-green)';
+    runBtn.disabled = true;
+    runBtn.textContent = 'Checking…';
+
+    try {
+      const res = await fetch('/api/audit?url=' + encodeURIComponent(url), {
+        headers: { Accept: 'application/json' },
+      });
+      const ct = res.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) {
+        // Most likely running under `astro dev`, where /api functions don't run.
+        showError(
+          'The live audit runs on the deployed site. Push your changes and try it on your live URL (or run `vercel dev` locally).'
+        );
+        return;
+      }
+      const data = await res.json();
+      if (data.error) {
+        showError(data.error);
+        return;
+      }
+      renderReport(data);
+    } catch {
+      showError('Something went wrong running the check. Please try again in a moment.');
+    } finally {
+      runBtn.disabled = false;
+      runBtn.textContent = 'Run the check';
+    }
+  }
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = (input.value || '').trim();
+    if (!val) {
+      input.focus();
+      return;
+    }
+    run(val);
+    panel.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  again?.addEventListener('click', (e) => {
+    e.preventDefault();
+    panel.hidden = true;
+    input.focus();
+    input.select();
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  });
+
+  // Allow deep-linking: /site-check?url=example.com auto-runs
+  const preset = new URLSearchParams(window.location.search).get('url');
+  if (preset) {
+    input.value = preset;
+    run(preset);
+  }
+</script>
