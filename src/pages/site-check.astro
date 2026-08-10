@@ -10,7 +10,7 @@ import Layout from '../layouts/Layout.astro';
     <!-- header + input -->
     <section class="ps2sc-top">
       <div class="ps2-wrap">
-        <span class="ps2-eyebrow">// free site check</span>
+        <span class="ps2-eyebrow">free site check</span>
         <h1>Is your website <span class="ps2sc-hl">working properly</span>?</h1>
         <p class="ps2sc-lede">
           Enter your website URL and this tool will run a live check of the SEO, structure and usability basics search
@@ -43,7 +43,7 @@ import Layout from '../layouts/Layout.astro';
     <section class="ps2-wrap">
       <div class="ps2sc-panel" id="ps2sc-panel" hidden>
         <div class="ps2sc-panel-head">
-          <span id="ps2sc-target">site-check.log</span>
+          <span id="ps2sc-target">site check</span>
           <span class="ps2sc-run-state" id="ps2sc-state">running&hellip;</span>
         </div>
 
@@ -153,7 +153,7 @@ import Layout from '../layouts/Layout.astro';
 
   .ps2sc-input:focus-within {
     border-color: var(--ps2-cobalt);
-    box-shadow: 0 0 0 3px rgba(29, 59, 224, 0.12);
+    box-shadow: 0 0 0 3px rgba(116, 34, 108, 0.14);
   }
 
   .ps2sc-input input {
@@ -210,7 +210,7 @@ import Layout from '../layouts/Layout.astro';
     border-bottom: 1px solid var(--ps2-panel-line);
     font-family: var(--ps2-mono);
     font-size: 12.5px;
-    color: #7a8291;
+    color: #C9B8C6;
   }
 
   .ps2sc-run-state {
@@ -226,8 +226,8 @@ import Layout from '../layouts/Layout.astro';
     font-size: 14px;
     line-height: 1.6;
     color: #ffb4a2;
-    background: rgba(192, 68, 43, 0.12);
-    border: 1px solid rgba(192, 68, 43, 0.35);
+    background: rgba(184, 74, 62, 0.15);
+    border: 1px solid rgba(184, 74, 62, 0.4);
     border-radius: 8px;
     padding: 16px 18px;
   }
@@ -257,7 +257,7 @@ import Layout from '../layouts/Layout.astro';
   .ps2sc-score-max {
     font-family: var(--ps2-mono);
     font-size: 13px;
-    color: #7a8291;
+    color: #C9B8C6;
   }
 
   .ps2sc-grade {
@@ -325,7 +325,7 @@ import Layout from '../layouts/Layout.astro';
   .ps2sc-scorecard-sub {
     font-family: var(--ps2-mono);
     font-size: 12px;
-    color: #9aa1ad;
+    color: #C9B8C6;
     line-height: 1.5;
   }
 
@@ -354,7 +354,7 @@ import Layout from '../layouts/Layout.astro';
     margin-top: 16px;
     font-family: var(--ps2-mono);
     font-size: 12.5px;
-    color: #7a8291;
+    color: #C9B8C6;
     text-decoration: none;
   }
 
@@ -408,7 +408,7 @@ import Layout from '../layouts/Layout.astro';
     grid-template-columns: 18px 1fr;
     gap: 12px;
     padding: 11px 4px;
-    border-bottom: 1px solid rgba(38, 42, 50, 0.6);
+    border-bottom: 1px solid rgba(107, 58, 99, 0.5);
     font-family: var(--ps2-mono);
     font-size: 13.5px;
     line-height: 1.5;
@@ -445,7 +445,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .ps2sc-line-detail {
-    color: #9aa1ad;
+    color: #C9B8C6;
     margin-top: 2px;
   }
 
@@ -553,7 +553,7 @@ import Layout from '../layouts/Layout.astro';
     sec.className = 'ps2sc-group';
     const head = document.createElement('div');
     head.className = 'ps2sc-group-head';
-    head.textContent = `// ${title} — ${rep.findings.length} checks`;
+    head.textContent = `${title} — ${rep.findings.length} checks`;
     sec.appendChild(head);
     const lines = document.createElement('div');
     lines.className = 'ps2sc-lines';
@@ -569,7 +569,7 @@ import Layout from '../layouts/Layout.astro';
     panel.hidden = false;
     let host = data.finalUrl || data.url || '';
     try { host = new URL(host).host; } catch {}
-    target.textContent = host + ' — site-check.log';
+    target.textContent = host + ' — results';
 
     setScorecard('seo', data.seo);
     setScorecard('design', data.design);
@@ -590,7 +590,7 @@ import Layout from '../layouts/Layout.astro';
   async function run(url) {
     reset();
     panel.hidden = false;
-    target.textContent = 'site-check.log';
+    target.textContent = 'site check';
     state.textContent = 'running…';
     state.style.color = 'var(--ps2-green)';
     runBtn.disabled = true;

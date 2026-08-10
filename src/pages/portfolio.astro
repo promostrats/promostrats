@@ -12,13 +12,13 @@ const cases = [
     live: 'https://theartisanmerchants.co.uk',
     compares: [
       {
-        label: 'homepage.compare',
+        label: 'Homepage',
         before: '/images/tam-home-before.png',
         after: '/images/tam-home-after.png',
         alt: 'The Artisan Merchants homepage',
       },
       {
-        label: 'collection-page.compare',
+        label: 'Collection page',
         before: '/images/tam-collection-before.png',
         after: '/images/tam-collection-after.png',
         alt: 'The Artisan Merchants collection page',
@@ -42,7 +42,7 @@ const cases = [
     live: 'https://flavourlikefancy.co.uk',
     compares: [
       {
-        label: 'homepage.compare',
+        label: 'Homepage',
         before: '/images/flf-before.png',
         after: '/images/flf-after.png',
         alt: 'Flavour Like Fancy homepage',
@@ -65,7 +65,7 @@ const cases = [
     <!-- header -->
     <div class="ps2-wrap">
       <header class="ps2p-head">
-        <span class="ps2-eyebrow">// portfolio — real client work</span>
+        <span class="ps2-eyebrow">portfolio — real client work</span>
         <h1>Before, <em>and after</em>.</h1>
         <p class="ps2p-lede">
           Real websites I've designed, built and optimised for UK independent brands — Shopify is my specialism. Drag
@@ -83,7 +83,7 @@ const cases = [
         cases.map((c) => (
           <article class="ps2p-case">
             <div class="ps2p-case-head">
-              <span class="ps2-eyebrow">// case {c.number}</span>
+              <span class="ps2-eyebrow">case {c.number}</span>
               <span class="ps2p-case-scope">{c.scope}</span>
               <h2 class="ps2p-case-name">{c.name}</h2>
               <p class="ps2p-case-desc">{c.desc}</p>
@@ -137,7 +137,7 @@ const cases = [
               <p class="ps2p-copy" set:html={c.copy} />
               <div class="ps2p-side">
                 <div class="ps2p-changelog">
-                  <div class="ps2p-changelog-title">// changelog</div>
+                  <div class="ps2p-changelog-title">What changed</div>
                   {c.changelog.map((l) =>
                     l.type === 'del' ? (
                       <div class="ps2p-cl-line ps2p-cl-line--del">
@@ -165,7 +165,7 @@ const cases = [
     <!-- cta -->
     <div class="ps2p-cta">
       <div class="ps2-wrap">
-        <span class="ps2-eyebrow">// next step</span>
+        <span class="ps2-eyebrow">next step</span>
         <h2>Want your site to look like the "after"?</h2>
         <p>
           I'll review your current site before we talk — or scope a new build from scratch — and walk you through
@@ -285,7 +285,7 @@ const cases = [
     border-bottom: 1px solid var(--ps2-panel-line);
     font-family: var(--ps2-mono);
     font-size: 12.5px;
-    color: #7a8291;
+    color: #C9B8C6;
   }
 
   .ps2p-panel-head .ps2p-drag-hint {
@@ -307,7 +307,7 @@ const cases = [
     aspect-ratio: 16 / 10;
     overflow: hidden;
     border-radius: 6px;
-    background: #1b1e24;
+    background: #3A1735;
     --pos: 50%;
     --fw: 100%;
   }
@@ -352,8 +352,8 @@ const cases = [
     font-family: var(--ps2-mono);
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: #7a8291;
-    background: repeating-linear-gradient(45deg, #16181d 0 12px, #1b1e24 12px 24px);
+    color: #C9B8C6;
+    background: repeating-linear-gradient(45deg, #3A1735 0 12px, #4B2142 12px 24px);
   }
 
   .ps2p-ba-tag {
@@ -361,11 +361,12 @@ const cases = [
     top: 12px;
     font-family: var(--ps2-mono);
     font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     padding: 5px 11px;
-    border-radius: 5px;
-    background: rgba(16, 18, 22, 0.85);
+    border-radius: 20px;
+    background: rgba(58, 23, 53, 0.85);
     backdrop-filter: blur(4px);
   }
 
@@ -572,10 +573,31 @@ const cases = [
     background: var(--ps2-cobalt);
     text-align: center;
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps2p-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ps2-gradient);
+    opacity: 0.22;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  .ps2p-cta > .ps2-wrap {
+    position: relative;
   }
 
   .ps2p-cta .ps2-eyebrow {
-    color: #bcc8ff;
+    color: var(--ps2-aqua);
+  }
+
+  .ps2p-cta .ps2-eyebrow::before {
+    background: #fff;
+    opacity: 0.7;
   }
 
   .ps2p-cta h2 {
@@ -591,7 +613,7 @@ const cases = [
 
   .ps2p-cta p {
     margin: 20px auto 36px;
-    color: #d6ddff;
+    color: #EBD6E7;
     max-width: 44ch;
   }
 
@@ -616,7 +638,7 @@ const cases = [
     margin-top: 20px;
     font-family: var(--ps2-mono);
     font-size: 12.5px;
-    color: #aabaff;
+    color: var(--ps2-aqua);
   }
 
   /* ---------- responsive ---------- */
