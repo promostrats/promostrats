@@ -88,22 +88,33 @@ const steps = [
           <div class="ps2-hero-note">free 20-min call &middot; clear pricing before any work starts</div>
         </div>
 
-        <div class="ps2-proof">
-          <div class="ps2-proof-glow" aria-hidden="true"></div>
-          <div class="ps2-proof-stack">
-            <figure class="ps2-proof-img ps2-proof-img--before">
-              <img src="/images/tam-home-before.png" alt="The Artisan Merchants homepage, before" loading="eager" />
-              <figcaption>before</figcaption>
-            </figure>
-            <figure class="ps2-proof-img ps2-proof-img--after">
-              <img src="/images/tam-home-after.png" alt="The Artisan Merchants homepage, after" loading="eager" />
-              <figcaption>after</figcaption>
-            </figure>
+        <div class="ps2-check">
+          <div class="ps2-check-glow" aria-hidden="true"></div>
+          <div class="ps2-check-card">
+            <div class="ps2-check-head">
+              <span class="ps2-check-dot"></span>
+              free site check
+            </div>
+            <h2 class="ps2-check-title">Is your website working properly?</h2>
+            <p class="ps2-check-body">Enter your URL for an instant SEO + design score &mdash; free, no email needed.</p>
+
+            <form class="ps2-check-form" action="/site-check" method="get">
+              <input type="text" name="url" inputmode="url" placeholder="https://yourbusiness.com" aria-label="Your website address" />
+              <button type="submit">Check it &rarr;</button>
+            </form>
+
+            <div class="ps2-check-rings">
+              <div class="ps2-check-ring">
+                <div class="ps2-check-ring-circle"><span>&mdash;</span></div>
+                <span class="ps2-check-ring-label">SEO</span>
+              </div>
+              <div class="ps2-check-ring">
+                <div class="ps2-check-ring-circle"><span>&mdash;</span></div>
+                <span class="ps2-check-ring-label">Design &amp; UX</span>
+              </div>
+              <div class="ps2-check-hint">scores appear in ~10 seconds</div>
+            </div>
           </div>
-          <a class="ps2-proof-caption" href="/portfolio">
-            <span>Real client rebuild &mdash; The Artisan Merchants</span>
-            <span class="ps2-proof-arrow">&rarr;</span>
-          </a>
         </div>
       </div>
     </div>
@@ -351,120 +362,166 @@ const steps = [
     color: var(--ps2-ink-soft);
   }
 
-  /* hero proof — layered before/after showcase, real client work */
-  .ps2-proof {
+  /* hero site-check teaser — a live, functional preview of the free tool */
+  .ps2-check {
     position: relative;
   }
 
-  .ps2-proof-glow {
+  .ps2-check-glow {
     position: absolute;
-    inset: -12% -8%;
+    inset: -10% -8%;
     background: var(--ps2-gradient);
     filter: blur(64px);
-    opacity: 0.4;
+    opacity: 0.35;
     z-index: 0;
     border-radius: 40px;
   }
 
-  .ps2-proof-stack {
+  .ps2-check-card {
     position: relative;
     z-index: 1;
-    aspect-ratio: 5 / 4;
+    background: #fff;
+    border: 1px solid var(--ps2-line);
+    border-radius: 18px;
+    padding: 36px 38px 32px;
+    box-shadow: 0 30px 60px -28px rgba(75, 33, 66, 0.35);
   }
 
-  .ps2-proof-img {
-    position: absolute;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px -24px rgba(75, 33, 66, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-  }
-
-  .ps2-proof-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-  }
-
-  .ps2-proof-img figcaption {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    font-family: var(--ps2-sans);
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 5px 11px;
-    border-radius: 20px;
-    background: rgba(58, 23, 53, 0.82);
-    color: #fff;
-    backdrop-filter: blur(4px);
-  }
-
-  .ps2-proof-img--before {
-    width: 72%;
-    aspect-ratio: 16 / 11;
-    top: 0;
-    left: 0;
-    transform: rotate(-4deg);
-    filter: saturate(0.75) brightness(0.94);
-  }
-
-  .ps2-proof-img--before figcaption {
-    background: rgba(58, 23, 53, 0.6);
-  }
-
-  .ps2-proof-img--after {
-    width: 72%;
-    aspect-ratio: 16 / 11;
-    bottom: 0;
-    right: 0;
-    transform: rotate(3deg);
-  }
-
-  .ps2-proof-img--after figcaption {
-    background: var(--ps2-plum);
-  }
-
-  .ps2-proof-caption {
-    position: relative;
-    z-index: 1;
+  .ps2-check-head {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    margin-top: 22px;
-    padding: 13px 20px;
-    border: 1px solid var(--ps2-line);
-    border-radius: 8px;
-    background: #fff;
-    color: var(--ps2-ink);
     font-family: var(--ps2-sans);
     font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps2-plum);
+  }
+
+  .ps2-check-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ps2-celadon);
+    animation: ps2-pulse 2.4s ease-in-out infinite;
+  }
+
+  .ps2-check-title {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    font-size: clamp(22px, 2.2vw, 27px);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--ps2-ink);
+    margin-top: 16px;
+  }
+
+  .ps2-check-body {
+    margin-top: 12px;
     font-size: 15px;
-    text-decoration: none;
-    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    color: var(--ps2-ink-soft);
+    line-height: 1.6;
   }
 
-  .ps2-proof-arrow {
-    transition: transform 0.15s;
+  .ps2-check-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
   }
 
-  .ps2-proof-caption:hover {
+  .ps2-check-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 14px;
+    font-size: 14.5px;
+    font-family: var(--ps2-sans);
+    border: 1px solid var(--ps2-line);
+    border-radius: 8px;
+    background: var(--ps2-paper);
+    color: var(--ps2-ink);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .ps2-check-form input::placeholder {
+    color: #a99ba6;
+  }
+
+  .ps2-check-form input:focus {
     border-color: var(--ps2-plum);
-    background: var(--ps2-paper-tint);
+    box-shadow: 0 0 0 3px rgba(116, 34, 108, 0.14);
+  }
+
+  .ps2-check-form button {
+    flex: none;
+    border: 0;
+    cursor: pointer;
+    background: var(--ps2-plum);
+    color: #fff;
+    font-family: var(--ps2-sans);
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 0 20px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .ps2-check-form button:hover {
+    background: var(--ps2-cobalt-deep);
     transform: translateY(-1px);
   }
 
-  .ps2-proof-caption:hover .ps2-proof-arrow {
-    transform: translateX(3px);
+  .ps2-check-rings {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--ps2-line);
+  }
+
+  .ps2-check-ring {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ps2-check-ring-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid var(--ps2-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    font-size: 13px;
+    color: #c2b4bf;
+    flex: none;
+  }
+
+  .ps2-check-ring-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ps2-ink-soft);
+  }
+
+  .ps2-check-hint {
+    margin-left: auto;
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    color: #a99ba6;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ps2-proof-caption,
-    .ps2-proof-arrow {
+    .ps2-check-dot {
+      animation: none;
+    }
+
+    .ps2-check-form button {
       transition: none;
     }
   }
@@ -472,18 +529,27 @@ const steps = [
   @media (max-width: 900px) {
     .ps2-hero .ps2-wrap {
       grid-template-columns: 1fr;
-      gap: 56px;
-    }
-
-    .ps2-proof-stack {
-      aspect-ratio: 4 / 3;
+      gap: 44px;
     }
   }
 
-  @media (max-width: 480px) {
-    .ps2-proof-img--before,
-    .ps2-proof-img--after {
-      width: 80%;
+  @media (max-width: 520px) {
+    .ps2-check-card {
+      padding: 28px 24px 26px;
+    }
+
+    .ps2-check-form {
+      flex-direction: column;
+    }
+
+    .ps2-check-rings {
+      flex-wrap: wrap;
+      row-gap: 12px;
+    }
+
+    .ps2-check-hint {
+      margin-left: 0;
+      flex-basis: 100%;
     }
   }
 
