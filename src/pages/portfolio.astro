@@ -1,7 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 
-// Drop your screenshots into public/images/ and the paths below will just work.
+import tamHomeBefore from '../assets/images/tam-home-before.png';
+import tamHomeAfter from '../assets/images/tam-home-after.png';
+import tamCollectionBefore from '../assets/images/tam-collection-before.png';
+import tamCollectionAfter from '../assets/images/tam-collection-after.png';
+import flfBefore from '../assets/images/flf-before.png';
+import flfAfter from '../assets/images/flf-after.png';
+
+// Drop new screenshots into src/assets/images/, import them above, and reference
+// them below — Astro optimises and serves them as compressed AVIF/WebP.
 // Leave a value as null and you'll get the striped placeholder instead.
 const cases = [
   {
@@ -13,14 +22,14 @@ const cases = [
     compares: [
       {
         label: 'Homepage',
-        before: '/images/tam-home-before.png',
-        after: '/images/tam-home-after.png',
+        before: tamHomeBefore,
+        after: tamHomeAfter,
         alt: 'The Artisan Merchants homepage',
       },
       {
         label: 'Collection page',
-        before: '/images/tam-collection-before.png',
-        after: '/images/tam-collection-after.png',
+        before: tamCollectionBefore,
+        after: tamCollectionAfter,
         alt: 'The Artisan Merchants collection page',
       },
     ],
@@ -43,8 +52,8 @@ const cases = [
     compares: [
       {
         label: 'Homepage',
-        before: '/images/flf-before.png',
-        after: '/images/flf-after.png',
+        before: flfBefore,
+        after: flfAfter,
         alt: 'Flavour Like Fancy homepage',
       },
     ],
@@ -80,7 +89,7 @@ const cases = [
     <!-- cases -->
     <div class="ps2-wrap">
       {
-        cases.map((c) => (
+        cases.map((c, i) => (
           <article class="ps2p-case">
             <div class="ps2p-case-head">
               <span class="ps2-eyebrow">case {c.number}</span>
@@ -89,49 +98,69 @@ const cases = [
               <p class="ps2p-case-desc">{c.desc}</p>
             </div>
 
-            {c.compares.map((cmp) => (
-              <div class="ps2p-compare">
-                <div class="ps2p-panel">
-                  <div class="ps2p-panel-head">
-                    <span>{cmp.label}</span>
-                    <span class="ps2p-drag-hint">drag to compare &#8646;</span>
-                  </div>
-                  <div class="ps2p-panel-body">
-                    <div class="ps2p-ba" data-ba>
-                      <input
-                        class="ps2p-ba-range"
-                        type="range"
-                        min="0"
-                        max="100"
-                        value="50"
-                        aria-label={`Drag to reveal ${cmp.alt} before and after`}
-                      />
-                      <div class="ps2p-ba-frame">
-                        <figure class="ps2p-ba-layer ps2p-ba-layer--after">
-                          {cmp.after ? (
-                            <img src={cmp.after} alt={`${cmp.alt} — redesigned`} loading="lazy" decoding="async" />
-                          ) : (
-                            <div class="ps2p-ba-ph">+ after &mdash; add image to public/images</div>
-                          )}
-                          <figcaption class="ps2p-ba-tag ps2p-ba-tag--after">+ after</figcaption>
-                        </figure>
-                        <figure class="ps2p-ba-layer ps2p-ba-layer--before">
-                          {cmp.before ? (
-                            <img src={cmp.before} alt={`${cmp.alt} — original`} loading="lazy" decoding="async" />
-                          ) : (
-                            <div class="ps2p-ba-ph">- before &mdash; add image to public/images</div>
-                          )}
-                          <figcaption class="ps2p-ba-tag ps2p-ba-tag--before">- before</figcaption>
-                        </figure>
-                        <div class="ps2p-ba-divider">
-                          <span class="ps2p-ba-grip" />
+            {c.compares.map((cmp, ci) => {
+              const eager = i === 0 && ci === 0;
+              return (
+                <div class="ps2p-compare">
+                  <div class="ps2p-panel">
+                    <div class="ps2p-panel-head">
+                      <span>{cmp.label}</span>
+                      <span class="ps2p-drag-hint">drag to compare &#8646;</span>
+                    </div>
+                    <div class="ps2p-panel-body">
+                      <div class="ps2p-ba" data-ba>
+                        <input
+                          class="ps2p-ba-range"
+                          type="range"
+                          min="0"
+                          max="100"
+                          value="50"
+                          aria-label={`Drag to reveal ${cmp.alt} before and after`}
+                        />
+                        <div class="ps2p-ba-frame">
+                          <figure class="ps2p-ba-layer ps2p-ba-layer--after">
+                            {cmp.after ? (
+                              <Image
+                                src={cmp.after}
+                                alt={`${cmp.alt} — redesigned`}
+                                width={1400}
+                                format="webp"
+                                quality={78}
+                                loading={eager ? 'eager' : 'lazy'}
+                                fetchpriority={eager ? 'high' : 'auto'}
+                                decoding="async"
+                              />
+                            ) : (
+                              <div class="ps2p-ba-ph">+ after &mdash; add image to src/assets/images</div>
+                            )}
+                            <figcaption class="ps2p-ba-tag ps2p-ba-tag--after">+ after</figcaption>
+                          </figure>
+                          <figure class="ps2p-ba-layer ps2p-ba-layer--before">
+                            {cmp.before ? (
+                              <Image
+                                src={cmp.before}
+                                alt={`${cmp.alt} — original`}
+                                width={1400}
+                                format="webp"
+                                quality={78}
+                                loading={eager ? 'eager' : 'lazy'}
+                                decoding="async"
+                              />
+                            ) : (
+                              <div class="ps2p-ba-ph">- before &mdash; add image to src/assets/images</div>
+                            )}
+                            <figcaption class="ps2p-ba-tag ps2p-ba-tag--before">- before</figcaption>
+                          </figure>
+                          <div class="ps2p-ba-divider">
+                            <span class="ps2p-ba-grip" />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             <div class="ps2p-body">
               <p class="ps2p-copy" set:html={c.copy} />

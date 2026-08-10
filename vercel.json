@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "redirects": [
     { "source": "/pages/contact", "destination": "/contact", "permanent": true },
     { "source": "/pages/portfolio", "destination": "/portfolio", "permanent": true },
