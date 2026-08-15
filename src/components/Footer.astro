@@ -76,7 +76,7 @@ const year = new Date().getFullYear();
 <style>
   .ps2-fu {
     background: var(--ps2-panel);
-    color: #C9B8C6;
+    color: var(--ps2-panel-text);
     font-family: var(--ps2-sans);
     font-size: 14.5px;
     line-height: 1.6;
@@ -140,19 +140,19 @@ const year = new Date().getFullYear();
   }
 
   .ps2-fu-social a:hover {
-    border-color: var(--ps2-lavender);
-    background: #5C2A54;
+    border-color: var(--ps2-cobalt);
+    background: #3A2E22;
   }
 
   .ps2-fu-social svg {
     width: 15px;
     height: 15px;
-    fill: #A98CA5;
+    fill: #A6907A;
     transition: fill 0.15s;
   }
 
   .ps2-fu-social a:hover svg {
-    fill: var(--ps2-aqua);
+    fill: var(--ps2-cobalt-light);
   }
 
   /* column labels */
@@ -160,7 +160,7 @@ const year = new Date().getFullYear();
     font-family: var(--ps2-mono);
     font-size: 12px;
     font-weight: 600;
-    color: #A98CA5;
+    color: #A6907A;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 16px;
@@ -177,18 +177,18 @@ const year = new Date().getFullYear();
 
   .ps2-fu-list a,
   .ps2-fu-list span {
-    color: #DFCFDC;
+    color: #E6D8C4;
     text-decoration: none;
     font-size: 14.5px;
     transition: color 0.15s;
   }
 
   .ps2-fu-list a:hover {
-    color: var(--ps2-aqua);
+    color: var(--ps2-cobalt-light);
   }
 
   .ps2-fu-list .ps2-fu-plain {
-    color: #A98CA5;
+    color: #A6907A;
   }
 
   /* legal bar */
@@ -202,21 +202,21 @@ const year = new Date().getFullYear();
     flex-wrap: wrap;
     font-family: var(--ps2-mono);
     font-size: 12px;
-    color: #A98CA5;
+    color: #A6907A;
   }
 
   .ps2-fu-legal a {
-    color: #A98CA5;
+    color: #A6907A;
     text-decoration: none;
     transition: color 0.15s;
   }
 
   .ps2-fu-legal a:hover {
-    color: var(--ps2-aqua);
+    color: var(--ps2-cobalt-light);
   }
 
   .ps2-fu-legal .ps2-fu-sep {
-    color: #6B3A63;
+    color: var(--ps2-panel-line);
     padding: 0 8px;
   }
 

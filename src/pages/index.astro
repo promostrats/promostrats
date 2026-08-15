@@ -128,7 +128,7 @@ const steps = [
     </div>
 
     <!-- what I fix -->
-    <div class="ps2-section">
+    <div class="ps2-section ps2-section--clay">
       <div class="ps2-wrap">
         <div class="ps2-sec-head">
           <span class="ps2-eyebrow">what I do</span>
@@ -248,7 +248,7 @@ const steps = [
   /* ---------- status strip ---------- */
   .ps2-status {
     background: var(--ps2-panel);
-    color: #C9B8C6;
+    color: var(--ps2-panel-text);
     font-family: var(--ps2-sans);
     font-size: 12.5px;
     letter-spacing: 0.02em;
@@ -272,7 +272,7 @@ const steps = [
   }
 
   .ps2-avail:hover {
-    color: #a9f0c6;
+    color: #8FB89B;
   }
 
   .ps2-avail::before {
@@ -384,7 +384,7 @@ const steps = [
     border: 1px solid var(--ps2-line);
     border-radius: 18px;
     padding: 36px 38px 32px;
-    box-shadow: 0 30px 60px -28px rgba(75, 33, 66, 0.35);
+    box-shadow: 0 30px 60px -28px rgba(36, 28, 20, 0.28);
   }
 
   .ps2-check-head {
@@ -396,14 +396,14 @@ const steps = [
     font-size: 12.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ps2-plum);
+    color: var(--ps2-cobalt);
   }
 
   .ps2-check-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--ps2-celadon);
+    background: var(--ps2-green);
     animation: ps2-pulse 2.4s ease-in-out infinite;
   }
 
@@ -445,19 +445,19 @@ const steps = [
   }
 
   .ps2-check-form input::placeholder {
-    color: #a99ba6;
+    color: #A69A88;
   }
 
   .ps2-check-form input:focus {
-    border-color: var(--ps2-plum);
-    box-shadow: 0 0 0 3px rgba(116, 34, 108, 0.14);
+    border-color: var(--ps2-cobalt);
+    box-shadow: 0 0 0 3px rgba(156, 63, 28, 0.16);
   }
 
   .ps2-check-form button {
     flex: none;
     border: 0;
     cursor: pointer;
-    background: var(--ps2-plum);
+    background: var(--ps2-cobalt);
     color: #fff;
     font-family: var(--ps2-sans);
     font-weight: 600;
@@ -499,7 +499,7 @@ const steps = [
     font-family: var(--ps2-disp);
     font-weight: 700;
     font-size: 13px;
-    color: #c2b4bf;
+    color: #C9B8A4;
     flex: none;
   }
 
@@ -513,7 +513,7 @@ const steps = [
     margin-left: auto;
     font-family: var(--ps2-mono);
     font-size: 12px;
-    color: #a99ba6;
+    color: #A69A88;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -589,12 +589,16 @@ const steps = [
   .ps2-ticker span::after {
     content: '\00B7';
     margin-left: 52px;
-    color: var(--ps2-celadon);
+    color: var(--ps2-cobalt);
   }
 
   /* ---------- sections ---------- */
   .ps2-section {
     padding: 96px 0;
+  }
+
+  .ps2-section--clay {
+    background: var(--ps2-paper-tint);
   }
 
   .ps2-sec-head {
@@ -687,7 +691,7 @@ const steps = [
   }
 
   .ps2-process .ps2-eyebrow {
-    color: var(--ps2-aqua);
+    color: var(--ps2-cobalt-light);
   }
 
   .ps2-process .ps2-h2 {
@@ -695,7 +699,7 @@ const steps = [
   }
 
   .ps2-process .ps2-sec-head p {
-    color: #C9B8C6;
+    color: var(--ps2-panel-text);
   }
 
   .ps2-steps {
@@ -733,7 +737,7 @@ const steps = [
 
   .ps2-step p {
     font-size: 15px;
-    color: #C9B8C6;
+    color: var(--ps2-panel-text);
     line-height: 1.65;
   }
 
@@ -898,7 +902,7 @@ const steps = [
   }
 
   .ps2-cta .ps2-eyebrow {
-    color: var(--ps2-aqua);
+    color: var(--ps2-paper);
   }
 
   .ps2-cta .ps2-eyebrow::before {
@@ -914,7 +918,7 @@ const steps = [
 
   .ps2-cta p {
     margin: 20px auto 36px;
-    color: #EBD6E7;
+    color: #F0DCC8;
     max-width: 42ch;
   }
 
@@ -933,7 +937,7 @@ const steps = [
     margin-top: 20px;
     font-family: var(--ps2-mono);
     font-size: 12.5px;
-    color: var(--ps2-aqua);
+    color: var(--ps2-paper);
   }
 
   /* audit panel lines — injected by the script below, so these are global */

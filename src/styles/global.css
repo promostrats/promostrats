@@ -1,41 +1,43 @@
 /* ============================================================
-   PromoStrats — atelier design system
-   Pearl Aqua → Celadon → Vintage Lavender → Royal Plum → Blackberry Cream.
-   Every colour, font and token the site uses lives here.
+   PromoStrats — warm-studio design system
+   Bone ground, deep ink type, one accent (terracotta) doing all
+   the pointing. Ivy green is reserved strictly for semantic
+   pass/available states — it never competes with terracotta for
+   brand attention. See DESIGN.md reasoning: warm neutrals read as
+   considered/editorial rather than technical, which is the point
+   when the whole pitch is "I have an eye."
    ============================================================ */
 
 :root {
-  /* brief palette — the five source colours, untouched */
-  --ps2-aqua: #97EAD2;
-  --ps2-celadon: #8CC7A1;
-  --ps2-lavender: #816E94;
-  --ps2-plum: #74226C;
-  --ps2-blackberry: #4B2142;
+  /* ground */
+  --ps2-paper: #F4EFE6;       /* bone */
+  --ps2-paper-tint: #EAD9C3;  /* clay — second surface for alternating sections */
+  --ps2-ink: #241C14;         /* deep ink — text, and doubles as the dark section fill */
+  --ps2-ink-soft: #6E5D4D;
+  --ps2-line: #E1D2B8;
 
-  /* role mapping */
-  --ps2-paper: #FAF9F7;
-  --ps2-paper-tint: #F2FAF6;
-  --ps2-ink: #3A1735;
-  --ps2-ink-soft: #6B5C74;
-  --ps2-line: #E4DCE4;
-  --ps2-cobalt: var(--ps2-plum);
-  --ps2-cobalt-deep: #591855;
-  --ps2-cobalt-light: #C9A9DC;
-  --ps2-broken: #B84A3E;
-  --ps2-green: var(--ps2-celadon);
+  /* the one accent */
+  --ps2-cobalt: #9C3F1C;        /* terracotta — CTAs, links, all pointing */
+  --ps2-cobalt-deep: #7A2F14;   /* hover/pressed */
+  --ps2-cobalt-light: #E9C7AC;  /* pale terracotta — accents on dark ink backgrounds only */
 
-  /* dark panel (formerly near-black — now Blackberry Cream) */
-  --ps2-panel: var(--ps2-blackberry);
-  --ps2-panel-line: #6B3A63;
-  --ps2-panel-text: #E9DCE7;
+  /* semantic-only colours — never used decoratively, only for pass/fail/status */
+  --ps2-broken: #B23B30;
+  --ps2-green: #2F4A38;
+
+  /* dark panel — same ink, reused as a fill */
+  --ps2-panel: var(--ps2-ink);
+  --ps2-panel-line: #4A3D2E;
+  --ps2-panel-text: #D9C7AE;
 
   /* type */
   --ps2-mono: var(--ps2-sans);
   --ps2-sans: 'Hanken Grotesk', system-ui, sans-serif;
   --ps2-disp: 'Bricolage Grotesque', var(--ps2-sans);
 
-  /* signature gradient — the palette read as one continuous ribbon */
-  --ps2-gradient: linear-gradient(115deg, var(--ps2-aqua) 0%, var(--ps2-celadon) 26%, var(--ps2-lavender) 55%, var(--ps2-plum) 78%, var(--ps2-blackberry) 100%);
+  /* signature gradient — tonal within the terracotta family only, used for
+     ambient glow/depth, never as a second competing hue */
+  --ps2-gradient: linear-gradient(115deg, var(--ps2-paper-tint) 0%, var(--ps2-cobalt-light) 35%, var(--ps2-cobalt) 70%, var(--ps2-panel) 100%);
 }
 
 *,
@@ -96,7 +98,7 @@ video {
   font-family: var(--ps2-sans);
   font-weight: 600;
   font-size: 12.5px;
-  color: var(--ps2-plum);
+  color: var(--ps2-cobalt);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   display: block;
@@ -130,7 +132,7 @@ video {
 .ps2-btn:hover {
   background: var(--ps2-cobalt-deep);
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px -10px rgba(116, 34, 108, 0.45);
+  box-shadow: 0 12px 24px -10px rgba(156, 63, 28, 0.4);
 }
 
 .ps2-btn--ghost {
