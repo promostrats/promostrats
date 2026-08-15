@@ -265,7 +265,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .ps2sc-run-state {
-    color: var(--ps2-green);
+    color: var(--ps2-green-light);
   }
 
   .ps2sc-panel-body {
@@ -293,7 +293,7 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     gap: 2px;
     background: var(--ps2-panel);
-    border: 3px solid var(--ps2-green);
+    border: 3px solid var(--ps2-green-light);
     transition: border-color 0.4s;
   }
 
@@ -316,7 +316,7 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 800;
     font-size: 44px;
     letter-spacing: -0.02em;
-    color: var(--ps2-green);
+    color: var(--ps2-green-light);
   }
 
   /* score cards */
@@ -576,7 +576,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .ps2sc-line--pass .ps2sc-mark {
-    color: var(--ps2-green);
+    color: var(--ps2-green-light);
   }
 
   .ps2sc-line--warn .ps2sc-mark {
@@ -650,7 +650,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function gradeColour(score) {
-    if (score >= 75) return 'var(--ps2-green)';
+    if (score >= 75) return 'var(--ps2-green-light)';
     if (score >= 50) return '#f4c86a';
     return '#ff9c86';
   }
@@ -728,7 +728,7 @@ import Layout from '../layouts/Layout.astro';
     idx = renderGroup('Design & UX', data.design, idx);
 
     state.textContent = 'done ✓';
-    state.style.color = 'var(--ps2-green)';
+    state.style.color = 'var(--ps2-green-light)';
     const lastDelay = reduced ? 0 : 80 * idx;
     setTimeout(() => {
       ctaBox.hidden = false;
@@ -740,7 +740,7 @@ import Layout from '../layouts/Layout.astro';
     panel.hidden = false;
     target.textContent = 'site check';
     state.textContent = 'running…';
-    state.style.color = 'var(--ps2-green)';
+    state.style.color = 'var(--ps2-green-light)';
     runBtn.disabled = true;
     runBtn.textContent = 'Checking…';
 
