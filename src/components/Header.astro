@@ -120,10 +120,11 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
   .ps2-header__cta {
-    color: #fff;
-    padding: 9px 18px;
+    color: var(--ps2-ink);
+    padding: 8px 17px;
     font-size: 14px;
-    background: var(--ps2-cobalt);
+    background: #fff;
+    border: 1.5px solid var(--ps2-cobalt);
     font-weight: 700;
 }
 .ps2-header__cta {
@@ -132,7 +133,8 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     right: 4px;
   }
 .ps2-header__cta:hover {
-    background: var(--ps2-cobalt-deep);
+    background: var(--ps2-cobalt);
+    color: #fff;
   }
 
   .ps2-header__cta::after {
