@@ -90,7 +90,6 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     color: var(--ps2-ink-soft);
     text-decoration: none;
     position: relative;
-    padding-bottom: 4px;
     transition: color 0.15s ease;
   }
 
@@ -99,7 +98,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     content: '';
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -4px;
     width: 0;
     height: 1px;
     background: currentColor;
@@ -120,19 +119,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
 .ps2-header__cta {
-    color: #5C2E1E;
+    color: var(--ps2-cobalt);
     background: #fff;
-    border: 1.5px solid #5C2E1E;
+    border: 1.5px solid var(--ps2-cobalt);
     padding: 8px 17px;
     font-size: 14px;
     font-weight: 700;
-    position: relative;
-    top: -2px;
-    right: 4px;
   }
 
   .ps2-header__cta:hover {
-    background: #5C2E1E;
+    background: var(--ps2-cobalt);
     color: #fff;
   }
 
