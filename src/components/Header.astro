@@ -119,21 +119,20 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     color: var(--ps2-cobalt);
   }
 
-  .ps2-header__cta {
-    color: var(--ps2-ink);
+.ps2-header__cta {
+    color: #5C2E1E;
+    background: #fff;
+    border: 1.5px solid #5C2E1E;
     padding: 8px 17px;
     font-size: 14px;
-    background: #fff;
-    border: 1.5px solid var(--ps2-cobalt);
     font-weight: 700;
-}
-.ps2-header__cta {
     position: relative;
     top: -2px;
     right: 4px;
   }
-.ps2-header__cta:hover {
-    background: var(--ps2-cobalt);
+
+  .ps2-header__cta:hover {
+    background: #5C2E1E;
     color: #fff;
   }
 
