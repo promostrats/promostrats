@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — PromoStrats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EDE0C8;
+    --ink: #2B1D12;
+    --accent: #A63D2F;
+    --line: rgba(43,29,18,0.16);
+    --line-strong: rgba(43,29,18,0.32);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #221509;
+      --ink: #F0E4CC;
+      --accent: #D9805F;
+      --line: rgba(240,228,204,0.18);
+      --line-strong: rgba(240,228,204,0.34);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #221509;
+    --ink: #F0E4CC;
+    --accent: #D9805F;
+    --line: rgba(240,228,204,0.18);
+    --line-strong: rgba(240,228,204,0.34);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+  nav {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    font-size: 0.95rem;
+  }
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.6;
+    padding-bottom: 2px;
+  }
+  nav a.current {
+    opacity: 1;
+    border-bottom: 1.5px solid var(--accent);
+  }
+  nav a:hover { opacity: 1; }
+  @media (max-width: 560px) {
+    nav a:not(.current) { display: none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
+    max-width: 46rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    max-width: 22ch;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    opacity: 0.75;
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  /* ---------- grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    background: none;
+    border: 1px solid var(--line);
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 120ms ease;
+  }
+  .project-card:hover,
+  .project-card:focus-visible {
+    border-color: var(--line-strong);
+  }
+  .project-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .swatch {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem 1.05rem;
+    border-top: 1px solid var(--line);
+  }
+  .card-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .card-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    opacity: 0.55;
+    text-align: right;
+    flex-shrink: 0;
+    max-width: 12rem;
+  }
+
+  /* ---------- swatch: artisan merchants ---------- */
+  .swatch-artisan {
+    background: #1B2A46;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .swatch-artisan .rule {
+    width: 40%;
+    height: 1px;
+    background: #B08D4E;
+  }
+  .swatch-artisan .mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: #F1E9D6;
+    letter-spacing: 0.02em;
+  }
+  .swatch-artisan .tiles {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .swatch-artisan .tiles span {
+    width: 2.1rem;
+    height: 2.1rem;
+    background: #F1E9D6;
+    border: 1px solid #B08D4E;
+  }
+
+  /* ---------- swatch: pretty busy blooms ---------- */
+  .swatch-blooms {
+    background: #EFD3DC;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .swatch-blooms .mark {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: #7A2E4C;
+  }
+  .swatch-blooms .bloom {
+    width: 44px;
+    height: 44px;
+  }
+  .swatch-blooms .caldots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .swatch-blooms .caldots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #C46A8B;
+  }
+
+  /* ---------- swatch: flavour like fancy ---------- */
+  .swatch-flavour {
+    background:
+      linear-gradient(135deg, #E8598A 0 34%, #2BB3AC 34% 67%, #F2C13B 67% 100%);
+  }
+  .swatch-flavour .mark {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #17160F;
+    background: #EDE7DA;
+    padding: 0.35rem 0.7rem;
+    transform: rotate(-2deg);
+    line-height: 1.2;
+    text-align: center;
+    max-width: 80%;
+  }
+
+  /* ---------- swatch: andy's airplants ---------- */
+  .swatch-plants {
+    background: linear-gradient(180deg, #DCE7D2 0%, #33512F 100%);
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+  }
+  .swatch-plants .mark {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #EDE7DA;
+  }
+  .swatch-plants .badge {
+    position: absolute;
+    bottom: 0.8rem;
+    right: 0.8rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    background: rgba(237,231,218,0.92);
+    color: #33512F;
+    padding: 0.3rem 0.55rem;
+    border-radius: 2px;
+  }
+
+  /* ---------- modal ---------- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(23,22,15,0.6);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(1.5rem, 5vh, 4rem) 1.25rem;
+    overflow-y: auto;
+    z-index: 50;
+  }
+  .overlay.open { display: flex; }
+
+  .panel {
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 34rem;
+    width: 100%;
+    border: 1px solid var(--line-strong);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    position: relative;
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  .overlay.open .panel {
+    animation: panelIn 220ms ease forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .overlay.open .panel { animation: none; opacity: 1; transform: none; }
+  }
+  @keyframes panelIn {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .panel .close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--ink);
+    font-family: inherit;
+    padding: 0.25rem;
+  }
+  .panel .close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .panel h2 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin: 0 0 0.35rem;
+    padding-right: 2rem;
+  }
+  .panel .sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    opacity: 0.6;
+    margin: 0 0 1.5rem;
+  }
+  .panel p {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin: 0 0 1.1rem;
+    opacity: 0.88;
+  }
+  .panel .placeholder {
+    opacity: 0.55;
+    font-style: italic;
+  }
+  .panel blockquote {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent);
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.75;
+  }
+  .panel .cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1.3rem;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .panel .cta.muted {
+    background: none;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    opacity: 0.65;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 3rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  footer p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.75;
+  }
+  footer a {
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">PROMOSTRATS</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#" class="current">Work</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Shopify sites for independent gift shops, florists, and small UK brands.</h1>
+  <p>Four real projects below, not a gallery. Click through for the actual story on each one — what was wrong, what changed, and what happened after.</p>
+</section>
+
+<div class="grid">
+
+  <button class="project-card" data-modal="artisan">
+    <span class="swatch swatch-artisan">
+      <span class="rule"></span>
+      <span class="mark">The Artisan Merchants</span>
+      <span class="tiles"><span></span><span></span><span></span></span>
+    </span>
+    <span class="card-meta">
+      <span class="card-name">The Artisan Merchants</span>
+      <span class="card-tag mono">Gift &amp; homeware — redesign + SEO</span>
+    </span>
+  </button>
+
+  <button class="project-card" data-modal="blooms">
+    <span class="swatch swatch-blooms">
+      <svg class="bloom" viewBox="0 0 44 44" fill="none">
+        <g fill="#C46A8B">
+          <circle cx="22" cy="12" r="8"/>
+          <circle cx="22" cy="32" r="8"/>
+          <circle cx="12" cy="22" r="8"/>
+          <circle cx="32" cy="22" r="8"/>
+        </g>
+        <circle cx="22" cy="22" r="6" fill="#7A2E4C"/>
+      </svg>
+      <span class="mark">Pretty Busy Blooms</span>
+      <span class="caldots"><span></span><span></span><span></span><span></span><span></span><span></span></span>
+    </span>
+    <span class="card-meta">
+      <span class="card-name">Pretty Busy Blooms</span>
+      <span class="card-tag mono">Florist — delivery tooling</span>
+    </span>
+  </button>
+
+  <button class="project-card" data-modal="flavour">
+    <span class="swatch swatch-flavour">
+      <span class="mark">Flavour Like Fancy</span>
+    </span>
+    <span class="card-meta">
+      <span class="card-name">Flavour Like Fancy</span>
+      <span class="card-tag mono">Leeds — homepage + brand system</span>
+    </span>
+  </button>
+
+  <button class="project-card" data-modal="plants">
+    <span class="swatch swatch-plants">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M20 36 C20 22 8 18 8 6 C22 6 26 18 20 36 Z" fill="#EDE7DA"/>
+        <path d="M20 36 C20 22 32 18 32 6 C18 6 14 18 20 36 Z" fill="#DCE7D2" opacity="0.85"/>
+      </svg>
+      <span class="mark">Andy's Airplants</span>
+      <span class="badge">In progress</span>
+    </span>
+    <span class="card-meta">
+      <span class="card-name">Andy's Airplants</span>
+      <span class="card-tag mono">Plants — homepage redesign</span>
+    </span>
+  </button>
+
+</div>
+
+<footer>
+  <p>Got a shop like one of these? <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a></p>
+  <p class="mono" style="font-size:0.8rem;">PromoStrats — London</p>
+</footer>
+
+<!-- ---------- modal ---------- -->
+<div class="overlay" id="overlay">
+  <div class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title">
+    <button class="close" id="closeBtn" aria-label="Close">&times;</button>
+    <div id="panelContent"></div>
+  </div>
+</div>
+
+<script>
+  const projects = {
+    artisan: {
+      name: "The Artisan Merchants",
+      sub: "Gift &amp; homeware retailer — full redesign, plus an ongoing SEO retainer.",
+      body: [
+        "The site was running on a fairly standard theme — fine, but it didn't feel like the shop it actually is: a genuinely curated collection of toys, homeware and gifts picked by James and Ben, not a warehouse of stock.",
+        "I rebuilt the homepage and collection pages around a navy, brass and cream palette — closer to a cabinet of curiosities than a typical Shopify grid — and built a custom Liquid collection filter so browsing feels like moving through a shop, not a spreadsheet.",
+        "The SEO retainer that followed found where the site was actually losing clicks: an average search position of about 11.5 despite roughly 141,000 monthly impressions — just below where clicks concentrate. Where it does rank well, it converts: a Kovap cable-car search sitting at position 2 pulls a 12.4% click-through rate, well above the account average."
+      ],
+      quote: "[Add a line from James or Ben]",
+      cta: "View live site"
+    },
+    blooms: {
+      name: "Pretty Busy Blooms",
+      sub: "Florist — delivery tooling and a proposed weddings page.",
+      body: [
+        "Flowers are almost always bought for a specific date — a birthday, an anniversary, a funeral — and the site didn't have a clean way to ask for one.",
+        "I built a custom delivery date picker into the ordering flow, and proposed a dedicated weddings page to capture higher-value enquiries separately from same-day orders."
+      ],
+      quote: "[Add a result or a line from Nicki]",
+      cta: "View live site"
+    },
+    flavour: {
+      name: "Flavour Like Fancy",
+      sub: "Leeds — homepage and information pages.",
+      body: [
+        "The brand's personality — playful, colourful, unmistakably indie — wasn't coming through anywhere online.",
+        "I built the homepage and supporting pages around pink, turquoise and yellow, on a Dawn-based theme, so the site actually looks like Tasha's shop rather than a default install."
+      ],
+      quote: "[Add a result or a line from Tasha]",
+      cta: "View live site"
+    },
+    plants: {
+      name: "Andy's Airplants",
+      sub: "Plants — homepage redesign, in progress.",
+      body: [
+        "This one's still in build. The full story goes up once it's live."
+      ],
+      quote: null,
+      cta: null
+    }
+  };
+
+  const overlay = document.getElementById('overlay');
+  const panelContent = document.getElementById('panelContent');
+  let lastFocused = null;
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const p = projects[card.dataset.modal];
+      lastFocused = card;
+      panelContent.innerHTML = `
+        <h2 id="panel-title">${p.name}</h2>
+        <p class="sub mono">${p.sub}</p>
+        ${p.body.map(t => `<p>${t}</p>`).join('')}
+        ${p.quote ? `<blockquote class="placeholder">${p.quote}</blockquote>` : ''}
+        ${p.cta ? `<a href="#" class="cta">${p.cta}</a>` : `<a class="cta muted">Coming soon</a>`}
+      `;
+      overlay.classList.add('open');
+      document.getElementById('closeBtn').focus();
+    });
+  });
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    if (lastFocused) lastFocused.focus();
+  }
+  document.getElementById('closeBtn').addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+</script>
+
+</body>
+</html>

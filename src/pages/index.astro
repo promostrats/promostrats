@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+// Same Formspree form as the contact page — one inbox, two entry points.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
+
 const ticker = [
   'custom website builds',
   'homepage restructure',
@@ -75,45 +78,81 @@ const steps = [
     <div class="ps2-hero">
       <div class="ps2-wrap">
         <div>
-          <span class="ps2-eyebrow">web design + development + seo — london</span>
+          <span class="ps2-eyebrow">websites for gift shops &amp; florists — london</span>
           <h1>Your website, <span class="ps2-fixword">working properly</span>.</h1>
           <p class="ps2-lede">
-            I design and build custom websites, and fix the structure, usability and SEO
-            issues quietly costing sales on the ones already live.
+            I design and build websites for independent gift shops, florists and small UK brands, and fix the
+            structure, usability and SEO issues quietly costing sales on the ones already live.
           </p>
           <div class="ps2-hero-ctas">
-            <a class="ps2-btn ps2-btn--ghost" href="/contact">Book your free strategy call</a>
-            <a class="ps2-arrow-link" href="/portfolio">View portfolio <span>&rarr;</span></a>
+            <a class="ps2-arrow-link" href="/portfolio">See the work <span>&rarr;</span></a>
           </div>
-          <div class="ps2-hero-note">free 20-min call &middot; clear pricing before any work starts</div>
         </div>
 
-        <div class="ps2-check">
-          <div class="ps2-check-glow" aria-hidden="true"></div>
-          <div class="ps2-check-card">
-            <div class="ps2-check-head">
-              <span class="ps2-check-dot"></span>
-              free site check
+        <div class="ps2-hf">
+          <div class="ps2-hf-glow" aria-hidden="true"></div>
+          <div class="ps2-hf-card">
+            <div class="ps2-hf-head">
+              <span class="ps2-hf-dot"></span>
+              accepting new projects
             </div>
-            <h2 class="ps2-check-title">Is your website working properly?</h2>
-            <p class="ps2-check-body">Enter your URL for an instant SEO + design score &mdash; free, no email needed.</p>
+            <h2 class="ps2-hf-title">Tell me about your shop.</h2>
+            <p class="ps2-hf-body">
+              A few details is enough to start &mdash; I&rsquo;ll come back to you within 3 working days.
+            </p>
 
-            <form class="ps2-check-form" action="/site-check" method="get">
-              <input type="text" name="url" inputmode="url" placeholder="https://yourbusiness.com" aria-label="Your website address" />
-              <button type="submit">Check it &rarr;</button>
+            <p class="ps2-hf-msg ps2-hf-msg--error" id="ps2-hf-error" hidden></p>
+            <p class="ps2-hf-msg ps2-hf-msg--success" id="ps2-hf-success" hidden>
+              &#10003; Thanks! I&rsquo;ll be in touch within 3 working days.
+            </p>
+
+            <form id="ps2-hf-form" action={FORMSPREE_ENDPOINT} method="POST">
+              <div class="ps2-hf-field">
+                <label for="HeroForm-name">Name</label>
+                <input type="text" id="HeroForm-name" name="name" autocomplete="name" placeholder="Your name" />
+              </div>
+
+              <div class="ps2-hf-field">
+                <label for="HeroForm-email">Email <span class="ps2-hf-req">*</span></label>
+                <input
+                  type="email"
+                  id="HeroForm-email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@yourshop.com"
+                />
+              </div>
+
+              <div class="ps2-hf-field">
+                <label for="HeroForm-subject">Subject</label>
+                <select id="HeroForm-subject" name="subject">
+                  <option value="" disabled selected>What&rsquo;s this about?</option>
+                  <option value="New website build">New website build</option>
+                  <option value="Redesign / improvements">Redesign / improvements</option>
+                  <option value="SEO">SEO</option>
+                  <option value="Design and SEO">Design and SEO</option>
+                  <option value="General enquiry">General enquiry</option>
+                </select>
+              </div>
+
+              <div class="ps2-hf-field">
+                <label for="HeroForm-message">Message</label>
+                <textarea
+                  id="HeroForm-message"
+                  name="message"
+                  rows="3"
+                  placeholder="Your shop&rsquo;s website, and what you&rsquo;d like to be different..."
+                ></textarea>
+              </div>
+
+              <!-- honeypot: bots fill this, humans never see it -->
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="ps2-hf-gotcha" />
+
+              <button type="submit" id="ps2-hf-submit">Send message</button>
             </form>
 
-            <div class="ps2-check-rings">
-              <div class="ps2-check-ring">
-                <div class="ps2-check-ring-circle"><span>&mdash;</span></div>
-                <span class="ps2-check-ring-label">SEO</span>
-              </div>
-              <div class="ps2-check-ring">
-                <div class="ps2-check-ring-circle"><span>&mdash;</span></div>
-                <span class="ps2-check-ring-label">Design &amp; UX</span>
-              </div>
-              <div class="ps2-check-hint">scores appear in ~10 seconds</div>
-            </div>
+            <p class="ps2-hf-note">free 20-min call &middot; clear pricing before any work starts</p>
           </div>
         </div>
       </div>
@@ -135,7 +174,7 @@ const steps = [
           <h2 class="ps2-h2">Common problems, properly solved.</h2>
           <p>
             Whether I'm building your site from scratch or improving the one you've got, I get these right at the
-            source - not with plugins stacked on plugins.
+            source for independent shops - not with plugins stacked on plugins.
           </p>
         </div>
         <div class="ps2-diffgrid">
@@ -210,9 +249,9 @@ const steps = [
           <span class="ps2-eyebrow">about</span>
           <h2 class="ps2-h2">Hello, I'm Connor Bawcutt.</h2>
           <p>
-            I work with independent brands and small businesses on everything from full custom website builds to
-            targeted fixes - bespoke design and sections, structured SEO plans, and the small technical details most
-            agencies skip. Shopify is my specialism, but I build from scratch and on other platforms too.
+            I work with independent gift shops, florists and small UK brands on everything from full custom website
+            builds to targeted fixes - bespoke design and sections, structured SEO plans, and the small technical
+            details most agencies skip. Shopify is my specialism, but I build from scratch and on other platforms too.
           </p>
           <p>You deal with me directly the whole way through: the person on the call is the person doing the work.</p>
         </div>
@@ -220,7 +259,7 @@ const steps = [
           <div><span class="ps2-k">base:</span> London, East Dulwich</div>
           <div><span class="ps2-k">focus:</span> web design &middot; development &middot; seo</div>
           <div><span class="ps2-k">specialism:</span> shopify &middot; custom builds</div>
-          <div><span class="ps2-k">clients:</span> UK independent brands</div>
+          <div><span class="ps2-k">clients:</span> gift shops &middot; florists &middot; UK independent brands</div>
           <div><span class="ps2-k">pricing:</span> quoted clearly, before work starts</div>
           <div><span class="ps2-k">contact:</span> <a href="mailto:promostrats@gmail.com">promostrats@gmail.com</a></div>
           <div><span class="ps2-k">phone:</span> <a href="tel:07514043068">07514 043068</a></div>
@@ -379,7 +418,7 @@ const steps = [
   }
 
   .ps2-arrow-link:hover {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
   }
 
   .ps2-arrow-link:hover span {
@@ -392,12 +431,14 @@ const steps = [
     }
   }
 
-  /* hero site-check teaser — a live, functional preview of the free tool */
-  .ps2-check {
+  /* hero contact form — the primary homepage CTA. Inherits the card + glow
+     chrome the site-check widget used to occupy this slot, so the hero keeps
+     its visual counterweight to the headline. */
+  .ps2-hf {
     position: relative;
   }
 
-  .ps2-check-glow {
+  .ps2-hf-glow {
     position: absolute;
     inset: -10% -8%;
     background: var(--ps2-gradient);
@@ -407,29 +448,29 @@ const steps = [
     border-radius: 40px;
   }
 
-  .ps2-check-card {
+  .ps2-hf-card {
     position: relative;
     z-index: 1;
     background: #fff;
     border: 1px solid var(--ps2-line);
     border-radius: 18px;
-    padding: 36px 38px 32px;
-    box-shadow: 0 30px 60px -28px rgba(36, 28, 20, 0.28);
+    padding: 32px 34px 28px;
+    box-shadow: 0 30px 60px -28px rgba(43, 29, 18, 0.28);
   }
 
-  .ps2-check-head {
+  .ps2-hf-head {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-family: var(--ps2-sans);
+    gap: 9px;
+    font-family: var(--ps2-mono);
     font-weight: 600;
     font-size: 12.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
   }
 
-  .ps2-check-dot {
+  .ps2-hf-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
@@ -437,121 +478,156 @@ const steps = [
     animation: ps2-pulse 2.4s ease-in-out infinite;
   }
 
-  .ps2-check-title {
+  .ps2-hf-title {
     font-family: var(--ps2-disp);
-    font-weight: 800;
-    font-size: clamp(22px, 2.2vw, 27px);
+    font-weight: 700;
+    font-size: 26px;
     letter-spacing: -0.02em;
     line-height: 1.15;
+    margin-top: 14px;
     color: var(--ps2-ink);
-    margin-top: 16px;
   }
 
-  .ps2-check-body {
-    margin-top: 12px;
+  .ps2-hf-body {
+    margin-top: 10px;
     font-size: 15px;
     color: var(--ps2-ink-soft);
+    line-height: 1.55;
+  }
+
+  .ps2-hf-msg {
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    margin-top: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
     line-height: 1.6;
   }
 
-  .ps2-check-form {
+  .ps2-hf-msg--error {
+    color: var(--ps2-broken);
+    background: #F7E2DC;
+    border: 1px solid #E9BDAF;
+  }
+
+  .ps2-hf-msg--success {
+    color: var(--ps2-green);
+    background: #E7EDE2;
+    border: 1px solid #C6D6BF;
+  }
+
+  .ps2-hf-card form {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 16px;
     margin-top: 22px;
   }
 
-  .ps2-check-form input {
-    flex: 1;
-    min-width: 0;
-    padding: 13px 14px;
-    font-size: 14.5px;
+  .ps2-hf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .ps2-hf-field label {
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ps2-ink-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ps2-hf-req {
+    color: var(--ps2-accent);
+  }
+
+  .ps2-hf-field input,
+  .ps2-hf-field select,
+  .ps2-hf-field textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
     font-family: var(--ps2-sans);
     border: 1px solid var(--ps2-line);
     border-radius: 8px;
-    background: var(--ps2-paper);
+    background: #fff;
     color: var(--ps2-ink);
-    outline: none;
     transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
-  .ps2-check-form input::placeholder {
-    color: #A69A88;
+  .ps2-hf-field input::placeholder,
+  .ps2-hf-field textarea::placeholder {
+    color: #8A7A68;
   }
 
-  .ps2-check-form input:focus {
-    border-color: var(--ps2-cobalt);
-    box-shadow: 0 0 0 3px rgba(156, 63, 28, 0.16);
+  .ps2-hf-field input:focus,
+  .ps2-hf-field select:focus,
+  .ps2-hf-field textarea:focus {
+    border-color: var(--ps2-accent);
+    box-shadow: 0 0 0 3px rgba(166, 61, 47, 0.16);
   }
 
-  .ps2-check-form button {
-    flex: none;
-    border: 0;
-    cursor: pointer;
-    background: var(--ps2-cobalt);
+  .ps2-hf-field textarea {
+    resize: vertical;
+    min-height: 84px;
+  }
+
+  .ps2-hf-field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A4839' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-color: #fff;
+  }
+
+  /* honeypot — hidden from humans, catches bots */
+  .ps2-hf-gotcha {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  .ps2-hf-card button[type='submit'] {
+    background: var(--ps2-accent);
     color: #fff;
+    border: none;
+    border-radius: 8px;
     font-family: var(--ps2-sans);
     font-weight: 600;
-    font-size: 14.5px;
-    padding: 0 20px;
-    border-radius: 8px;
-    white-space: nowrap;
+    font-size: 15px;
+    padding: 13px 26px;
+    cursor: pointer;
     transition: background 0.15s, transform 0.15s;
   }
 
-  .ps2-check-form button:hover {
-    background: var(--ps2-cobalt-deep);
+  .ps2-hf-card button[type='submit']:hover:not(:disabled) {
+    background: var(--ps2-accent-deep);
     transform: translateY(-1px);
   }
 
-  .ps2-check-rings {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    margin-top: 28px;
-    padding-top: 22px;
-    border-top: 1px dashed var(--ps2-line);
+  .ps2-hf-card button[type='submit']:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
-  .ps2-check-ring {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .ps2-check-ring-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 3px solid var(--ps2-line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--ps2-disp);
-    font-weight: 700;
-    font-size: 13px;
-    color: #C9B8A4;
-    flex: none;
-  }
-
-  .ps2-check-ring-label {
-    font-size: 13px;
-    font-weight: 600;
+  .ps2-hf-note {
+    margin-top: 16px;
+    font-family: var(--ps2-mono);
+    font-size: 12px;
     color: var(--ps2-ink-soft);
   }
 
-  .ps2-check-hint {
-    margin-left: auto;
-    font-family: var(--ps2-mono);
-    font-size: 12px;
-    color: #A69A88;
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .ps2-check-dot {
+    .ps2-hf-dot {
       animation: none;
     }
 
-    .ps2-check-form button {
+    .ps2-hf-card button[type='submit'] {
       transition: none;
     }
   }
@@ -564,22 +640,12 @@ const steps = [
   }
 
   @media (max-width: 520px) {
-    .ps2-check-card {
-      padding: 28px 24px 26px;
+    .ps2-hf-card {
+      padding: 26px 22px 24px;
     }
 
-    .ps2-check-form {
-      flex-direction: column;
-    }
-
-    .ps2-check-rings {
-      flex-wrap: wrap;
-      row-gap: 12px;
-    }
-
-    .ps2-check-hint {
-      margin-left: 0;
-      flex-basis: 100%;
+    .ps2-hf-card button[type='submit'] {
+      width: 100%;
     }
   }
 
@@ -619,7 +685,7 @@ const steps = [
   .ps2-ticker span::after {
     content: '\00B7';
     margin-left: 52px;
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
   }
 
   /* ---------- sections ---------- */
@@ -686,7 +752,7 @@ const steps = [
   .ps2-diff-after {
     font-family: var(--ps2-mono);
     font-size: 14px;
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
     display: flex;
     gap: 10px;
     margin-top: 10px;
@@ -721,7 +787,7 @@ const steps = [
   }
 
   .ps2-process .ps2-eyebrow {
-    color: var(--ps2-cobalt-light);
+    color: var(--ps2-accent-light);
   }
 
   .ps2-process .ps2-h2 {
@@ -753,7 +819,7 @@ const steps = [
     content: '0' counter(ps2step);
     font-family: var(--ps2-mono);
     font-size: 13px;
-    color: var(--ps2-cobalt-light);
+    color: var(--ps2-accent-light);
   }
 
   .ps2-step h3 {
@@ -785,7 +851,7 @@ const steps = [
 
   /* testimonial */
   .ps2-stars {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
     font-size: 15px;
     letter-spacing: 4px;
   }
@@ -802,7 +868,7 @@ const steps = [
   }
 
   .ps2-quote em {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
     font-style: normal;
   }
 
@@ -849,8 +915,8 @@ const steps = [
   }
 
   .ps2-verified:hover {
-    color: var(--ps2-cobalt);
-    border-color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
+    border-color: var(--ps2-accent);
   }
 
   @media (max-width: 560px) {
@@ -893,7 +959,7 @@ const steps = [
   }
 
   .ps2-about-card a {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
     text-decoration: none;
   }
 
@@ -910,7 +976,7 @@ const steps = [
 
   /* cta */
   .ps2-cta {
-    background: var(--ps2-cobalt);
+    background: var(--ps2-accent);
     text-align: center;
     padding: 110px 0;
     position: relative;
@@ -954,7 +1020,7 @@ const steps = [
 
   .ps2-cta .ps2-btn {
     background: #fff;
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
     font-size: 16px;
     padding: 14px 30px;
   }
@@ -970,7 +1036,6 @@ const steps = [
     color: var(--ps2-paper);
   }
 
-  /* audit panel lines — injected by the script below, so these are global */
   @media (max-width: 640px) {
     .ps2-hero {
       padding: 56px 0 48px;
@@ -997,3 +1062,15 @@ const steps = [
     }
   }
 </style>
+
+<script>
+  import { wireFormspreeForm } from '../scripts/formspree';
+
+  wireFormspreeForm({
+    form: 'ps2-hf-form',
+    submit: 'ps2-hf-submit',
+    success: 'ps2-hf-success',
+    error: 'ps2-hf-error',
+    submitLabel: 'Send message',
+  });
+</script>

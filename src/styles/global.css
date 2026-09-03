@@ -1,8 +1,8 @@
 /* ============================================================
    PromoStrats — warm-studio design system
-   Bone ground, deep ink type, one accent (terracotta) doing all
+   Kraft ground, espresso type, one accent (brick) doing all
    the pointing. Ivy green is reserved strictly for semantic
-   pass/available states — it never competes with terracotta for
+   pass/available states — it never competes with brick for
    brand attention. See DESIGN.md reasoning: warm neutrals read as
    considered/editorial rather than technical, which is the point
    when the whole pitch is "I have an eye."
@@ -10,23 +10,30 @@
 
 :root {
   /* ground */
-  --ps2-paper: #F4EFE6;       /* bone */
-  --ps2-paper-tint: #EAD9C3;  /* clay — second surface for alternating sections */
-  --ps2-ink: #241C14;         /* deep ink — text, and doubles as the dark section fill */
-  --ps2-ink-soft: #6E5D4D;
-  --ps2-line: #E1D2B8;
+  --ps2-paper: #EDE0C8;       /* kraft/oat */
+  --ps2-paper-tint: #DECBAB;  /* deep clay — second surface for alternating
+                                 sections. Has to sit ~6% darker than kraft;
+                                 the old bone-era clay is now too close to
+                                 read as a distinct surface at all. */
+  --ps2-ink: #2B1D12;         /* warm espresso — text, and doubles as the dark section fill */
+  --ps2-ink-soft: #5A4839;    /* darker than the bone-era soft ink had to be:
+                                 it lands on the clay tint (section intros),
+                                 where the old value fell to 3.97:1. Now
+                                 6.6:1 on kraft, 5.5:1 on clay. */
+  --ps2-line: #D6C3A1;        /* 1.31:1 on kraft — matches the old line's
+                                 deliberate near-invisibility against bone */
 
   /* the one accent */
-  --ps2-cobalt: #9C3F1C;        /* terracotta — CTAs, links, all pointing */
-  --ps2-cobalt-deep: #7A2F14;   /* hover/pressed */
-  --ps2-cobalt-light: #E9C7AC;  /* pale terracotta — accents on dark ink backgrounds only */
+  --ps2-accent: #A63D2F;        /* brick/rust — CTAs, links, all pointing */
+  --ps2-accent-deep: #832C20;   /* hover/pressed */
+  --ps2-accent-light: #E6BCA8;  /* pale brick — accents on dark ink backgrounds only, 9.4:1 */
 
   /* semantic-only colours — never used decoratively, only for pass/fail/status.
      Two shades because a single green can't clear AA in both directions:
-     -dark for light grounds (bone/clay/white), -light for the dark ink fill. */
-  --ps2-broken: #B23B30;
-  --ps2-green: #2F4A38;        /* on bone/clay/white — 8.5:1 */
-  --ps2-green-light: #8FB89B;  /* on ink — 7.6:1 */
+     -dark for light grounds (kraft/clay/white), -light for the dark ink fill. */
+  --ps2-broken: #B23B30;       /* only ever on white or its own pale wash — 5.9:1 / 4.8:1 */
+  --ps2-green: #2F4A38;        /* on kraft/clay/white — 7.5:1 */
+  --ps2-green-light: #8FB89B;  /* on ink — 7.4:1 */
 
   /* dark panel — same ink, reused as a fill */
   --ps2-panel: var(--ps2-ink);
@@ -40,7 +47,7 @@
 
   /* signature gradient — tonal within the terracotta family only, used for
      ambient glow/depth, never as a second competing hue */
-  --ps2-gradient: linear-gradient(115deg, var(--ps2-paper-tint) 0%, var(--ps2-cobalt-light) 35%, var(--ps2-cobalt) 70%, var(--ps2-panel) 100%);
+  --ps2-gradient: linear-gradient(115deg, var(--ps2-paper-tint) 0%, var(--ps2-accent-light) 35%, var(--ps2-accent) 70%, var(--ps2-panel) 100%);
 }
 
 *,
@@ -73,12 +80,12 @@ video {
 }
 
 ::selection {
-  background: var(--ps2-cobalt);
+  background: var(--ps2-accent);
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--ps2-cobalt);
+  outline: 2px solid var(--ps2-accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -101,7 +108,7 @@ video {
   font-family: var(--ps2-sans);
   font-weight: 600;
   font-size: 12.5px;
-  color: var(--ps2-cobalt);
+  color: var(--ps2-accent);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   display: block;
@@ -121,7 +128,7 @@ video {
 /* shared buttons */
 .ps2-btn {
   display: inline-block;
-  background: var(--ps2-cobalt);
+  background: var(--ps2-accent);
   color: #fff;
   text-decoration: none;
   font-weight: 600;
@@ -133,9 +140,9 @@ video {
 }
 
 .ps2-btn:hover {
-  background: var(--ps2-cobalt-deep);
+  background: var(--ps2-accent-deep);
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px -10px rgba(156, 63, 28, 0.4);
+  box-shadow: 0 12px 24px -10px rgba(166, 61, 47, 0.4);
 }
 
 .ps2-btn--ghost {

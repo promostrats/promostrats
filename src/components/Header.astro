@@ -2,7 +2,6 @@
 const links = [
   { label: 'Home', href: '/' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Site Checker', href: '/site-check' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -68,7 +67,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
   .ps2-header__logo span {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
   }
 
   .ps2-header__nav {
@@ -115,20 +114,20 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
   .ps2-header__nav ul a[aria-current='page'] {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
   }
 
 .ps2-header__cta {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
     background: #fff;
-    border: 1.5px solid var(--ps2-cobalt);
+    border: 1.5px solid var(--ps2-accent);
     padding: 8px 17px;
     font-size: 14px;
     font-weight: 700;
   }
 
   .ps2-header__cta:hover {
-    background: var(--ps2-cobalt);
+    background: var(--ps2-accent);
     color: #fff;
   }
 

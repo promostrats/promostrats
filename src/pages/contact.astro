@@ -130,7 +130,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
     font-family: var(--ps2-sans);
     font-weight: 600;
     font-size: 12.5px;
-    color: var(--ps2-cobalt-light);
+    color: var(--ps2-accent-light);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     display: block;
@@ -180,7 +180,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   }
 
   .ps2c-spec a {
-    color: var(--ps2-cobalt-light);
+    color: var(--ps2-accent-light);
     text-decoration: none;
   }
 
@@ -265,7 +265,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   }
 
   .ps2c-msg--success {
-    color: #2F4A38;
+    color: var(--ps2-green);
     background: #E7EDE2;
     border: 1px solid #C6D6BF;
   }
@@ -293,7 +293,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   }
 
   .ps2c-req {
-    color: var(--ps2-cobalt);
+    color: var(--ps2-accent);
   }
 
   .ps2c-field input,
@@ -315,14 +315,14 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
 
   .ps2c-field input::placeholder,
   .ps2c-field textarea::placeholder {
-    color: #A69A88;
+    color: #8A7A68;
   }
 
   .ps2c-field input:focus,
   .ps2c-field select:focus,
   .ps2c-field textarea:focus {
-    border-color: var(--ps2-cobalt);
-    box-shadow: 0 0 0 3px rgba(156, 63, 28, 0.16);
+    border-color: var(--ps2-accent);
+    box-shadow: 0 0 0 3px rgba(166, 61, 47, 0.16);
   }
 
   .ps2c-field textarea {
@@ -331,7 +331,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   }
 
   .ps2c-field select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236E5D4D' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A4839' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-color: #fff;
@@ -349,7 +349,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   /* submit */
   .ps2c-right button[type='submit'] {
     align-self: flex-start;
-    background: var(--ps2-cobalt);
+    background: var(--ps2-accent);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -362,7 +362,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   }
 
   .ps2c-right button[type='submit']:hover:not(:disabled) {
-    background: var(--ps2-cobalt-deep);
+    background: var(--ps2-accent-deep);
     transform: translateY(-1px);
   }
 
@@ -372,7 +372,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
   }
 
   .ps2c-right button[type='submit']:focus-visible {
-    outline: 2px solid var(--ps2-cobalt);
+    outline: 2px solid var(--ps2-accent);
     outline-offset: 3px;
   }
 
@@ -407,39 +407,13 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdaqnyrq';
 </style>
 
 <script>
-  const form = document.getElementById('ps2c-form') as HTMLFormElement | null;
-  const submit = document.getElementById('ps2c-submit') as HTMLButtonElement | null;
-  const success = document.getElementById('ps2c-success');
-  const error = document.getElementById('ps2c-error');
+  import { wireFormspreeForm } from '../scripts/formspree';
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!submit) return;
-
-    error?.setAttribute('hidden', '');
-    submit.disabled = true;
-    submit.textContent = 'Sending...';
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-
-      if (res.ok) {
-        form.setAttribute('hidden', '');
-        success?.removeAttribute('hidden');
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch {
-      if (error) {
-        error.textContent = "\u2717 Something went wrong. Email me directly at promostrats@gmail.com and I'll pick it up.";
-        error.removeAttribute('hidden');
-      }
-      submit.disabled = false;
-      submit.textContent = 'Send message';
-    }
+  wireFormspreeForm({
+    form: 'ps2c-form',
+    submit: 'ps2c-submit',
+    success: 'ps2c-success',
+    error: 'ps2c-error',
+    submitLabel: 'Send message',
   });
 </script>

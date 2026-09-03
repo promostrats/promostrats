@@ -1,0 +1,271 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProjectSwatch from '../../components/ProjectSwatch.astro';
+import { projects } from '../../data/projects';
+
+// Index only: one visual, the client name, one tag line. No sliders and no
+// paragraphs here — the full story lives on each project's own page, which
+// keeps this readable as a set and gives every case study a real URL.
+---
+
+<Layout
+  title="Work — Shopify sites for gift shops & florists | PromoStrats"
+  description="Real projects for independent gift shops, florists and small UK brands. Each one shows what was wrong, what changed, and what happened after."
+>
+  <section class="ps2p">
+    <div class="ps2-wrap">
+      <header class="ps2p-head">
+        <span class="ps2-eyebrow">work — real client projects</span>
+        <h1>Shopify sites for independent <em>gift shops, florists</em> and small UK brands.</h1>
+        <p class="ps2p-lede">
+          {projects.length} real projects below, not a gallery. Click through for the actual story on each one — what was
+          wrong, what changed, and what happened after.
+        </p>
+      </header>
+    </div>
+
+    <div class="ps2-wrap">
+      <div class="ps2p-grid">
+        {
+          projects.map((p, i) => (
+            <a class="ps2p-card" href={`/portfolio/${p.slug}`}>
+              <span class="ps2p-card-visual">
+                {p.cardImage ? (
+                  <Image
+                    src={p.cardImage}
+                    alt={`${p.name} — redesigned site`}
+                    width={900}
+                    format="webp"
+                    quality={78}
+                    loading={i < 2 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                ) : (
+                  <ProjectSwatch variant={p.swatch!} name={p.name} inProgress={p.status === 'in-progress'} />
+                )}
+              </span>
+              <span class="ps2p-card-meta">
+                <span class="ps2p-card-name">{p.name}</span>
+                <span class="ps2p-card-tag">{p.tagline}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="ps2p-cta">
+      <div class="ps2-wrap">
+        <span class="ps2-eyebrow">next step</span>
+        <h2>Got a shop like one of these?</h2>
+        <p>
+          Tell me what your site isn't doing for you and I'll walk you through exactly what I'd change: structure,
+          usability and SEO.
+        </p>
+        <a class="ps2p-cta-btn" href="/contact">Book your free strategy call</a>
+        <div class="ps2p-cta-note">free 20-min call &middot; you keep the advice either way</div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ---------- header ---------- */
+  .ps2p-head {
+    padding: 84px 0 56px;
+  }
+
+  .ps2p-head h1 {
+    font-family: var(--ps2-disp);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-size: clamp(36px, 4.8vw, 56px);
+    line-height: 1.04;
+    margin-top: 22px;
+    max-width: 22ch;
+  }
+
+  .ps2p-head h1 em {
+    font-style: normal;
+    color: var(--ps2-accent);
+  }
+
+  .ps2p-lede {
+    margin-top: 24px;
+    font-size: 19px;
+    color: var(--ps2-ink-soft);
+    max-width: 52ch;
+  }
+
+  /* ---------- index grid ---------- */
+  .ps2p-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(16px, 2.5vw, 28px);
+    padding-bottom: clamp(48px, 6vw, 88px);
+  }
+
+  .ps2p-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid var(--ps2-line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+
+  .ps2p-card:hover {
+    border-color: var(--ps2-ink);
+    transform: translateY(-2px);
+    box-shadow: 0 24px 48px -28px rgba(43, 29, 18, 0.35);
+  }
+
+  .ps2p-card-visual {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--ps2-paper-tint);
+  }
+
+  .ps2p-card-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .ps2p-card-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px 20px;
+    border-top: 1px solid var(--ps2-line);
+  }
+
+  .ps2p-card-name {
+    font-family: var(--ps2-disp);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.015em;
+  }
+
+  .ps2p-card-tag {
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    color: var(--ps2-ink-soft);
+    text-align: right;
+    flex: none;
+    max-width: 15rem;
+  }
+
+  /* ---------- cta ---------- */
+  .ps2p-cta {
+    background: var(--ps2-accent);
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps2p-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ps2-gradient);
+    opacity: 0.22;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  .ps2p-cta > .ps2-wrap {
+    position: relative;
+  }
+
+  .ps2p-cta :global(.ps2-eyebrow) {
+    color: var(--ps2-paper);
+  }
+
+  .ps2p-cta :global(.ps2-eyebrow)::before {
+    background: #fff;
+    opacity: 0.7;
+  }
+
+  .ps2p-cta h2 {
+    font-family: var(--ps2-disp);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    font-size: clamp(30px, 3.6vw, 42px);
+    line-height: 1.08;
+    color: #fff;
+    max-width: 18em;
+    margin: 14px auto 0;
+  }
+
+  .ps2p-cta p {
+    margin: 20px auto 36px;
+    color: #F0DCC8;
+    max-width: 46ch;
+  }
+
+  .ps2p-cta-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--ps2-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 30px;
+    border-radius: 6px;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .ps2p-cta-btn:hover {
+    background: var(--ps2-paper);
+    transform: translateY(-1px);
+  }
+
+  .ps2p-cta-note {
+    margin-top: 20px;
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: var(--ps2-paper);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 720px) {
+    .ps2p-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ps2p-head {
+      padding: 56px 0 40px;
+    }
+
+    .ps2p-card-meta {
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ps2p-card-tag {
+      text-align: left;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ps2p-card,
+    .ps2p-cta-btn {
+      transition: none;
+    }
+
+    .ps2p-card:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -4,8 +4,8 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 const {
-  title = 'PromoStrats | Web Design, Development & SEO, London',
-  description = 'Freelance web design, development and SEO in London. I build custom sites and fix the SEO, structure and usability issues costing sales. Shopify specialist.',
+  title = 'PromoStrats | Websites for Gift Shops & Florists, London',
+  description = 'Freelance web design, development and SEO for independent gift shops, florists and small UK brands. I build custom sites and fix the SEO, structure and usability issues costing sales. Shopify specialist.',
   image = '/og-image-web.png',
   noindex = false,
 } = Astro.props;
@@ -19,7 +19,7 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'PromoStrats',
-  description: 'Web design, development and SEO for UK independent brands, with a specialism in Shopify.',
+  description: 'Web design, development and SEO for independent gift shops, florists and small UK brands, with a specialism in Shopify.',
   url: 'https://www.promostrats.com',
   logo: 'https://www.promostrats.com/apple-touch-icon.png',
   image: 'https://www.promostrats.com/og-image-web.png',
@@ -55,6 +55,8 @@ const schema = {
     'Shopify theme development',
     'Ecommerce SEO',
     'Liquid',
+    'Gift shop websites',
+    'Florist websites',
   ],
   sameAs: [
     'https://www.linkedin.com/in/connor-bawcutt-865972269/',
@@ -159,7 +161,7 @@ const schema = {
       #scroll-progress__bar {
         height: 100%;
         width: 0%;
-        background: var(--ps2-cobalt);
+        background: var(--ps2-accent);
         transform-origin: left center;
         transition: width 0.08s linear;
       }

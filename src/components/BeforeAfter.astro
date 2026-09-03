@@ -1,0 +1,356 @@
+---
+// Draggable before/after comparison. Lifted wholesale out of the old
+// single-scroll portfolio page — same markup, same interaction — so it can be
+// reused on the per-project case-study pages. Sliders now live only on detail
+// pages; the index grid is a single still per project.
+import { Image } from 'astro:assets';
+import type { Compare } from '../data/projects';
+
+interface Props extends Compare {
+  /** First comparison on the page loads eagerly; the rest lazily. */
+  eager?: boolean;
+}
+
+const { label, before, after, alt, eager = false } = Astro.props;
+---
+
+<div class="ps2p-compare">
+  <div class="ps2p-panel">
+    <div class="ps2p-panel-head">
+      <span>{label}</span>
+      <span class="ps2p-drag-hint">drag to compare &#8646;</span>
+    </div>
+    <div class="ps2p-panel-body">
+      <div class="ps2p-ba" data-ba>
+        <input
+          class="ps2p-ba-range"
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          aria-label={`Drag to reveal ${alt} before and after`}
+        />
+        <div class="ps2p-ba-frame">
+          <figure class="ps2p-ba-layer ps2p-ba-layer--after">
+            {
+              after ? (
+                <Image
+                  src={after}
+                  alt={`${alt} — redesigned`}
+                  width={1400}
+                  format="webp"
+                  quality={78}
+                  loading={eager ? 'eager' : 'lazy'}
+                  fetchpriority={eager ? 'high' : 'auto'}
+                  decoding="async"
+                />
+              ) : (
+                <div class="ps2p-ba-ph">+ after &mdash; add image to src/assets/images</div>
+              )
+            }
+            <figcaption class="ps2p-ba-tag ps2p-ba-tag--after">+ after</figcaption>
+          </figure>
+          <figure class="ps2p-ba-layer ps2p-ba-layer--before">
+            {
+              before ? (
+                <Image
+                  src={before}
+                  alt={`${alt} — original`}
+                  width={1400}
+                  format="webp"
+                  quality={78}
+                  loading={eager ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              ) : (
+                <div class="ps2p-ba-ph">- before &mdash; add image to src/assets/images</div>
+              )
+            }
+            <figcaption class="ps2p-ba-tag ps2p-ba-tag--before">- before</figcaption>
+          </figure>
+          <div class="ps2p-ba-divider">
+            <span class="ps2p-ba-grip"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* ---------- compare panel ---------- */
+  .ps2p-compare {
+    margin-top: 40px;
+  }
+
+  .ps2p-panel {
+    background: var(--ps2-panel);
+    border: 1px solid var(--ps2-panel-line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -24px rgba(43, 29, 18, 0.4);
+  }
+
+  .ps2p-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--ps2-panel-line);
+    font-family: var(--ps2-mono);
+    font-size: 12.5px;
+    color: var(--ps2-panel-text);
+  }
+
+  .ps2p-panel-head .ps2p-drag-hint {
+    color: var(--ps2-accent-light);
+  }
+
+  .ps2p-panel-body {
+    padding: 12px;
+  }
+
+  /* ---------- before/after slider ---------- */
+  .ps2p-ba {
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .ps2p-ba-frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--ps2-ink);
+    --pos: 50%;
+    --fw: 100%;
+  }
+
+  .ps2p-ba-layer {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+  }
+
+  .ps2p-ba-layer img,
+  .ps2p-ba-ph {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .ps2p-ba-layer--before {
+    width: var(--pos);
+    overflow: hidden;
+    border-right: 2px solid var(--ps2-accent);
+    transition: var(--pos-transition, none);
+  }
+
+  .ps2p-ba-layer--before img,
+  .ps2p-ba-layer--before .ps2p-ba-ph {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--fw);
+    max-width: none;
+  }
+
+  .ps2p-ba-ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    font-family: var(--ps2-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ps2-panel-text);
+    background: repeating-linear-gradient(45deg, #2B1D12 0 12px, #38281A 12px 24px);
+  }
+
+  .ps2p-ba-tag {
+    position: absolute;
+    top: 12px;
+    font-family: var(--ps2-mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: rgba(43, 29, 18, 0.85);
+    backdrop-filter: blur(4px);
+  }
+
+  .ps2p-ba-tag--before {
+    left: 12px;
+    color: #ff9c86;
+  }
+
+  .ps2p-ba-tag--after {
+    right: 12px;
+    color: var(--ps2-green-light);
+  }
+
+  .ps2p-ba-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    transform: translateX(-50%);
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: var(--pos-transition, none);
+  }
+
+  .ps2p-ba-grip {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--ps2-accent);
+    box-shadow: 0 4px 18px rgba(43, 29, 18, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ps2p-ba-grip::before {
+    content: '\2039 \203A';
+    font-family: var(--ps2-mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ps2-accent);
+    letter-spacing: -1px;
+  }
+
+  .ps2p-ba-range {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    cursor: ew-resize;
+    z-index: 3;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .ps2p-ba-range:focus-visible ~ .ps2p-ba-frame {
+    outline: 2px solid var(--ps2-accent);
+    outline-offset: 3px;
+  }
+
+  .ps2p-ba-range::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    height: 100%;
+  }
+
+  .ps2p-ba-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 44px;
+    height: 9999px;
+    margin-top: -4000px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .ps2p-ba-range::-moz-range-track {
+    background: transparent;
+    border: none;
+  }
+
+  .ps2p-ba-range::-moz-range-thumb {
+    width: 44px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  @media (max-width: 800px) {
+    .ps2p-ba-frame {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ps2p-panel-body {
+      padding: 8px;
+    }
+
+    .ps2p-drag-hint {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((ba) => {
+    const range = ba.querySelector<HTMLInputElement>('.ps2p-ba-range');
+    const frame = ba.querySelector<HTMLElement>('.ps2p-ba-frame');
+    if (!range || !frame) return;
+
+    const setWidth = () => frame.style.setProperty('--fw', frame.clientWidth + 'px');
+
+    const setPos = (v: number, animate?: string) => {
+      if (animate) {
+        frame.style.setProperty('--pos-transition', 'all ' + animate);
+      } else {
+        frame.style.removeProperty('--pos-transition');
+      }
+      frame.style.setProperty('--pos', v + '%');
+      range.value = String(v);
+    };
+
+    setWidth();
+    setPos(50);
+    window.addEventListener('resize', setWidth);
+
+    range.addEventListener('input', () => {
+      frame.style.removeProperty('--pos-transition');
+      frame.style.setProperty('--pos', range.value + '%');
+    });
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      let played = false;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && !played) {
+              played = true;
+              setTimeout(() => {
+                setPos(28, '1.0s cubic-bezier(0.4, 0, 0.2, 1)');
+                setTimeout(() => setPos(50, '1.2s cubic-bezier(0.4, 0, 0.2, 1)'), 1100);
+              }, 500);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      io.observe(ba);
+    }
+  });
+</script>
