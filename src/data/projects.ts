@@ -40,7 +40,7 @@ export type Project = {
   live: string | null;
   /** Index card visual: a real screenshot where one exists, else a swatch. */
   cardImage: ImageMetadata | null;
-  swatch: 'blooms' | 'plants' | null;
+  swatch: 'artisan' | 'blooms' | 'flavour' | 'plants' | null;
   /** Detail page: what was wrong, what changed, what happened after. */
   problem: string;
   changed: string;
@@ -59,8 +59,8 @@ export const projects: Project[] = [
     scope: 'redesign · seo · ongoing',
     status: 'live',
     live: 'https://theartisanmerchants.co.uk',
-    cardImage: tamHomeAfter,
-    swatch: null,
+    cardImage: null,
+    swatch: 'artisan',
     problem:
       'The Artisan Merchants sell hand-crafted European toys, homeware and decorations — a genuinely curated collection, picked by James and Ben. Online it looked like every other stock Shopify shop: a generic slider, flat collection tiles, and no sense that anyone had chosen anything.',
     changed:
@@ -95,21 +95,23 @@ export const projects: Project[] = [
     slug: 'pretty-busy-blooms',
     number: '02',
     name: 'Pretty Busy Blooms',
-    tagline: 'Florist — delivery tooling',
-    scope: 'ordering flow · delivery dates',
+    tagline: 'Florist — homepage + delivery tooling',
+    scope: 'homepage · delivery dates · shipping',
     status: 'live',
     live: null,
     cardImage: null,
     swatch: 'blooms',
     problem:
-      'Flowers are almost always bought for a specific date — a birthday, an anniversary, a funeral — and the site had no clean way to ask for one. Delivery dates were arriving in order notes, or not at all.',
+      'Flowers are almost always bought for a specific date — a birthday, an anniversary, a funeral — and the site had no clean way to ask for one, with delivery dates arriving in order notes or not at all. The homepage wasn’t doing the shop justice either, and shipping issues at checkout were causing problems with orders.',
     changed:
-      'I built a <strong>custom delivery date picker</strong> into the ordering flow, so the date is captured properly at checkout instead of being retyped out of a comment box. I also proposed a <strong>dedicated weddings page</strong>, to catch higher-value enquiries separately from same-day orders.',
+      'I redesigned the <strong>homepage</strong> to better represent the shop, built a <strong>custom delivery date picker</strong> into the ordering flow so dates are captured properly at checkout instead of being retyped out of a comment box, and fixed the <strong>shipping issues</strong> that were causing problems with orders. I also proposed a <strong>dedicated weddings page</strong>, to catch higher-value enquiries separately from same-day orders.',
     result: { pending: 'Results not collected yet — ask Nicki.' },
     testimonial: { pending: 'Testimonial not collected yet — ask Nicki.' },
     changelog: [
-      { type: 'del', text: 'delivery dates in order notes' },
+      { type: 'del', text: 'stock homepage, no delivery date field' },
+      { type: 'add', text: 'homepage redesign' },
       { type: 'add', text: 'custom delivery date picker' },
+      { type: 'add', text: 'shipping issues fixed' },
       { type: 'add', text: 'weddings page proposed' },
     ],
     compares: [],
@@ -122,8 +124,8 @@ export const projects: Project[] = [
     scope: 'homepage · information pages',
     status: 'live',
     live: 'https://flavourlikefancy.co.uk',
-    cardImage: flfAfter,
-    swatch: null,
+    cardImage: null,
+    swatch: 'flavour',
     problem:
       'Flavour Like Fancy is a bright, independent gift shop in Chapel Allerton, Leeds. The brand’s personality — playful, colourful, unmistakably indie — wasn’t coming through anywhere online: it was running a stock theme that gave none of it away.',
     changed:

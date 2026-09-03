@@ -5,13 +5,35 @@
 // four grey placeholders. These are client colours, deliberately outside the
 // site's own kraft/brick chrome, and shouldn't be re-themed with it.
 interface Props {
-  variant: 'blooms' | 'plants';
+  variant: 'artisan' | 'blooms' | 'flavour' | 'plants';
   name: string;
   inProgress?: boolean;
 }
 
 const { variant, name, inProgress = false } = Astro.props;
 ---
+
+{
+  variant === 'artisan' && (
+    <span class="sw sw--artisan">
+      <span class="sw-rule" aria-hidden="true"></span>
+      <span class="sw-mark sw-mark--cormorant">{name}</span>
+      <span class="sw-tiles" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  )
+}
+
+{
+  variant === 'flavour' && (
+    <span class="sw sw--flavour">
+      <span class="sw-mark sw-mark--stamp">{name}</span>
+    </span>
+  )
+}
 
 {
   variant === 'blooms' && (
@@ -71,6 +93,55 @@ const { variant, name, inProgress = false } = Astro.props;
     letter-spacing: -0.01em;
     text-align: center;
     padding: 0 16px;
+  }
+
+  /* ---------- the artisan merchants ---------- */
+  .sw--artisan {
+    background: #1B2A46;
+    gap: 12px;
+  }
+
+  .sw-rule {
+    width: 40%;
+    height: 1px;
+    background: #B08D4E;
+  }
+
+  .sw-mark--cormorant {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    color: #F1E9D6;
+    letter-spacing: 0.01em;
+  }
+
+  .sw-tiles {
+    display: flex;
+    gap: 9px;
+  }
+
+  .sw-tiles span {
+    width: 34px;
+    height: 34px;
+    background: #F1E9D6;
+    border: 1px solid #B08D4E;
+  }
+
+  /* ---------- flavour like fancy ---------- */
+  .sw--flavour {
+    background: linear-gradient(135deg, #E8598A 0 34%, #2BB3AC 34% 67%, #F2C13B 67% 100%);
+  }
+
+  .sw-mark--stamp {
+    font-weight: 800;
+    font-size: 20px;
+    color: #17160F;
+    background: #EDE7DA;
+    padding: 8px 16px;
+    transform: rotate(-2deg);
+    line-height: 1.2;
+    max-width: 80%;
   }
 
   /* ---------- pretty busy blooms ---------- */
