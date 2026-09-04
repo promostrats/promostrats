@@ -6,9 +6,9 @@
 // instead of `cardImage` and renders a CSS-only card visual (see
 // components/ProjectSwatch.astro).
 //
-// Results and testimonials are deliberately typed so an uncollected one has
-// to be an explicit `pending` note naming who to chase, rather than an empty
-// string that silently renders as nothing — or worse, an invented number.
+// Testimonials are deliberately typed so an uncollected one has to be an
+// explicit `pending` note naming who to chase, rather than an empty string
+// that silently renders as nothing.
 
 import type { ImageMetadata } from 'astro';
 
@@ -41,10 +41,9 @@ export type Project = {
   /** Index card visual: a real screenshot where one exists, else a swatch. */
   cardImage: ImageMetadata | null;
   swatch: 'artisan' | 'blooms' | 'flavour' | 'plants' | null;
-  /** Detail page: what was wrong, what changed, what happened after. */
+  /** Detail page: what was wrong, what changed. */
   problem: string;
   changed: string;
-  result: string | Pending;
   testimonial: Quote | Pending;
   changelog: { type: 'add' | 'del'; text: string }[];
   compares: Compare[];
@@ -65,8 +64,6 @@ export const projects: Project[] = [
       'The Artisan Merchants sell hand-crafted European toys, homeware and decorations — a genuinely curated collection, picked by James and Ben. Online it looked like every other stock Shopify shop: a generic slider, flat collection tiles, and no sense that anyone had chosen anything.',
     changed:
       'I rebuilt the homepage and collection pages around a <strong>“curator’s cabinet” look</strong> — deep navy, brass detailing and cream, set in Cormorant Garamond — so the products feel collected rather than listed. The collection pages got a <strong>custom Shopify Liquid filter</strong> with client-side JS, filtering by maker, type and price, so browsing feels like moving through a shop instead of a spreadsheet. Earlier on I also sorted their search-engine setup and product copy, and I look after the site on an ongoing basis.',
-    result:
-      'The SEO retainer that followed found where the site was actually losing clicks: an average search position of about <strong>11.5</strong> across roughly <strong>141,000 monthly impressions</strong> — just below where clicks concentrate. Where it does rank well, it converts: a Kovap cable-car search sitting at <strong>position 2 pulls a 12.4% click-through rate</strong>, well above the account average. Closing that gap is what the ongoing work is aimed at.',
     testimonial: {
       text: 'Connor took the time to understand our business and implemented improvements across our whole site — from homepage layout and navigation through to detailed SEO work on product copy, metadata and images. Clear plan, measurable progress, smooth and collaborative.',
       name: 'Ben Meekings',
@@ -105,7 +102,6 @@ export const projects: Project[] = [
       'Flowers are almost always bought for a specific date — a birthday, an anniversary, a funeral — and the site had no clean way to ask for one, with delivery dates arriving in order notes or not at all. The homepage wasn’t doing the shop justice either, and shipping issues at checkout were causing problems with orders.',
     changed:
       'I redesigned the <strong>homepage</strong> to better represent the shop, built a <strong>custom delivery date picker</strong> into the ordering flow so dates are captured properly at checkout instead of being retyped out of a comment box, and fixed the <strong>shipping issues</strong> that were causing problems with orders. I also proposed a <strong>dedicated weddings page</strong>, to catch higher-value enquiries separately from same-day orders.',
-    result: { pending: 'Results not collected yet — ask Nicki.' },
     testimonial: { pending: 'Testimonial not collected yet — ask Nicki.' },
     changelog: [
       { type: 'del', text: 'stock homepage, no delivery date field' },
@@ -130,7 +126,6 @@ export const projects: Project[] = [
       'Flavour Like Fancy is a bright, independent gift shop in Chapel Allerton, Leeds. The brand’s personality — playful, colourful, unmistakably indie — wasn’t coming through anywhere online: it was running a stock theme that gave none of it away.',
     changed:
       'I redesigned the homepage and information pages to match how the shop actually feels, on a <strong>Dawn-based theme</strong> in pink, turquoise and yellow: a <strong>bold hero with a hand-cut product collage</strong>, a colourful scrolling banner, a clear <strong>“shop by collection” grid</strong>, and dedicated sections for the craft workshops and the physical shop. It looks like Tasha’s brand now instead of a default install, and points visitors straight at what they came for.',
-    result: { pending: 'Results not collected yet — ask Tasha.' },
     testimonial: { pending: 'Testimonial not collected yet — ask Tasha.' },
     changelog: [
       { type: 'del', text: 'stock theme, zero personality' },
@@ -153,14 +148,13 @@ export const projects: Project[] = [
     swatch: 'plants',
     problem: 'A homepage redesign for an air-plant grower.',
     changed: 'This one’s still in build. The full story goes up once it’s live.',
-    result: { pending: 'In progress — no results to report yet.' },
     testimonial: { pending: 'Testimonial not collected yet — the build comes first.' },
     changelog: [],
     compares: [],
   },
 ];
 
-/** Narrows an uncollected result/testimonial so pages can render the chase note. */
+/** Narrows an uncollected testimonial so pages can render the chase note. */
 export function isPending(value: string | Pending | Quote): value is Pending {
   return typeof value === 'object' && value !== null && 'pending' in value;
 }

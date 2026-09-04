@@ -11,12 +11,12 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { result, testimonial } = project;
+const { testimonial } = project;
 ---
 
 <Layout
   title={`${project.name} — ${project.tagline} | PromoStrats`}
-  description={`${project.name}: what was wrong with the site, what I changed, and what happened after.`}
+  description={`${project.name}: what was wrong with the site and what I changed.`}
 >
   <section class="ps2p">
     <div class="ps2-wrap">
@@ -44,17 +44,6 @@ const { result, testimonial } = project;
           <section class="ps2p-block">
             <h2>What changed</h2>
             <p set:html={project.changed} />
-          </section>
-
-          <section class="ps2p-block">
-            <h2>What happened after</h2>
-            {
-              isPending(result) ? (
-                <p class="ps2p-pending">{result.pending}</p>
-              ) : (
-                <p set:html={result} />
-              )
-            }
           </section>
 
           {
@@ -234,7 +223,7 @@ const { result, testimonial } = project;
     font-weight: 600;
   }
 
-  /* uncollected result/testimonial — visibly a gap, not a claim */
+  /* uncollected testimonial — visibly a gap, not a claim */
   .ps2p-pending {
     font-family: var(--ps2-mono);
     font-size: 13px;
