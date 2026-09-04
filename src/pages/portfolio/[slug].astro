@@ -47,9 +47,7 @@ const { testimonial } = project;
           </section>
 
           {
-            isPending(testimonial) ? (
-              <p class="ps2p-pending">{testimonial.pending}</p>
-            ) : (
+            !isPending(testimonial) && (
               <figure class="ps2p-quote">
                 <blockquote>&ldquo;{testimonial.text}&rdquo;</blockquote>
                 <figcaption>
@@ -221,17 +219,6 @@ const { testimonial } = project;
   .ps2p-block :global(strong) {
     color: var(--ps2-ink);
     font-weight: 600;
-  }
-
-  /* uncollected testimonial — visibly a gap, not a claim */
-  .ps2p-pending {
-    font-family: var(--ps2-mono);
-    font-size: 13px;
-    color: var(--ps2-ink-soft);
-    background: var(--ps2-paper-tint);
-    border: 1px dashed var(--ps2-line);
-    border-radius: 8px;
-    padding: 14px 16px;
   }
 
   /* ---------- testimonial ---------- */
